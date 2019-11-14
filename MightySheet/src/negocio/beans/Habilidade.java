@@ -32,8 +32,15 @@ public class Habilidade {
 	public String toString()
 	{
 		String str = String.format("%s\n"
-								   + "Habilidade (%s) - %s\n",
-								   this.nome, this.categoria, this.tipo);
+								   + "Habilidade ",
+								   this.nome);
+		
+		if(categoria != null)
+		{
+			str += String.format("(%s) ", this.categoria);
+		}
+
+		str += String.format("- %s\n", this.tipo);
 		
 		if(requisito != null)
 		{
@@ -108,6 +115,25 @@ public class Habilidade {
 		return ret;
 	}
 	
+	public static HashMap<String, Habilidade> habilidadesAvancadasGuerreiro()
+	{
+		HashMap<String, Habilidade> ret = new HashMap<String, Habilidade>();
+		
+		ret.put(COMBATE_COM_DUAS_ARMAS_2.getNome(), COMBATE_COM_DUAS_ARMAS_2);
+		ret.put(FORCA_DE_EXPLOSAO.getNome(), FORCA_DE_EXPLOSAO);
+		ret.put(GOLPE_DEVASTADOR_2.getNome(), GOLPE_DEVASTADOR_2);
+		ret.put(GRITO_DE_GUERRA_2.getNome(), GRITO_DE_GUERRA_2);
+
+		ret.put(GRITO_DE_INTIMIDACAO.getNome(), GRITO_DE_INTIMIDACAO);
+		ret.put(GUERREIRO_DE_ACO_2.getNome(), GUERREIRO_DE_ACO_2);
+		ret.put(IMPLACAVEL.getNome(), IMPLACAVEL);
+		ret.put(INVESTIDA_FORTE.getNome(), INVESTIDA_FORTE);
+		ret.put(MESTRE_DE_ARMAS_2.getNome(), MESTRE_DE_ARMAS_2);
+		ret.put(VALOR_DA_VITORIA.getNome(), VALOR_DA_VITORIA);
+		
+		return ret;
+	}
+	
 	/// Gets e sets
 	public String getNome()
 	{
@@ -123,6 +149,8 @@ public class Habilidade {
 														"Você se adaptou ao ambiente em que cresceu ou à atividade que "
 														+ "escolheu - ou precisou - desempenhar. Você tem +1 em qualquer "
 														+ "um dos seus Atributos a sua escolha.");
+	
+	// Habilidades Extras
 	// Habilidades Extras
 	public final static Habilidade ASSUNTOS_DIVERSOS = new Habilidade("Assuntos Diversos", "Ação", "Característica", null, 30, -1,
 														"Você estudou e praticou um pouco de tudo ao longo de sua vida. Você "
@@ -176,12 +204,16 @@ public class Habilidade {
 														+ "Você pode rolar novamente um dado cujo resultado seja 1. Você só "
 														+ "");
 	
+	
 	/// Classes
 	// Guerreiro
+	
 	// Habilidade Automática
 	public final static Habilidade MESTRE_DE_ARMAS_1 = new Habilidade("Mestre de Armas 1", "Suporte", "Técnica", null, -1, -1,
 														"Você é particulamente eficiente no uso de armas brancas. Sempre que "
 														+ "realizar um ataque corporal bem sucedido, adicione 3 ao dano do ataque.");
+	// Habilidades Básicas
+	
 	// Habilidades Básicas
 	public final static Habilidade ANULAR_GOLPE = new Habilidade("Anular Golpe", "Reação", "Técnica", "Defesa Agressiva", 0, -1,
 														"Você se especializou em perceber e evitar os ataques mais complexos dos "
@@ -253,7 +285,7 @@ public class Habilidade {
 														+ "arma, você poder imediatamente fazer um ataque corporal normal contra "
 														+ "o mesmo alvo com seu escudo. Um ataque com um escudo causa dano igual "
 														+ "à Força + FN do escudo/Contusão.");
-	public final static Habilidade GRITO_DE_GUERRA_1 = new Habilidade("Grito de Guerra 1", "Ação", "", null, 10, -1,
+	public final static Habilidade GRITO_DE_GUERRA_1 = new Habilidade("Grito de Guerra 1", "Ação", null, null, 10, -1,
 														"Você pode dar um grito fervoroso que motiva todos seus aliados que "
 														+ "estiverem em um raio de 5 metros recebem +1 em todas as rolagens "
 														+ "até o final da batalha. Além disso, remova todos os efeitos de Medo "
@@ -283,6 +315,59 @@ public class Habilidade {
 	public final static Habilidade TRANSPOR = new Habilidade("Transpor", "Suporte", "Técnica", "Defesa Agressiva", -1, -1,
 														"Você sabe encontrar os espaços deiados pelo escudo do adversário. Ignore sempre o bônus "
 														+ "de Bloqueio da Defesa do oponente.");
+	
+	// Habilidade Avançadas
 	// Habilidades Avançadas
+	public final static Habilidade COMBATE_COM_DUAS_ARMAS_2 = new Habilidade("Combate com Duas Armas 2", "Suporte", "Técnica", "Nível 5, Combater com Duas Armas 1", -1, -1,
+														"Como em Combate com Duas Armas 1, mas você pode usar duas armas com a mesma FN.\n"
+														+ "\tEspecial: Se você utilizar uma Habilidade de Ação, seus efeitos se aplicam a apenas "
+														+ "um dos seus ataques - mas você ainda pode fazer um ataque normal com a outra arma no mesmos "
+														+ "turno, antes ou depois de utilizar a Habilidade de Ação");
+	public final static Habilidade FORCA_DE_EXPLOSAO = new Habilidade("Força de Explosão", "Suporte", "Característica", "Nível 5, Ataque do Búfalo", -1, -1,
+														"Quando fizer ataques que têm chance de derrubar o oponente você pode afetar alvos até 10 vezes "
+														+ "mais pesados do que você (a maioria dos ataques que derrubam oponentes só afetam alvos com até "
+														+ "o dobro do seu peso).\n"
+														+ "\tAlém disso, se você usar qualquer Habilidade que derrube o oponente, a dificuldade para "
+														+ "resistir ao efeito é aumentada em +2.");
+	public final static Habilidade GOLPE_DEVASTADOR_2 = new Habilidade("Golpe Devastador 2", "Ação", "Técnica", "Nível 5, Golpe Devastador 1", 60, -1,
+														"Faça um ataque corporal contra o alvo. Se acertar, o ataque causa o triplo do dano normal e o "
+														+ "alvo precisa vencer um confronto de Força (adicione a FN da arma que estiver usando no seu "
+														+ "teste) contra você ou ficará Paralisado (veja Condições na página 169) por um turno.");
+	public final static Habilidade GRITO_DE_GUERRA_2 = new Habilidade("Grito de Guerra 2", "Ação", null, "Nível 5, Grito de Guerra 1", 15, -1,
+														"Você pode dar um grito fervoroso que motiva todos seus aliados. Você e todos os seus aliados em "
+														+ "um raio de 10 metros recebem +2 em todas as rolagens até o final da batalha. Além disso, "
+														+ "remova todos os efeitos de Medo de todos os aliados dentro da área dessa Habilidade.\n"
+														+ "\tVocê não pode usar esta Habilidade se estiver sob qualquer efeito de Medo.");
+	public final static Habilidade GRITO_DE_INTIMIDACAO = new Habilidade("Grito de Intimidação", "Ação", null, "Nível 5, Grito de Guerra 1", 35, -1,
+														"Você pode dar um grito para intimidar seus inimigos. Todos os oponentes que estiverem a até "
+														+ "10 metros à sua frente que tiverem uma Determinação menor do que a sua ficam Paralisados "
+														+ "(veja Condições na página 169) por 2 turnos.\n"
+														+ "\tEsse é um efeito de Medo.");
+	public final static Habilidade GUERREIRO_DE_ACO_2 = new Habilidade("Guerreiro de Aço 2", "Suporte", "Característica", "Nível 5, Guerreiro de Aço 1", -1, -1,
+														"Você está extremamente acostumado a usar armaduras pesadas e se sente confortável quando verga uma. "
+														+ "Você considera a FN de Qualquer armadura com a Característica Pesada como tendo FN-1 para todos os "
+														+ "propósitos.\n"
+														+ "\tEssa redução se acumula com a redução fornecida por Guerreiro de Aço 1.");
+	public final static Habilidade IMPLACAVEL = new Habilidade("Implacável", "Suporte", "Característica", "Nível 5, Sem Escapatória", -1, -1,
+														"Sempre que errar um ataque corporal, você causa metade do dano normal do ataque (arredondando "
+														+ "para baixo).");
+	public final static Habilidade INVESTIDA_FORTE = new Habilidade("Investida Forte", "Suporte", null, "Nível 5, Golpe com Escudo", -1, -1,
+														"Sempre que acertar uma manobra de encontrão usando um esudo, o alvo precisa vencer um teste de "
+														+ "Resistência (Dificuldade igual à sua Determinação + a FN do escudo que você estiver usando) "
+														+ "ou será derrubado. Alvos com o dobro do seu peso não são afetados. Um ataque com um escudo "
+														+ "causa dano igual à Força + FN do escudo/Contusão.");
+	public final static Habilidade MESTRE_DE_ARMAS_2 = new Habilidade("Mestre de Armas 2", "Suporte", "Técnica", "Nível 5", -1, -1,
+														"Você é extremamente eficaz no uso de armas brancas. Sempre que acertar um ataque corporal "
+														+ "adicione 3 ao dano do ataque.\n"
+														+ "\tEsse bônus de dano se acumula com o bônus fornecido por Mestre das Armas 1.");
+	public final static Habilidade VALOR_DA_VITORIA = new Habilidade("Valor da Vitória", "Reação", "Característica", "Nível 5", -1, -1,
+														"Cada vez que você derrota um oponente (isso inclui se ele se render ou fugir após a batalha) "
+														+ "você recupera 5 pontos de vida e 5 pontos de mana.");
+	
 	// Habilidade Final
+	// Habilidade Final
+	public final static Habilidade MESTRE_DE_ARMAS_3 = new Habilidade("Mestre em Armas 3", "Ação", "Técnica", "Nível 10, Mestre de Armas 2", 50, -1,
+														"Faça um ataque corporal contra uma criatura. Se o ataque acertar o alvo, ao invés do dano normal "
+														+ "da arma, os Pontos de Vida atuais dele são reduzidos à metade. No caso de um sucesso crítico "
+														+ "no ataque, o oponente é morto instantaneamente.");
 }
