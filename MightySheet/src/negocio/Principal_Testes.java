@@ -11,18 +11,12 @@ public class Principal_Testes {
 		ArrayList<Habilidade> lista = new ArrayList<>();
 		lista = rep.listarHabilidade();
 		System.out.println(rep.habilidadePorClasse("Guerreiro"));
-		
-		System.out.println(rep.buscarPorNome("Bola de Fogo"));
-		
-		for(int i=0;i<lista.size();i++)
-		{
+
+		System.out.println(rep.buscarPorNome("Bençao de Lathellanis "));
+
+		for (int i = 0; i < lista.size(); i++) {
 			System.out.println(lista.get(i).getNome());
 		}
-	
 		
-		
-		
-		
-				
 	}
 }

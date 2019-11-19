@@ -1,7 +1,7 @@
 package negocio.beans;
 
-public class Protecao extends Equipamento{
-	
+public class Protecao extends Equipamento {
+
 	/// Atributos
 	private int bloqueio;
 	private int esquiva;
