@@ -31,4 +31,39 @@ public class Classe {
 	public final static Classe GUERREIRO = new Classe("Guerreiro", 1, 1, 0, 0, null);
 	public final static Classe FEITICEIRO = new Classe("Feiticeiro", 0, 0, 1, 1, null);
 
+
+	
+	
+	/// Getters
+	
+	public String getNome() {
+		return nome;
+	}
+	public int getBonusForca() {
+		return bonusForca;
+	}
+	public int getBonusAgilidade() {
+		return bonusAgilidade;
+	}
+	public int getBonusInteligencia() {
+		return bonusInteligencia;
+	}
+	public int getBonusVontade() {
+		return bonusVontade;
+	}
+	public Habilidade getHabilidadeAutomatica() {
+		return habilidadeAutomatica;
+	}
+	public HashMap<String, Habilidade> getHabilidadesBasicas() {
+		return habilidadesBasicas;
+	}
+	public HashMap<String, Habilidade> getHabilidadesAvancadas() {
+		return habilidadesAvancadas;
+	}
+	public Habilidade getHabilidadeFinal() {
+		return habilidadeFinal;
+	}
+	
+	
+
 }
