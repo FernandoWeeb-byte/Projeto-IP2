@@ -1,7 +1,6 @@
 package negocio.beans;
 
-public class Arma extends Equipamento{
-	
+public class Arma extends Equipamento {
 	/// Atributos
 	private int dano;
 	private String tipoDano;
