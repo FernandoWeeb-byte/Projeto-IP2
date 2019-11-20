@@ -2,8 +2,12 @@ package gui.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +16,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import negocio.beans.Classe;
+import negocio.beans.Personagem;
+import negocio.beans.Raca;
 
 public class ControllerCriacaoDeFicha {
 
@@ -24,10 +32,10 @@ public class ControllerCriacaoDeFicha {
     private URL location;
     
     @FXML
-    private ChoiceBox<?> classe;
+    private ComboBox<?> classe;
 
     @FXML
-    private ChoiceBox<?> raca;
+    private ComboBox<?> raca;
 
     @FXML
     private TextField forca;
@@ -42,13 +50,13 @@ public class ControllerCriacaoDeFicha {
     private TextField vontade;
 
     @FXML
-    private ChoiceBox<?> vestimenta;
+    private ComboBox<?> vestimenta;
 
     @FXML
-    private ChoiceBox<?> maoDireita;
+    private ComboBox<?> maoDireita;
 
     @FXML
-    private ChoiceBox<?> maoEsquerda;
+    private ComboBox<?> maoEsquerda;
 
     @FXML
     private Button adcForca;
@@ -115,9 +123,43 @@ public class ControllerCriacaoDeFicha {
     	appStage.show();
     }
     
+    void carregarClasse()
+    {
+    	//isso seria num RepositorioClasses mas enquanto nao tem, é isso
+    	ArrayList<Classe> lista = new ArrayList<>();
+    	ObservableList obLista;
+    	lista.add(Classe.FEITICEIRO);
+    	lista.add(Classe.GUERREIRO);
+    	lista.add(Classe.LADINO);
+    	lista.add(Classe.SACERDOTE);
+    	obLista = FXCollections.observableArrayList(lista);
+    	classe.setItems(obLista);
+    	
+    }
+    
+    void carregarRaca()
+    {
+    	//estaria na futura RepositorioRacas
+    	ArrayList<Raca> lista = new ArrayList<>();
+    	ObservableList obLista;
+    	lista.add(Raca.HUMANO);
+    	lista.add(Raca.Anao);
+    	lista.add(Raca.ELFO);
+    	//lista.add(Raca);
+    	obLista = FXCollections.observableArrayList(lista);
+    	raca.setItems(obLista);
+    }
+    
+    @FXML
+    void salvar(ActionEvent event)
+    {
+    	
+    }
+    
     @FXML
     void initialize() {
-    	
+    	carregarClasse();
+    	carregarRaca();
     }
 	
 }

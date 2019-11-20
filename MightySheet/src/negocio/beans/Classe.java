@@ -30,5 +30,12 @@ public class Classe {
 	/// Instancias estaticas
 	public final static Classe GUERREIRO = new Classe("Guerreiro", 1, 1, 0, 0, null);
 	public final static Classe FEITICEIRO = new Classe("Feiticeiro", 0, 0, 1, 1, null);
+	public final static Classe LADINO = new Classe("Ladino", 0, 1, 1, 0, null);
+	public final static Classe SACERDOTE = new Classe("Sarcedote", 0, 0, 1, 1, null);
 
+	
+	public String toString()
+	{
+		return this.nome;
+	}
 }

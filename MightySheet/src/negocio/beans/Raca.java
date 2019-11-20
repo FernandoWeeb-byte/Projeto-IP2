@@ -28,4 +28,11 @@ public class Raca {
 
 	/// Instancias estaticas
 	public final static Raca HUMANO = new Raca("Humano", 3, 3, 3, 3, null);
+	public final static Raca ELFO = new Raca("Elfo", 2, 4, 3, 3, null);
+	public final static Raca Anao = new Raca("Anão", 4, 2, 3, 3, null);
+	
+	public String toString()
+	{
+		return this.nome;
+	}
 }
