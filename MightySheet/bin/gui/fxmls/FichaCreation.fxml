@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,26 +12,26 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="-19.0" prefHeight="692.0" prefWidth="719.0">
          <children>
-            <ChoiceBox layoutX="473.0" layoutY="96.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="classe" layoutX="473.0" layoutY="96.0" prefWidth="150.0" />
             <Label layoutX="473.0" layoutY="70.0" prefHeight="17.0" prefWidth="39.0" text="Classes" />
             <Label layoutX="28.0" layoutY="70.0" prefHeight="17.0" prefWidth="39.0" text="Raças" />
-            <ChoiceBox layoutX="29.0" layoutY="96.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="raca" layoutX="29.0" layoutY="96.0" prefWidth="150.0" />
             <Label layoutX="29.0" layoutY="41.0" prefHeight="17.0" prefWidth="39.0" text="Nome" />
             <Label layoutX="34.0" layoutY="137.0" text="Nivel" />
             <Label layoutX="34.0" layoutY="207.0" text="Força" />
             <Label layoutX="34.0" layoutY="235.0" text="Agilidade" />
             <Label layoutX="34.0" layoutY="268.0" text="Inteligência" />
             <Label layoutX="34.0" layoutY="296.0" text="Vontade" />
-            <TextField layoutX="105.0" layoutY="203.0" prefHeight="25.0" prefWidth="27.0" />
-            <TextField layoutX="105.0" layoutY="231.0" prefHeight="25.0" prefWidth="27.0" />
-            <TextField layoutX="105.0" layoutY="264.0" prefHeight="25.0" prefWidth="27.0" />
-            <TextField layoutX="105.0" layoutY="292.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="forca" layoutX="105.0" layoutY="203.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="agilidade" layoutX="105.0" layoutY="231.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="inteligencia" layoutX="105.0" layoutY="264.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="vontade" layoutX="105.0" layoutY="292.0" prefHeight="25.0" prefWidth="27.0" />
             <Label layoutX="366.0" layoutY="175.0" prefHeight="37.0" prefWidth="84.0" text="Vestimenta">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="473.0" layoutY="181.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" prefWidth="150.0" />
             <Label layoutX="366.0" layoutY="233.0" prefHeight="17.0" prefWidth="96.0" text="Mão direita">
                <font>
                   <Font size="15.0" />
@@ -44,16 +42,16 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="473.0" layoutY="232.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="473.0" layoutY="284.0" prefWidth="150.0" />
-            <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
-            <Button layoutX="154.0" layoutY="231.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="29.0" text="+" />
-            <Button layoutX="154.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
-            <Button layoutX="154.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
+            <ChoiceBox fx:id="maoDireita" layoutX="473.0" layoutY="232.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" prefWidth="150.0" />
+            <Button fx:id="adcForca" layoutX="154.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
+            <Button fx:id="adcAgilidade" layoutX="154.0" layoutY="231.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="29.0" text="+" />
+            <Button fx:id="adcInteligencia" layoutX="154.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
+            <Button fx:id="adcVontade" layoutX="154.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
             <Label layoutX="229.0" layoutY="204.0" prefHeight="17.0" prefWidth="27.0" text="PV" />
-            <TextField layoutX="80.0" layoutY="37.0" prefHeight="25.0" prefWidth="563.0" />
+            <TextField fx:id="nome" layoutX="80.0" layoutY="37.0" prefHeight="25.0" prefWidth="563.0" />
             <Label layoutX="229.0" layoutY="249.0" text="PM" />
-            <TextField layoutX="80.0" layoutY="133.0" prefHeight="25.0" prefWidth="39.0" />
+            <TextField fx:id="nivel" layoutX="80.0" layoutY="133.0" prefHeight="25.0" prefWidth="39.0" />
             <Label layoutX="43.0" layoutY="370.0" text="Bloqueio">
                <font>
                   <Font size="15.0" />
@@ -69,9 +67,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="47.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField layoutX="118.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField layoutX="196.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="bloqueio" layoutX="47.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="esquiva" layoutX="118.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="determinacao" layoutX="196.0" layoutY="406.0" prefHeight="25.0" prefWidth="51.0" />
             <Label layoutX="348.0" layoutY="370.0" text="Carga Basica">
                <font>
                   <Font size="15.0" />
@@ -87,9 +85,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="339.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
-            <TextField layoutX="450.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
-            <TextField layoutX="561.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
+            <TextField fx:id="cargaBasica" layoutX="339.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
+            <TextField fx:id="cargaPesada" layoutX="450.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
+            <TextField fx:id="cargaMaxima" layoutX="561.0" layoutY="406.0" prefHeight="25.0" prefWidth="103.0" />
             <Label layoutX="366.0" layoutY="338.0" text="Corrida">
                <font>
                   <Font size="15.0" />
@@ -100,15 +98,13 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="168.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField layoutX="438.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
-            <ListView layoutX="393.0" layoutY="445.0" prefHeight="200.0" prefWidth="200.0" />
-            <TreeTableView layoutX="44.0" layoutY="445.0" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TreeTableColumn prefWidth="75.0" text="C1" />
-                <TreeTableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TreeTableView>
+            <TextField fx:id="Deslocamento" layoutX="168.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="corrida" layoutX="438.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
+            <ListView layoutX="68.0" layoutY="452.0" prefHeight="200.0" prefWidth="270.0" />
+            <Button fx:id="voltar" layoutX="512.0" layoutY="640.0" mnemonicParsing="false" onAction="#acaoBotao" text="Voltar" />
+            <Button fx:id="salvar" layoutX="612.0" layoutY="640.0" mnemonicParsing="false" text="Salvar" />
+            <TextField fx:id="pV" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="pM" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="27.0" />
          </children>
       </AnchorPane>
    </children>
