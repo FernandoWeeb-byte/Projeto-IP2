@@ -3,6 +3,7 @@ package negocio.beans;
 import java.util.HashMap;
 
 public class Classe {
+	
 	/// Atributos
 	private String nome;
 	private int bonusForca;
@@ -26,8 +27,8 @@ public class Classe {
 		this.habilidadesBasicas = habilidadesBasicas;
 	}
 
-	/// Instancias estï¿½ticas
-	public final static Classe GUERREIRO = new Classe("Guerreiro", 1, 1, 0, 0, Habilidade.habilidadesGuerreiro());
-	public final static Classe FEITICEIRO = new Classe("Feiticeiro", 0, 0, 1, 1, Habilidade.habilidadesFeiticeiro());
+	/// Instancias estaticas
+	public final static Classe GUERREIRO = new Classe("Guerreiro", 1, 1, 0, 0, null);
+	public final static Classe FEITICEIRO = new Classe("Feiticeiro", 0, 0, 1, 1, null);
 
 }
