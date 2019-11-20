@@ -1,7 +1,6 @@
 package negocio.beans;
 
 public class Equipamento {
-
 	/// Atributos
 	private String nome;
 	private int custo;

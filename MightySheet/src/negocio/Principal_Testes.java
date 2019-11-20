@@ -1,7 +1,6 @@
 package negocio;
 
 import negocio.beans.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,6 +16,5 @@ public class Principal_Testes {
 		for (int i = 0; i < lista.size(); i++) {
 			System.out.println(lista.get(i).getNome());
 		}
-		
 	}
 }

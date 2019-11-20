@@ -1,10 +1,10 @@
 package negocio.beans;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Habilidade {
-
 	/// Atributos
 	private String nome;
 	private String tipo;
@@ -13,9 +13,8 @@ public class Habilidade {
 	private int mana;
 	private int dificuldade;
 	private String descricao;
-	private String classe;
-	private String raca;
-
+  
+  
 	/// Construtores
 	public Habilidade(String nome, String tipo, String categoria, String requisito, int mana, int dificuldade,
 			String classe, String raca, String descricao) {
@@ -30,7 +29,7 @@ public class Habilidade {
 		this.descricao = descricao;
 	}
 
-	/// M�todos
+	/// Mï¿½todos
 	public String toString() {
 		String str = String.format("%s\n" + "Habilidade ", this.nome);
 
@@ -39,7 +38,6 @@ public class Habilidade {
 		}
 
 		str += String.format("- %s\n", this.tipo);
-
 		if (requisito != null) {
 			str += String.format("Requisito: %s\n", this.requisito);
 		}
@@ -133,7 +131,6 @@ public class Habilidade {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 	
 	public static HashMap<String, Habilidade> habilidadesExtrasHumano()
 	{
@@ -147,8 +144,6 @@ public class Habilidade {
 				ret.put(repo.listarHabilidade().get(i).getNome(), repo.listarHabilidade().get(i));
 			}                                                                                                                                                                                                                                                                               
 		}
-		
-		
 		
 		return ret;
 	}
@@ -164,7 +159,6 @@ public class Habilidade {
 				ret.put(repo.listarHabilidade().get(i).getNome(), repo.listarHabilidade().get(i));
 			}
 		}
-		
 		
 		return ret;
 	}
@@ -184,7 +178,8 @@ public class Habilidade {
 		
 		return ret;
 	}
-	
+  
+  
 	public static HashMap<String, Habilidade> habilidadesExtrasElfo()
 	{
 HashMap<String, Habilidade> ret = new HashMap<String, Habilidade>();
@@ -200,6 +195,4 @@ HashMap<String, Habilidade> ret = new HashMap<String, Habilidade>();
 		
 		return ret;
 	}
-	
-	
 }

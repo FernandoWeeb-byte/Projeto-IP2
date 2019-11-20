@@ -3,7 +3,6 @@ package negocio.beans;
 import java.util.HashMap;
 
 public class Raca {
-
 	/// Atributos
 	private String nome;
 	private int forca;
@@ -14,18 +13,21 @@ public class Raca {
 	private Habilidade habilidadeAutomatica;
 	private HashMap<String, Habilidade> habilidades;
 
+
 	/// Construtor
 	public Raca(String nome, int forca, int agilidade, int inteligencia, int vontade, String classesComuns, HashMap<String, Habilidade> habilidades) {
+
 		this.nome = nome;
 		this.forca = forca;
 		this.agilidade = agilidade;
 		this.inteligencia = inteligencia;
 		this.vontade = vontade;
 		this.classesComuns = classesComuns;
+
 		this.habilidades = habilidades;
 	}
 
-	/// Instancias est�ticas
+	/// Instancias estï¿½ticas
 	public final static Raca HUMANO = new Raca("Humano", 3, 3, 3, 3,
-			"Bardo, Espadachim, Feiticeiro, Guerreiro, Ladino, Mago, Sacerdote e R�nico.",Habilidade.habilidadesExtrasHumano());
+			"Bardo, Espadachim, Feiticeiro, Guerreiro, Ladino, Mago, Sacerdote e Rï¿½nico.",Habilidade.habilidadesExtrasHumano());
 }
