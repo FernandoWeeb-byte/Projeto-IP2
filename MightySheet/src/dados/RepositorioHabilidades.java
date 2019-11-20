@@ -48,7 +48,7 @@ public class RepositorioHabilidades {
 		{
 			File arquivo = new File(path);
 			Scanner sc = new Scanner(arquivo);
-			sc.useDelimiter(";");
+			
 			while (sc.hasNext())
 			{
 				try
