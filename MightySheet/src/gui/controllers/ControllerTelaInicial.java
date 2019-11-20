@@ -58,7 +58,7 @@ public class ControllerTelaInicial {
 	    @FXML
 	    void AcaoDoBotao(ActionEvent event) throws IOException {
 	    	
-	    	Parent Criacao_Ficha_parent = FXMLLoader.load(getClass().getResource("FichaCreation.fxml"));
+	    	Parent Criacao_Ficha_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/FichaCreation.fxml"));
 	    	Scene Criacao_Ficha_Scene = new Scene(Criacao_Ficha_parent);
 	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 	    	appStage.setScene(Criacao_Ficha_Scene);

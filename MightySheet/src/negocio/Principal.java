@@ -15,7 +15,7 @@ public class Principal extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Pane root = FXMLLoader.load(getClass().getResource("TelaInicial.fxml"));
+		Pane root = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
 		Scene scene = new Scene(root,531,408);
 		primaryStage.setScene(scene);
 		primaryStage.show();
