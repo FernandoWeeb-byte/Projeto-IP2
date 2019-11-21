@@ -1,10 +1,5 @@
 package negocio.beans;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import dados.RepositorioHabilidades;
-
 public class Habilidade {
 	
 	/// Atributos
