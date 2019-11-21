@@ -62,14 +62,14 @@ public class RepositorioRacas {
 		
 		Map<String, Raca> ret = new HashMap<String, Raca>();
 		
-		ret.put("Anão", new Raca("Anão", 4, 2, 3, 3, repHab.buscarHabilidade("Coração da Montanha"),
-							repHab.listarHabilidadesPorRaca("Anão")));
-		ret.put("Elfo", new Raca("Elfo", 2, 4, 3, 3, repHab.buscarHabilidade("Benção de Lathellanis"),
+		ret.put("AnÃ£o", new Raca("AnÃ£o", 4, 2, 3, 3, repHab.buscarHabilidade("CoraÃ§Ã£o da Montanha"),
+							repHab.listarHabilidadesPorRaca("AnÃ£o")));
+		ret.put("Elfo", new Raca("Elfo", 2, 4, 3, 3, repHab.buscarHabilidade("BenÃ§Ã£o de Lathellanis"),
 							repHab.listarHabilidadesPorRaca("Elfo")));
 		ret.put("Humano", new Raca("Humano", 3, 3, 3, 3, repHab.buscarHabilidade("Adaptabilidade"),
 								repHab.listarHabilidadesPorRaca("Humano")));
-		ret.put("Metadílio", new Raca("Metadílio", 2, 4, 3, 3, repHab.buscarHabilidade("Tamanho Pequeno"),
-								repHab.listarHabilidadesPorRaca("Metadílio")));
+		ret.put("MetadÃ­lio", new Raca("MetadÃ­lio", 2, 4, 3, 3, repHab.buscarHabilidade("Tamanho Pequeno"),
+								repHab.listarHabilidadesPorRaca("MetadÃ­lio")));
 		
 		return ret;
 	}

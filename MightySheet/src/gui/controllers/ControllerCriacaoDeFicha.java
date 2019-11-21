@@ -17,12 +17,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import negocio.Fachada;
 import negocio.beans.Classe;
+import negocio.beans.Habilidade;
+import negocio.beans.Personagem;
 import negocio.beans.Raca;
+import negocio.controladores.ControladorPersonagens;
 
 public class ControllerCriacaoDeFicha {
 
@@ -36,10 +41,10 @@ public class ControllerCriacaoDeFicha {
     private URL location;
     
     @FXML
-    private ComboBox<?> classe;
+    private ComboBox<Classe> classe;
 
     @FXML
-    private ComboBox<?> raca;
+    private ComboBox<Raca> raca;
 
     @FXML
     private TextField forca;
@@ -103,6 +108,12 @@ public class ControllerCriacaoDeFicha {
 
     @FXML
     private TextField corrida;
+    
+    @FXML
+    private ListView<?> skilList;
+    
+    @FXML
+    private ListView<?> skillListC;
 
     @FXML
     private Button voltar;
@@ -115,6 +126,10 @@ public class ControllerCriacaoDeFicha {
 
     @FXML
     private TextField pM;
+    
+    @FXML
+    private Label erro;
+
 
 
     @FXML
@@ -127,9 +142,11 @@ public class ControllerCriacaoDeFicha {
     	appStage.show();
     }
     
+    
+    
     void carregarClasse()
     {
-    	//isso seria num RepositorioClasses mas enquanto nao tem, È isso
+    	
     	ObservableList obLista;
     	
     	List<Classe> lista = fachada.listarTodasClasses();
@@ -151,8 +168,56 @@ public class ControllerCriacaoDeFicha {
     }
     
     @FXML
-    void salvar(ActionEvent event)
+    void selecionarRaca(ActionEvent event) {
+    	ObservableList obLista = null;
+    	skilList.getItems().clear();
+    	List<Habilidade> lista = null;
+    	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
+    	obLista = FXCollections.observableArrayList(lista);
+    	skilList.getItems().addAll(obLista);
+
+    }
+    
+    @FXML
+    void selecionarClasse(ActionEvent event) {
+    	ObservableList obLista = null;
+    	skillListC.getItems().clear();
+    	List<Habilidade> lista = null;
+    	lista = fachada.listarHabilidadePorClasse(classe.getValue().getNome());
+    	obLista = FXCollections.observableArrayList(lista);
+    	skillListC.getItems().addAll(obLista);
+    }
+    
+    @FXML
+    void salvar(ActionEvent event) throws IOException
     {
+    	try {
+    	int nivels = Integer.parseInt(nivel.getText());
+    	int force = Integer.parseInt(forca.getText());
+    	int inteligencias = Integer.parseInt(inteligencia.getText());
+    	int von = Integer.parseInt(vontade.getText());
+    	int pv = Integer.parseInt(pV.getText());
+    	int pm = Integer.parseInt(pM.getText());
+    	int desl = Integer.parseInt(Deslocamento.getText());
+    	int corr = Integer.parseInt(corrida.getText());
+    	int bloq = Integer.parseInt(bloqueio.getText());
+    	int esq = Integer.parseInt(esquiva.getText());
+    	int det = Integer.parseInt(determinacao.getText());
+    	ControladorPersonagens save = new ControladorPersonagens();
+    	
+    	Personagem person = new Personagem(nome.getText(), raca.getValue(), classe.getValue(),nivels, force, inteligencias, von, pv, pm,desl, corr, bloq, esq, det);		
+    	save.salvar(person);
+    	
+    	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+    	Scene Criacao_Ficha_Scene = new Scene(parent_voltar);
+    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+    	appStage.setScene(Criacao_Ficha_Scene);
+    	appStage.show();
+    	}catch(Exception e)
+    	{
+    		erro.setText("Preencha todos os espa√ßos para salvar");
+    		
+    	}
     	
     }
     
