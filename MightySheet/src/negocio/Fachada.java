@@ -15,6 +15,7 @@ public class Fachada {
 	private ControladorClasses controlCls;
 	private ControladorHabilidades controlHab;
 	private ControladorRacas controlRc;
+	private ControladorPersonagens controlPer;
 	
 	
 	/// Construturo
@@ -23,6 +24,7 @@ public class Fachada {
 		controlCls = new ControladorClasses();
 		controlHab = new ControladorHabilidades();
 		controlRc = new ControladorRacas();
+		controlPer = new ControladorPersonagens();
 	}
 	
 	

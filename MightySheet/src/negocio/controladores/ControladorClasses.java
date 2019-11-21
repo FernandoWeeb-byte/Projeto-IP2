@@ -1,6 +1,7 @@
 package negocio.controladores;
 
 import negocio.beans.Classe;
+import dados.IRepoClasses;
 import dados.RepositorioClasses;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class ControladorClasses {
 	
 	/// Atributos
-	private RepositorioClasses repCls;
+	private IRepoClasses repCls;
 	
 	
 	/// Construtor

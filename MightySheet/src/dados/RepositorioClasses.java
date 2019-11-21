@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
-public class RepositorioClasses {
+public class RepositorioClasses implements IRepoClasses {
 	
 	/// Singleton
-	private static RepositorioClasses INSTANCE;
+	private static IRepoClasses INSTANCE;
 	
 	
 	/// Atributos
@@ -46,7 +46,7 @@ public class RepositorioClasses {
 		return str;
 	}
 	
-	public static RepositorioClasses getInstance()
+	public static IRepoClasses getInstance()
 	{
 		if(INSTANCE == null)
 		{
@@ -67,11 +67,12 @@ public class RepositorioClasses {
 		ret.put("Feiticeiro", new Classe("Feiticeiro", 0, 0, 1, 1, repHab.buscarHabilidade("Conhecimento Arcano"),
 								repHab.listarHabilidadePorClasse("Feiticeiro")));
 		
-		// Criar outras 2 classes básicas;
+		// Criar outras 2 classes bï¿½sicas;
 		
 		return ret;
 	}
 	
+	@Override
 	public boolean adicionarClasse(Classe classe)
 	{
 		boolean ret = false;
@@ -86,6 +87,7 @@ public class RepositorioClasses {
 		return ret;
 	}
 	
+	@Override
 	public boolean removerClasse(String nome)
 	{
 		boolean ret = false;
@@ -99,6 +101,7 @@ public class RepositorioClasses {
 		return ret;
 	}
 	
+	@Override
 	public Classe buscarClasse(String nome)
 	{
 		Classe ret = null;
@@ -116,6 +119,7 @@ public class RepositorioClasses {
 		return ret;
 	}
 	
+	@Override
 	public boolean modificarClasse(Classe classe)
 	{
 		boolean ret = false;
@@ -129,6 +133,7 @@ public class RepositorioClasses {
 		return ret;
 	}
 	
+	@Override
 	public List<Classe> listarTodasClasses()
 	{
 		List<Classe> ret = new ArrayList<Classe>();
