@@ -76,15 +76,12 @@ public class RepositorioClasses {
 	{
 		boolean ret = false;
 		
-		if(classe != null)
+		if(!classesPreExistentes.containsKey(classe.getNome()) &&
+				!classesCriadas.containsKey(classe.getNome()))
 		{
-			if(!classesPreExistentes.containsKey(classe.getNome()) &&
-					!classesCriadas.containsKey(classe.getNome()))
-			{
-				classesCriadas.put(classe.getNome(), classe);
-				ret = true;
-			}	
-		}
+			classesCriadas.put(classe.getNome(), classe);
+			ret = true;
+		}	
 		
 		return ret;
 	}
@@ -93,13 +90,10 @@ public class RepositorioClasses {
 	{
 		boolean ret = false;
 		
-		if(nome != null)
+		if(classesCriadas.containsKey(nome))
 		{
-			if(classesCriadas.containsKey(nome))
-			{
-				classesCriadas.remove(nome);
-				ret = true;
-			}
+			classesCriadas.remove(nome);
+			ret = true;
 		}
 		
 		return ret;
@@ -126,15 +120,12 @@ public class RepositorioClasses {
 	{
 		boolean ret = false;
 		
-		if(classe != null)
+		if(classesCriadas.containsKey(classe.getNome()))
 		{
-			if(classesCriadas.containsKey(classe.getNome()))
-			{
-				classesCriadas.replace(classe.getNome(), classe);
-				ret = true;
-			}
+			classesCriadas.replace(classe.getNome(), classe);
+			ret = true;
 		}
-		
+			
 		return ret;
 	}
 	

@@ -50,19 +50,22 @@ public class Raca {
 	
 	public String toString()
 	{
-		String str = String.format("%s\n"
-								+ "Atributos Iniciais:\n"
-								+ "Força %d\n"
-								+ "Agilidade %d\n"
-								+ "Inteligencia %d\n"
-								+ "Vontade %d\n"
-								+ "Habilidade Automática:\n"
-								+ "%s", this.nome, this.forca, this.agilidade, this.inteligencia, this.vontade,
-								this.habilidadeAutomatica);
-		
-		return str;
+		return this.nome;
 	}
 	
+	public String descricaoCompleta()
+	{
+		String str = String.format("%s\n"
+				+ "Atributos Iniciais:\n"
+				+ "Força %d\n"
+				+ "Agilidade %d\n"
+				+ "Inteligencia %d\n"
+				+ "Vontade %d\n"
+				+ "Habilidade Automática:\n"
+				+ "%s", this.nome, this.forca, this.agilidade, this.inteligencia, this.vontade,
+				this.habilidadeAutomatica);
+		return str;
+	}
 
 	/// Getters
 	public String getNome() {
@@ -86,10 +89,10 @@ public class Raca {
 	}
 
 	public Habilidade getHabilidadeAutomatica() {
-		return habilidadeAutomatica;
+		return this.habilidadeAutomatica;
 	}
 
 	public Map<String, Habilidade> getHabilidades() {
-		return habilidades;
+		return this.habilidades;
 	}
 }

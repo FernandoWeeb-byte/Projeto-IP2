@@ -49,9 +49,14 @@ public class Classe {
 	
 	public String toString()
 	{
+		return this.nome;
+	}
+	
+	public String descricaoCompleta()
+	{
 		String str = String.format("%s\n"
-									+ "Bônus de Atributo:\n", this.nome);
-		
+			+ "Bônus de Atributo:\n", this.nome);
+	
 		if(this.bonusForca != 0)
 		{
 			str += String.format("Força +%d\n", this.bonusForca);
@@ -68,9 +73,9 @@ public class Classe {
 		{
 			str += String.format("Vontade +%d\n", this.bonusVontade);
 		}
-		
+			
 		str += String.format("Habilidade Automática:\n%s", this.habilidadeAutomatica);
-		
+			
 		return str;
 	}
 	
@@ -93,7 +98,7 @@ public class Classe {
 	public Habilidade getHabilidadeAutomatica() {
 		return habilidadeAutomatica;
 	}
-	public Map<String, Habilidade> getHabilidadesBasicas() {
+	public Map<String, Habilidade> getHabilidades() {
 		return habilidades;
 	}
 }

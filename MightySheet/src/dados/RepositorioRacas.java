@@ -78,30 +78,24 @@ public class RepositorioRacas {
 	{
 		boolean ret = false;
 		
-		if(raca != null)
+		if(!racasPreExistentes.containsKey(raca.getNome()) &&
+				!racasCriadas.containsKey(raca.getNome()))
 		{
-			if(!racasPreExistentes.containsKey(raca.getNome()) &&
-					!racasCriadas.containsKey(raca.getNome()))
-			{
-				racasCriadas.put(raca.getNome(), raca);
-				ret = true;
-			}
+			racasCriadas.put(raca.getNome(), raca);
+			ret = true;
 		}
-		
+
 		return ret;
 	}
 	
 	public boolean removerRaca(String nome)
 	{
 		boolean ret = false;
-		
-		if(nome != null)
+
+		if(racasCriadas.containsKey(nome))
 		{
-			if(racasCriadas.containsKey(nome))
-			{
-				racasCriadas.remove(nome);
-				ret = true;
-			}
+			racasCriadas.remove(nome);
+			ret = true;
 		}
 		
 		return ret;
@@ -127,14 +121,11 @@ public class RepositorioRacas {
 	public boolean modificarRaca(Raca raca)
 	{
 		boolean ret = false;
-		
-		if(raca != null)
+
+		if(racasCriadas.containsKey(raca.getNome()))
 		{
-			if(racasCriadas.containsKey(raca.getNome()))
-			{
-				racasCriadas.replace(raca.getNome(), raca);
-				ret = true;
-			}
+			racasCriadas.replace(raca.getNome(), raca);
+			ret = true;
 		}
 		
 		return ret;

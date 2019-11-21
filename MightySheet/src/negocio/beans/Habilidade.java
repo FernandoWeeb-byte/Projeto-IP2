@@ -42,7 +42,13 @@ public class Habilidade {
 		return ret;
 	}
 	
-	public String toString() {
+	public String toString()
+	{
+		return this.nome;
+	}
+	
+	public String descricaoCompleta()
+	{
 		String str = String.format("%s\n" + "Habilidade ", this.nome);
 
 		if (categoria != null && !categoria.equals("-"))

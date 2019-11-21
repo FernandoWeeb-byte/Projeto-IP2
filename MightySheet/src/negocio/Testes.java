@@ -8,20 +8,8 @@ import java.util.List;
 
 public class Testes {
 	public static void main(String[] args) {
-		RepositorioRacas repRc = RepositorioRacas.getInstance();
+		Fachada fachada = Fachada.getInstance();
 		
-		RepositorioHabilidades repHab = RepositorioHabilidades.getInstance();
-		
-		Raca r = new Raca("Lefou", 3, 3, 3, 3, repHab.buscarHabilidade("Adaptabilidade"),
-					repHab.listarHabilidadesPorRaca("Humano"));
-		
-		repRc.adicionarRaca(r);
-		
-		List<Raca> l = repRc.listarTodasRacas();
-		
-		for(Raca ra : l)
-		{
-			System.out.println(ra);
-		}
+		System.out.println(fachada.buscarClasse("Guerreiro"));
 	}
 }

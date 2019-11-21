@@ -108,14 +108,11 @@ public class RepositorioHabilidades {
 	{
 		boolean ret = false;
 		
-		if(hab != null)
+		if(!habilidadesPreExistentes.containsKey(hab.getNome()) &&
+				!habilidadesCriadas.containsKey(hab.getNome()))
 		{
-			if(!habilidadesPreExistentes.containsKey(hab.getNome()) &&
-					!habilidadesCriadas.containsKey(hab.getNome()))
-			{
-				habilidadesCriadas.put(hab.getNome(), hab);
-				ret = true;
-			}
+			habilidadesCriadas.put(hab.getNome(), hab);
+			ret = true;
 		}
 		
 		return ret;
@@ -125,13 +122,10 @@ public class RepositorioHabilidades {
 	{
 		boolean ret = false;
 		
-		if(nome != null)
+		if(habilidadesCriadas.containsKey(nome))
 		{
-			if(habilidadesCriadas.containsKey(nome))
-			{
-				habilidadesCriadas.remove(nome);
-				ret = true;
-			}
+			habilidadesCriadas.remove(nome);
+			ret = true;
 		}
 		
 		return ret;
@@ -141,13 +135,10 @@ public class RepositorioHabilidades {
 	{
 		boolean ret = false;
 		
-		if(hab != null)
+		if(habilidadesCriadas.containsKey(hab.getNome()))
 		{
-			if(habilidadesCriadas.containsKey(hab.getNome()))
-			{
-				habilidadesCriadas.replace(hab.getNome(), hab);
-				ret = true;
-			}
+			habilidadesCriadas.replace(hab.getNome(), hab);
+			ret = true;
 		}
 		
 		return ret;
