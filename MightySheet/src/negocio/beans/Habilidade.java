@@ -33,25 +33,38 @@ public class Habilidade {
 		this.descricao = descricao;
 	}
 
+	
 	/// Metodos
+	public boolean equals(Habilidade another)
+	{
+		boolean ret = false;
+		
+		if(this.getNome().equals(another.getNome()))
+		{
+			ret = true;
+		}
+		
+		return ret;
+	}
+	
 	public String toString() {
 		String str = String.format("%s\n" + "Habilidade ", this.nome);
 
-		if (categoria != null && categoria != "-")
+		if (categoria != null && !categoria.equals("-"))
 		{
 			str += String.format("(%s) ", this.categoria);
 		}
 
 		str += String.format("- %s\n", this.tipo);
 		
-		if (requisito != null)
+		if (requisito != null && !requisito.equals("-"))
 		{
 			str += String.format("Requisito: %s\n", this.requisito);
 		}
 
-		if (mana >= -1)
+		if (mana >= 0)
 		{
-			if (mana == -1)
+			if (mana == 0)
 			{
 				str += "Mana: Varia\n";
 			}
@@ -78,6 +91,21 @@ public class Habilidade {
 		for(String str : classes)
 		{
 			if(str.equals(classe))
+			{
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+	
+	public boolean containsRaca(String raca)
+	{
+		boolean ret = false;
+		
+		for(String str : racas)
+		{
+			if(str.equals(raca))
 			{
 				ret = true;
 			}
