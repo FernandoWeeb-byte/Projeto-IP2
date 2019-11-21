@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import dados.RepositorioPersonagens;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -151,6 +152,8 @@ public class ControllerCriacaoDeFicha {
     @FXML
     void salvar(ActionEvent event)
     {
+    	
+   
     	
     }
     

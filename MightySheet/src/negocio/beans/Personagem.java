@@ -39,6 +39,12 @@ public class Personagem {
 	private int ouro;
   
   
+	public Personagem(String nome, Classe classe, Raca raca) {
+		this.nomePersonagem = nome;
+		this.classe = classe;
+		this.raca = raca;
+	}
+
 	/// Metodos
 	public void alterarVida(int quant) {
 		this.vida += quant;
