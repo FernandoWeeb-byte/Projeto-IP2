@@ -52,6 +52,21 @@ public class RepositorioPersonagens {
 		return saida;
 	}
 	
+	public List<Personagem> listarPorJogador(String nome)
+	{
+		List<Personagem> saida = new ArrayList<Personagem>();
+		for(Personagem p: this.fichas)
+		{
+			if(p.getNomeJogador().equals(nome))
+			{
+				saida.add(p);
+			}
+		}
+		return saida;
+	}
+	
+	
+	
 	
 
 }
