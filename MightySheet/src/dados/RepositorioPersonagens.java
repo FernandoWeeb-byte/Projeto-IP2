@@ -3,6 +3,7 @@ package dados;
 import java.util.ArrayList;
 import java.util.List;
 import negocio.beans.Classe;
+import negocio.beans.Raca;
 import negocio.beans.Personagem;
 
 public class RepositorioPersonagens {
@@ -51,6 +52,21 @@ public class RepositorioPersonagens {
 		}
 		return saida;
 	}
+	
+	
+	public List<Personagem> listarPorRaca(Raca raca)
+	{
+		List<Personagem> saida = new ArrayList<Personagem>();
+		for(Personagem p: this.fichas)
+		{
+			if(p.getRaca().getNome().equals(raca.getNome()))
+			{
+				saida.add(p);
+			}
+		}
+		return saida;
+	}
+	
 	
 	public List<Personagem> listarPorJogador(String nome)
 	{
