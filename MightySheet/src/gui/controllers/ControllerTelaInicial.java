@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dados.RepositorioPersonagens;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +22,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import negocio.Fachada;
+import negocio.beans.Classe;
+import negocio.beans.Personagem;
+import negocio.beans.Raca;
+import negocio.controladores.ControladorPersonagens;
 
 public class ControllerTelaInicial {
 	
@@ -31,16 +40,16 @@ public class ControllerTelaInicial {
 	    private Text textField;
 
 	    @FXML
-	    private TableView<?> tabela;
+	    private TableView<RepositorioPersonagens> tabela;
 
 	    @FXML
-	    private TableColumn<?, ?> nomeTabela;
+	    private TableColumn<Personagem, String> nomeTabela;
 
 	    @FXML
-	    private TableColumn<?, ?> classeTabela;
+	    private TableColumn<Personagem, String> classeTabela;
 
 	    @FXML
-	    private TableColumn<?, ?> racaTabela;
+	    private TableColumn<Personagem, String> racaTabela;
 	    
 	    @FXML
 	    private Button criarFicha;
@@ -67,6 +76,18 @@ public class ControllerTelaInicial {
 	    		
 	    }
 	    
+	    void tabela()
+	    {
+	    	RepositorioPersonagens lista = new RepositorioPersonagens();
+	    	ObservableList obLista;
+	    	obLista = FXCollections.observableArrayList(lista.getFichas());
+	    	ControladorPersonagens cP = new ControladorPersonagens(); 
+	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
+	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
+	    	racaTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRaca().getNome()));
+	    	tabela.setItems(obLista);
+	    }
+	    
 	    @FXML
 	    void AcaoDoBotao2(ActionEvent event) throws IOException {
 	    	Parent Ficha_parent = FXMLLoader.load(getClass().getResource("Fichas.fxml"));
@@ -79,7 +100,7 @@ public class ControllerTelaInicial {
 	    @FXML
 	    void initialize() {
 	    	
-	    	
+	    	tabela();
 	    	
 	    }
 

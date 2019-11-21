@@ -3,6 +3,8 @@ package negocio.beans;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
 public class Personagem {
 	
 	/// Atributos
@@ -13,6 +15,9 @@ public class Personagem {
 	private Classe classe;
 	private int nivel;
 	private int experiencia;
+	private int deslocamento;
+	private int corrida;
+	
 	
 	// Atributos
 	private int forca;
@@ -39,6 +44,24 @@ public class Personagem {
 	private int ouro;
   
   
+	public Personagem(String nome, Raca raca, Classe classe, int nivel, int forca, int inteligencia, int von,
+			int pv, int pm, int desl, int corr, int bloq, int esq, int det) {
+		this.nomePersonagem = nome;
+		this.raca = raca;
+		this.classe = classe;
+		this.nivel = nivel;
+		this.forca = forca;
+		this.inteligencia = inteligencia;
+		this.vontade = von;
+		this.vida = pv;
+		this.mana = pm;
+		this.deslocamento = desl;
+		this.corrida = corr;
+		this.bloqueio = bloq;
+		this.esquiva = esq;
+		this.determinacao = det;
+	}
+
 	/// Metodos
 	public void alterarVida(int quant) {
 		this.vida += quant;
@@ -78,5 +101,8 @@ public class Personagem {
 	public int getOuro() {return ouro;}
 
 	
+
+	
 	
 }
+
