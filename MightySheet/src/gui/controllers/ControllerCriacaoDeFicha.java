@@ -3,7 +3,6 @@ package gui.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -20,7 +19,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import negocio.beans.Classe;
-import negocio.beans.Personagem;
 import negocio.beans.Raca;
 
 public class ControllerCriacaoDeFicha {

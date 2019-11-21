@@ -33,9 +33,45 @@ public class Classe {
 	public final static Classe LADINO = new Classe("Ladino", 0, 1, 1, 0, null);
 	public final static Classe SACERDOTE = new Classe("Sarcedote", 0, 0, 1, 1, null);
 
-	
+	/// toString
 	public String toString()
 	{
 		return this.nome;
 	}
+
+
+	
+	
+	/// Getters
+	
+	public String getNome() {
+		return nome;
+	}
+	public int getBonusForca() {
+		return bonusForca;
+	}
+	public int getBonusAgilidade() {
+		return bonusAgilidade;
+	}
+	public int getBonusInteligencia() {
+		return bonusInteligencia;
+	}
+	public int getBonusVontade() {
+		return bonusVontade;
+	}
+	public Habilidade getHabilidadeAutomatica() {
+		return habilidadeAutomatica;
+	}
+	public HashMap<String, Habilidade> getHabilidadesBasicas() {
+		return habilidadesBasicas;
+	}
+	public HashMap<String, Habilidade> getHabilidadesAvancadas() {
+		return habilidadesAvancadas;
+	}
+	public Habilidade getHabilidadeFinal() {
+		return habilidadeFinal;
+	}
+	
+	
+
 }
