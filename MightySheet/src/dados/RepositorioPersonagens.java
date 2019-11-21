@@ -81,6 +81,33 @@ public class RepositorioPersonagens {
 		return saida;
 	}
 	
+	public List<Personagem> listarAlfabeticamenteJogador()
+	{
+		List<Personagem> saida = new ArrayList<Personagem>();
+		List<String> jogadores = new ArrayList<String>();
+		for(Personagem p: this.fichas)
+		{
+			for(int i=0; i<jogadores.size(); i++)
+			{
+				if(!(jogadores.get(i).equals(p.getNomeJogador())))
+				{
+					jogadores.add(p.getNomeJogador());
+				}
+			}
+		}
+		jogadores.sort(String::compareTo);
+		for(int i=0; i<jogadores.size(); i++)
+		{
+			for(int j=0; j<this.fichas.size(); j++)
+			{
+				if(jogadores.get(i).equals(this.fichas.get(j).getNomeJogador()))
+				{
+					saida.add(this.fichas.get(j));
+				}
+			}
+		}
+		return saida;
+	}
 	
 	
 	
