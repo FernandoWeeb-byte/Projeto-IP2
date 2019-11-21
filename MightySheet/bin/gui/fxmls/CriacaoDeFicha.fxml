@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerCriacaoDeFicha">
+   <children>
+      <AnchorPane prefHeight="692.0" prefWidth="719.0">
+         <children>
+            <ChoiceBox layoutX="473.0" layoutY="108.0" prefWidth="150.0" />
+            <Label layoutX="473.0" layoutY="78.0" prefHeight="17.0" prefWidth="39.0" text="Classes" />
+            <Label layoutX="42.0" layoutY="78.0" prefHeight="17.0" prefWidth="39.0" text="Raças" />
+            <ChoiceBox layoutX="42.0" layoutY="108.0" prefWidth="150.0" />
+            <Label layoutX="42.0" layoutY="43.0" prefHeight="17.0" prefWidth="39.0" text="Nome" />
+            <Text layoutX="89.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.13671875" />
+            <TextField layoutX="89.0" layoutY="39.0" prefHeight="25.0" prefWidth="188.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

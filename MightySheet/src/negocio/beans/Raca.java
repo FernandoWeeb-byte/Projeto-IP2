@@ -63,7 +63,7 @@ public class Raca {
 		return str;
 	}
 	
-	
+
 	/// Getters
 	public String getNome() {
 		return nome;
