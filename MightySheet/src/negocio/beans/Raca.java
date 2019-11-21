@@ -65,8 +65,31 @@ public class Raca {
 	
 	
 	/// Getters
-	public String getNome()
-	{
-		return this.nome;
+	public String getNome() {
+		return nome;
+	}
+
+	public int getForca() {
+		return forca;
+	}
+
+	public int getAgilidade() {
+		return agilidade;
+	}
+
+	public int getInteligencia() {
+		return inteligencia;
+	}
+
+	public int getVontade() {
+		return vontade;
+	}
+
+	public Habilidade getHabilidadeAutomatica() {
+		return habilidadeAutomatica;
+	}
+
+	public Map<String, Habilidade> getHabilidades() {
+		return habilidades;
 	}
 }
