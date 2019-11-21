@@ -1,6 +1,8 @@
 package negocio.beans;
 
+import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class Classe {
 	
@@ -11,39 +13,73 @@ public class Classe {
 	private int bonusInteligencia;
 	private int bonusVontade;
 	private Habilidade habilidadeAutomatica;
-	private HashMap<String, Habilidade> habilidadesBasicas;
-	private HashMap<String, Habilidade> habilidadesAvancadas;
-	private Habilidade habilidadeFinal;
+	private Map<String, Habilidade> habilidades;
   
-  
+	
 	/// Construtor
 	public Classe(String nome, int bonusForca, int bonusAgilidade, int bonusInteligencia, int bonusVontade,
-			 HashMap<String, Habilidade> habilidadesBasicas) {
+			 Habilidade habilidadeAutomatica, List<Habilidade> habilidades) {
 		this.nome = nome;
 		this.bonusForca = bonusForca;
 		this.bonusAgilidade = bonusAgilidade;
 		this.bonusInteligencia = bonusInteligencia;
 		this.bonusVontade = bonusVontade;
-		this.habilidadesBasicas = habilidadesBasicas;
+		this.habilidadeAutomatica = habilidadeAutomatica;
+		this.habilidades = new HashMap<String, Habilidade>();
+		
+		for(Habilidade hab : habilidades)
+		{
+			this.habilidades.put(hab.getNome(), hab);
+		}
 	}
-
-	/// Instancias estaticas
-	public final static Classe GUERREIRO = new Classe("Guerreiro", 1, 1, 0, 0, null);
-	public final static Classe FEITICEIRO = new Classe("Feiticeiro", 0, 0, 1, 1, null);
-	public final static Classe LADINO = new Classe("Ladino", 0, 1, 1, 0, null);
-	public final static Classe SACERDOTE = new Classe("Sarcedote", 0, 0, 1, 1, null);
-
-	/// toString
+	
+	
+	/// Metodos
+	public boolean equals(Classe another)
+	{
+		boolean ret = false;
+		
+		if(this.getNome().equals(another.getNome()))
+		{
+			ret = true;
+		}
+		
+		return ret;
+	}
+	
 	public String toString()
 	{
 		return this.nome;
 	}
-
-
 	
+	public String descricaoCompleta()
+	{
+		String str = String.format("%s\n"
+			+ "Bônus de Atributo:\n", this.nome);
+	
+		if(this.bonusForca != 0)
+		{
+			str += String.format("Força +%d\n", this.bonusForca);
+		}
+		if(this.bonusAgilidade != 0)
+		{
+			str += String.format("Agilidade +%d\n", this.bonusAgilidade);
+		}
+		if(this.bonusInteligencia != 0)
+		{
+			str += String.format("Inteligencia +%d\n", this.bonusInteligencia);
+		}
+		if(this.bonusVontade != 0)
+		{
+			str += String.format("Vontade +%d\n", this.bonusVontade);
+		}
+			
+		str += String.format("Habilidade Automática:\n%s", this.habilidadeAutomatica);
+			
+		return str;
+	}
 	
 	/// Getters
-	
 	public String getNome() {
 		return nome;
 	}
@@ -62,16 +98,7 @@ public class Classe {
 	public Habilidade getHabilidadeAutomatica() {
 		return habilidadeAutomatica;
 	}
-	public HashMap<String, Habilidade> getHabilidadesBasicas() {
-		return habilidadesBasicas;
+	public Map<String, Habilidade> getHabilidades() {
+		return habilidades;
 	}
-	public HashMap<String, Habilidade> getHabilidadesAvancadas() {
-		return habilidadesAvancadas;
-	}
-	public Habilidade getHabilidadeFinal() {
-		return habilidadeFinal;
-	}
-	
-	
-
 }

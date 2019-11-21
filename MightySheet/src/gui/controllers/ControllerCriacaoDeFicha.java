@@ -2,7 +2,8 @@ package gui.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -18,11 +19,16 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import negocio.Fachada;
 import negocio.beans.Classe;
 import negocio.beans.Raca;
 
 public class ControllerCriacaoDeFicha {
 
+	/// Fachada
+	private Fachada fachada = Fachada.getInstance();
+	
 	@FXML
     private ResourceBundle resources;
 
@@ -124,25 +130,21 @@ public class ControllerCriacaoDeFicha {
     void carregarClasse()
     {
     	//isso seria num RepositorioClasses mas enquanto nao tem, é isso
-    	ArrayList<Classe> lista = new ArrayList<>();
     	ObservableList obLista;
-    	lista.add(Classe.FEITICEIRO);
-    	lista.add(Classe.GUERREIRO);
-    	lista.add(Classe.LADINO);
-    	lista.add(Classe.SACERDOTE);
+    	
+    	List<Classe> lista = fachada.listarTodasClasses();
+    	
     	obLista = FXCollections.observableArrayList(lista);
     	classe.setItems(obLista);
-    	
     }
     
     void carregarRaca()
     {
     	//estaria na futura RepositorioRacas
-    	ArrayList<Raca> lista = new ArrayList<>();
     	ObservableList obLista;
-    	lista.add(Raca.HUMANO);
-    	lista.add(Raca.ANAO);
-    	lista.add(Raca.ELFO);
+    	
+    	List<Raca> lista = fachada.listarTodasRacas();
+    	
     	//lista.add(Raca);
     	obLista = FXCollections.observableArrayList(lista);
     	raca.setItems(obLista);

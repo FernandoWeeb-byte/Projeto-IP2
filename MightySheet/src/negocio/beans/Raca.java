@@ -1,6 +1,8 @@
 package negocio.beans;
 
+import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class Raca {
 	
@@ -11,32 +13,59 @@ public class Raca {
 	private int inteligencia;
 	private int vontade;
 	private Habilidade habilidadeAutomatica;
-	private HashMap<String, Habilidade> habilidades;
+	private Map<String, Habilidade> habilidades;
 
 
 	/// Construtor
 	public Raca(String nome, int forca, int agilidade, int inteligencia, int vontade,
-			HashMap<String, Habilidade> habilidades) {
+			Habilidade habilidadeAutomatica, List<Habilidade> habilidades) {
 
 		this.nome = nome;
 		this.forca = forca;
 		this.agilidade = agilidade;
 		this.inteligencia = inteligencia;
 		this.vontade = vontade;
-		this.habilidades = habilidades;
+		this.habilidadeAutomatica = habilidadeAutomatica;
+		this.habilidades = new HashMap<String, Habilidade>();
+		
+		for(Habilidade hab : habilidades)
+		{
+			this.habilidades.put(hab.getNome(), hab);
+		}
 	}
-
-	/// Instancias estaticas
-	public final static Raca HUMANO = new Raca("Humano", 3, 3, 3, 3, null);
-	public final static Raca ELFO = new Raca("Elfo", 2, 4, 3, 3, null);
-	public final static Raca ANAO = new Raca("Anão", 4, 2, 3, 3, null);
 	
-	/// toString
+	
+	/// Metodos
+	public boolean equals(Raca another)
+	{
+		boolean ret = false;
+		
+		if(this.nome.equals(another.nome))
+		{
+			ret = true;
+		}
+		
+		return ret;
+	}
+	
 	public String toString()
 	{
 		return this.nome;
 	}
-
+	
+	public String descricaoCompleta()
+	{
+		String str = String.format("%s\n"
+				+ "Atributos Iniciais:\n"
+				+ "Força %d\n"
+				+ "Agilidade %d\n"
+				+ "Inteligencia %d\n"
+				+ "Vontade %d\n"
+				+ "Habilidade Automática:\n"
+				+ "%s", this.nome, this.forca, this.agilidade, this.inteligencia, this.vontade,
+				this.habilidadeAutomatica);
+		return str;
+	}
 
 	/// Getters
 	public String getNome() {
@@ -60,12 +89,10 @@ public class Raca {
 	}
 
 	public Habilidade getHabilidadeAutomatica() {
-		return habilidadeAutomatica;
+		return this.habilidadeAutomatica;
 	}
 
-	public HashMap<String, Habilidade> getHabilidades() {
-		return habilidades;
+	public Map<String, Habilidade> getHabilidades() {
+		return this.habilidades;
 	}
-	
-	
 }
