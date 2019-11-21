@@ -28,4 +28,36 @@ public class Raca {
 
 	/// Instancias estaticas
 	public final static Raca HUMANO = new Raca("Humano", 3, 3, 3, 3, null);
+
+
+	/// Getters
+	public String getNome() {
+		return nome;
+	}
+
+	public int getForca() {
+		return forca;
+	}
+
+	public int getAgilidade() {
+		return agilidade;
+	}
+
+	public int getInteligencia() {
+		return inteligencia;
+	}
+
+	public int getVontade() {
+		return vontade;
+	}
+
+	public Habilidade getHabilidadeAutomatica() {
+		return habilidadeAutomatica;
+	}
+
+	public HashMap<String, Habilidade> getHabilidades() {
+		return habilidades;
+	}
+	
+	
 }
