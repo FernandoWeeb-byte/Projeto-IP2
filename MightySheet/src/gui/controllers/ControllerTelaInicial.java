@@ -78,7 +78,7 @@ public class ControllerTelaInicial {
 	    
 	    void tabela()
 	    {
-	    	RepositorioPersonagens lista = new RepositorioPersonagens();
+	    	RepositorioPersonagens lista = RepositorioPersonagens.getInstance();
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(lista.getFichas());
 	    	ControladorPersonagens cP = new ControladorPersonagens(); 

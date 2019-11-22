@@ -6,17 +6,55 @@ import negocio.beans.Classe;
 import negocio.beans.Raca;
 import negocio.beans.Personagem;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
 public class RepositorioPersonagens {
-	private ArrayList<Personagem> fichas;
 	
+	///Singleton
+	private static RepositorioPersonagens INSTANCE;
+	
+	
+	///Atributos
+	private List<Personagem> fichas;
+	
+	///Contrutor
 	public RepositorioPersonagens()
 	{
 		this.fichas = new ArrayList<Personagem>();
 	}
 	
-	public ArrayList<Personagem> getFichas()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///Metodos
+	
+	
+	public List<Personagem> getFichas()
 	{
 		return this.fichas;
+	}
+	
+	public static RepositorioPersonagens getInstance()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new RepositorioPersonagens();
+		}
+		return INSTANCE;
 	}
 	
 	public void AdicionarFicha(Personagem novo)
@@ -82,6 +120,71 @@ public class RepositorioPersonagens {
 	}
 	
 	
+	/*public static List<Personagem> carregarPersonagens(String path)
+	{
+		List<Personagem> saida = new ArrayList<Personagem>();
+		try
+		{
+			File arquivo = new File(path);
+			Scanner sc = new Scanner(arquivo);
+			
+			while(sc.hasNext())
+			{
+				String per = sc.nextLine();
+				try
+				{
+					String[] 
+				}
+			}
+		}
+		return saida;
+	}
+	*/
+	
+	public void carregarPersonagens() {
+		try {
+			FileInputStream fis = new FileInputStream("Personagem.arq");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			// Le um objeto do arquivo
+			RepositorioPersonagens repo = RepositorioPersonagens.getInstance();
+			List<Personagem> fichas = (List<Personagem>)ois.readObject();
+			repo.fichas = fichas;
+			 
+
+			ois.close();
+			fis.close();
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			
+		} catch (IOException e) {
+			
+		} catch (ClassNotFoundException e) {
+			
+		}
+	}
+	
+	public boolean guardar()
+	{
+		try {
+			FileOutputStream fos = new FileOutputStream("Personagem.arq");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			// Escreve o objeto no arquivo
+			oos.writeObject(this.fichas);
+			oos.flush();
+
+			oos.close();
+			fos.close();
+			
+			return true;
+		} catch(IOException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 	
 	
 
