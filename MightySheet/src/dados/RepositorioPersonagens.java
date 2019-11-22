@@ -1,10 +1,14 @@
 package dados;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import negocio.beans.Classe;
 import negocio.beans.Raca;
 import negocio.beans.Personagem;
+import negocio.beans.Habilidade;
+import negocio.beans.Arma;
+import negocio.beans.Equipamento;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,9 +47,12 @@ public class RepositorioPersonagens {
 	///Metodos
 	
 	
-	public List<Personagem> getFichas()
+
+public List<Personagem> todas()
 	{
-		return this.fichas;
+		 List<Personagem> saida = new ArrayList<Personagem>();
+		 saida.addAll(fichas);
+		 return saida;
 	}
 	
 	public static RepositorioPersonagens getInstance()
@@ -119,27 +126,48 @@ public class RepositorioPersonagens {
 		return saida;
 	}
 	
-	
-	/*public static List<Personagem> carregarPersonagens(String path)
+	public Personagem buscaPorPers(String nome)
 	{
-		List<Personagem> saida = new ArrayList<Personagem>();
-		try
+		Personagem saida;
+		for(Personagem p: this.fichas)
 		{
-			File arquivo = new File(path);
-			Scanner sc = new Scanner(arquivo);
-			
-			while(sc.hasNext())
+			if(p.getNomePersonagem().equals(nome))
 			{
-				String per = sc.nextLine();
-				try
-				{
-					String[] 
-				}
+				saida = p;
+				return saida;
 			}
 		}
-		return saida;
+		return null;
 	}
-	*/
+	
+	public void editarFicha(String nomePer, int nivel, int experiencia, int inteligencia, 
+			int forca, int vontade, int vida, int mana, HashMap<String, Integer> pericias, 
+			Habilidade[] habilidadesAutomaticas,ArrayList<Habilidade> habilidades,  int quantHabilidades,
+			ArrayList<Arma> ataques, ArrayList<Equipamento> equipamentos, int ouro)
+	{
+		Personagem editado = this.buscaPorPers(nomePer);
+		editado.setNivel(nivel);
+		editado.setExperiencia(experiencia);
+		editado.setInteligencia(inteligencia);
+		editado.setForca(forca);
+		editado.setVontade(vontade);
+		editado.setVida(vida);
+		editado.setMana(mana);
+		editado.setPericias(pericias);
+		editado.setHabilidadesAutomaticas(habilidadesAutomaticas);
+		editado.setHabilidades(habilidades);
+		editado.setQuantHabilidades(quantHabilidades);
+		editado.setAtaques(ataques);
+		editado.setEquipamentos(equipamentos);
+		editado.setOuro(ouro);
+		this.RemoverFicha(editado.getNomeJogador(), editado.getNomePersonagem());
+		this.AdicionarFicha(editado);
+	}
+	
+
+	
+	
+	/// Metodos de Arquivo
 	
 	public void carregarPersonagens() {
 		try {
@@ -150,7 +178,7 @@ public class RepositorioPersonagens {
 			RepositorioPersonagens repo = RepositorioPersonagens.getInstance();
 			List<Personagem> fichas = (List<Personagem>)ois.readObject();
 			repo.fichas = fichas;
-			 
+			
 
 			ois.close();
 			fis.close();

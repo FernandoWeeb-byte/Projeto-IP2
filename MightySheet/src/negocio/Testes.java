@@ -18,6 +18,6 @@ public class Testes {
 		//Personagem person = new Personagem("hawkboy", fachada.buscarRaca("Humano"), fachada.buscarClasse("Guerreiro"),1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 		//cP.salvar(person);
 		repo.carregarPersonagens();
-		System.out.println(repo.getFichas().size());
+		System.out.println(repo.todas().size());
 	}
 }

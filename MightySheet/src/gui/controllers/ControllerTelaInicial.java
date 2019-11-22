@@ -80,7 +80,7 @@ public class ControllerTelaInicial {
 	    {
 	    	RepositorioPersonagens lista = RepositorioPersonagens.getInstance();
 	    	ObservableList obLista;
-	    	obLista = FXCollections.observableArrayList(lista.getFichas());
+	    	obLista = FXCollections.observableArrayList(lista.todas());
 	    	ControladorPersonagens cP = new ControladorPersonagens(); 
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));

@@ -100,6 +100,82 @@ public class Personagem {
 	public ArrayList<Equipamento> getEquipamentos() {return equipamentos;}
 	public int getOuro() {return ouro;}
 
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public void setForca(int forca) {
+		this.forca = forca;
+	}
+
+	public void setAgilidade(int agilidade) {
+		this.agilidade = agilidade;
+	}
+
+	public void setInteligencia(int inteligencia) {
+		this.inteligencia = inteligencia;
+	}
+
+	public void setVontade(int vontade) {
+		this.vontade = vontade;
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public void setPericias(HashMap<String, Integer> pericias) {
+		this.pericias = pericias;
+	}
+
+	public void setEsquiva(int esquiva) {
+		this.esquiva = esquiva;
+	}
+
+	public void setBloqueio(int bloqueio) {
+		this.bloqueio = bloqueio;
+	}
+
+	public void setDeterminacao(int determinacao) {
+		this.determinacao = determinacao;
+	}
+
+	public void setHabilidadesAutomaticas(Habilidade[] habilidadesAutomaticas) {
+		this.habilidadesAutomaticas = habilidadesAutomaticas;
+	}
+
+	public void setHabilidades(ArrayList<Habilidade> habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public void setQuantHabilidades(int quantHabilidades) {
+		this.quantHabilidades = quantHabilidades;
+	}
+
+	public void setAtaques(ArrayList<Arma> ataques) {
+		this.ataques = ataques;
+	}
+
+	public void setEquipamentos(ArrayList<Equipamento> equipamentos) {
+		this.equipamentos = equipamentos;
+	}
+
+	public void setOuro(int ouro) {
+		this.ouro = ouro;
+	}
+
 	
 
 	

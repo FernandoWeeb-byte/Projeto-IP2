@@ -10,14 +10,14 @@ public class ControladorPersonagens {
 	
 	public boolean salvar(Personagem p)
 	{
-		for(int i=0; i< repoPer.getFichas().size(); i++)
+		for(int i=0; i< repoPer.todas().size(); i++)
 		{
-			if(repoPer.getFichas().get(i).equals(p))
+			if(repoPer.todas().get(i).equals(p))
 			{
 				return false;
 			}
 		}
-		repoPer.getFichas().add(p);
+		repoPer.todas().add(p);
 		return true;
 	}
 	
