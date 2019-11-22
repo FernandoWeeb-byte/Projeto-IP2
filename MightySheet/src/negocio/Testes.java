@@ -17,7 +17,7 @@ public class Testes {
 		ControladorPersonagens cP = new ControladorPersonagens();
 		//Personagem person = new Personagem("hawkboy", fachada.buscarRaca("Humano"), fachada.buscarClasse("Guerreiro"),1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 		//cP.salvar(person);
-		repo.carregarPersonagens();
+		//repo.carregarPersonagens();
 		System.out.println(repo.todas().size());
 	}
 }

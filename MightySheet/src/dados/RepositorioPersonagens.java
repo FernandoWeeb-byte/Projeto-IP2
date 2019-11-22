@@ -32,6 +32,7 @@ public class RepositorioPersonagens {
 	public RepositorioPersonagens()
 	{
 		this.fichas = new ArrayList<Personagem>();
+		carregarPersonagens();
 	}
 	
 	
@@ -169,15 +170,14 @@ public List<Personagem> todas()
 	
 	/// Metodos de Arquivo
 	
-	public void carregarPersonagens() {
+	private void carregarPersonagens() {
 		try {
 			FileInputStream fis = new FileInputStream("Personagem.arq");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			// Le um objeto do arquivo
-			RepositorioPersonagens repo = RepositorioPersonagens.getInstance();
 			List<Personagem> fichas = (List<Personagem>)ois.readObject();
-			repo.fichas = fichas;
+			this.fichas = fichas;
 			
 
 			ois.close();
