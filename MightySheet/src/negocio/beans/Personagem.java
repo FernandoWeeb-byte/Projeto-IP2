@@ -296,6 +296,7 @@ public class Personagem {
 	public void dtrUp(int up) {
 		this.determinacao += up;
 	}	
+
 	
 	//Construtor
 		public Personagem(String nomePersonagem, String nomeJogador, Raca raca, Classe classe, int nivel, int experiencia, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
