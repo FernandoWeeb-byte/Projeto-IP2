@@ -17,6 +17,12 @@ public class ControladorPersonagens {
 	
 	private RepositorioPersonagens repoPer;
 	
+	public ControladorPersonagens()
+	{
+		repoPer = RepositorioPersonagens.getInstance();
+	}
+	
+	
 	public boolean salvar(Personagem p)
 	{
 		for(int i=0; i< repoPer.todas().size(); i++)
@@ -27,29 +33,29 @@ public class ControladorPersonagens {
 			}
 		}
 		repoPer.todas().add(p);
-		
+		repoPer.guardar();
 		return true;
 	}
 	
 	public List<Personagem> todas()
 	{
-		return repoPer.getInstance().todas();
+		return repoPer.todas();
 	}
 	
 	public void adicionarFicha(Personagem novo)
 	{
 		if(novo != null)
 		{
-			repoPer.getInstance().AdicionarFicha(novo);
+			repoPer.AdicionarFicha(novo);
 		}
 	}
 	
 	public void removerFicha(String nomePersonagem)
 	{
-		Personagem remover = repoPer.getInstance().buscaPorPers(nomePersonagem);
+		Personagem remover = repoPer.buscaPorPers(nomePersonagem);
 		if(remover !=null)
 		{
-			repoPer.getInstance().removerFicha(remover);
+			repoPer.removerFicha(remover);
 		}
 	}
 	
@@ -58,7 +64,7 @@ public class ControladorPersonagens {
 	{
 		if(classe != null)
 		{
-			return repoPer.getInstance().listarPorClasse(classe);
+			return repoPer.listarPorClasse(classe);
 		}
 		return null;
 	}
@@ -67,7 +73,7 @@ public class ControladorPersonagens {
 	{
 		if(raca != null)
 		{
-			return repoPer.getInstance().listarPorRaca(raca);
+			return repoPer.listarPorRaca(raca);
 		}
 		return null;
 	}
@@ -76,7 +82,7 @@ public class ControladorPersonagens {
 	{
 		if(nomeJogador != null)
 		{
-			return repoPer.getInstance().listarPorJogador(nomeJogador);
+			return repoPer.listarPorJogador(nomeJogador);
 		}
 		return null;
 	}
@@ -85,7 +91,7 @@ public class ControladorPersonagens {
 	{
 		if(nome != null)
 		{
-			return repoPer.getInstance().buscaPorPers(nome);
+			return repoPer.buscaPorPers(nome);
 		}
 		return null;
 	}
@@ -100,7 +106,7 @@ public class ControladorPersonagens {
 				&& habilidades != null && quantHabilidades != 0 && ataques != null && equipamentos != null
 				&& ouro >= 0)
 		{
-			repoPer.getInstance().editarFicha(nomePer, nivel, experiencia, inteligencia, 
+			repoPer.editarFicha(nomePer, nivel, experiencia, inteligencia, 
 					forca, vontade, vida, mana, pericias, habilidadesAutomaticas, habilidades,
 					quantHabilidades, ataques, equipamentos, ouro);
 		}
