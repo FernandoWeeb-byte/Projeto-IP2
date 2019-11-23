@@ -255,6 +255,7 @@ public class Personagem {
 		this.ouro = ouro;
 	}
 	
+
 	//Métodos Extras (adicionadores de coisa)
 	public void levelUp(int up) {
 		this.nivel += up;

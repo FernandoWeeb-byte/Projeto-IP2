@@ -58,7 +58,7 @@ public class RepositorioClasses implements IRepoClasses {
 	
 	private Map<String, Classe> gerarClassesPreExistentes()
 	{
-		RepositorioHabilidades repHab = RepositorioHabilidades.getInstance();
+		IRepoHabilidades repHab = RepositorioHabilidades.getInstance();
 		
 		Map<String, Classe> ret = new HashMap<String, Classe>();
 		

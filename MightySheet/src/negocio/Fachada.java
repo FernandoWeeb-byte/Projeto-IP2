@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import negocio.beans.*;
@@ -123,5 +125,47 @@ public class Fachada {
 
 	public List<Raca> listarTodasRacas() {
 		return controlRc.listarTodasRacas();
+	}
+	
+	
+	/// Metodos delegate <ControladorPersonagem>
+	public boolean salvar(Personagem p) {
+		return controlPer.salvar(p);
+	}
+
+	public List<Personagem> todas() {
+		return controlPer.todas();
+	}
+
+	public void adicionarFicha(Personagem novo) {
+		controlPer.adicionarFicha(novo);
+	}
+
+	public void removerFicha(String nomePersonagem) {
+		controlPer.removerFicha(nomePersonagem);
+	}
+
+	public List<Personagem> listaDaClasse(Classe classe) {
+		return controlPer.listaDaClasse(classe);
+	}
+
+	public List<Personagem> listaDaRaca(Raca raca) {
+		return controlPer.listaDaRaca(raca);
+	}
+
+	public List<Personagem> listaDoJogador(String nomeJogador) {
+		return controlPer.listaDoJogador(nomeJogador);
+	}
+
+	public Personagem buscaPorPers(String nome) {
+		return controlPer.buscaPorPers(nome);
+	}
+
+	public void editarFicha(String nomePer, int nivel, int experiencia, int inteligencia, int forca, int vontade,
+			int vida, int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas,
+			ArrayList<Habilidade> habilidades, int quantHabilidades, ArrayList<Arma> ataques,
+			ArrayList<Equipamento> equipamentos, int ouro) {
+		controlPer.editarFicha(nomePer, nivel, experiencia, inteligencia, forca, vontade, vida, mana, pericias,
+				habilidadesAutomaticas, habilidades, quantHabilidades, ataques, equipamentos, ouro);
 	}
 }

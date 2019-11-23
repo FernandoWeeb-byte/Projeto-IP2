@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dados.IRepoPersonagens;
 import dados.RepositorioPersonagens;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -78,9 +79,9 @@ public class ControllerTelaInicial {
 	    
 	    void tabela()
 	    {
-	    	RepositorioPersonagens lista = new RepositorioPersonagens();
+	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	ObservableList obLista;
-	    	obLista = FXCollections.observableArrayList(lista.getFichas());
+	    	obLista = FXCollections.observableArrayList(lista.todas());
 	    	ControladorPersonagens cP = new ControladorPersonagens(); 
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
