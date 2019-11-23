@@ -158,8 +158,8 @@ public class RepositorioPersonagens {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			// Le um objeto do arquivo
-			List<Personagem> fichas = (List<Personagem>)ois.readObject();
-			this.fichas = fichas;
+			this.fichas = (List<Personagem>)ois.readObject();
+			 
 			
 
 			ois.close();
