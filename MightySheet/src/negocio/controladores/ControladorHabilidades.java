@@ -1,6 +1,7 @@
 package negocio.controladores;
 
 import negocio.beans.Habilidade;
+import dados.IRepoHabilidades;
 import dados.RepositorioHabilidades;
 
 import java.util.List;
@@ -8,18 +9,18 @@ import java.util.List;
 public class ControladorHabilidades {
 	
 	/// Constantes
-	private static final String ACAO = "AÁ„o";
-	private static final String REACAO = "ReaÁ„o";
+	private static final String ACAO = "A√ß√£o";
+	private static final String REACAO = "Rea√ß√£o";
 	private static final String SUPORTE = "Suporte";
 	
 	private static final String NULA = "-";
-	private static final String CARACTERISTICA = "Caracteristica";
+	private static final String CARACTERISTICA = "Caracter√≠stica";
 	private static final String MAGIA = "Magia";
-	private static final String TECNICA = "TÈcnica";
+	private static final String TECNICA = "T√©cnica";
 	
 	
 	/// Atributos
-	private RepositorioHabilidades repHab;
+	private IRepoHabilidades repHab;
 	
 	
 	/// Construtor

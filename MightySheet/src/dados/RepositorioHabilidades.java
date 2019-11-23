@@ -11,10 +11,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class RepositorioHabilidades {
+public class RepositorioHabilidades implements IRepoHabilidades {
 	
 	/// Singleton
-	private static RepositorioHabilidades INSTANCE;
+	private static IRepoHabilidades INSTANCE;
 	
 	
 	/// Atributos
@@ -49,7 +49,7 @@ public class RepositorioHabilidades {
 		return str;
 	}
 	
-	public static RepositorioHabilidades getInstance()
+	public static IRepoHabilidades getInstance()
 	{
 		if(INSTANCE == null)
 		{
@@ -104,6 +104,7 @@ public class RepositorioHabilidades {
 		return ret;
 	}
 	
+	@Override
 	public boolean adicionarHabilidade(Habilidade hab)
 	{
 		boolean ret = false;
@@ -118,6 +119,7 @@ public class RepositorioHabilidades {
 		return ret;
 	}
 	
+	@Override
 	public boolean removerHabilidade(String nome)
 	{
 		boolean ret = false;
@@ -131,6 +133,7 @@ public class RepositorioHabilidades {
 		return ret;
 	}
 	
+	@Override
 	public boolean modificarHabilidade(Habilidade hab)
 	{
 		boolean ret = false;
@@ -144,6 +147,7 @@ public class RepositorioHabilidades {
 		return ret;
 	}
 
+	@Override
 	public Habilidade buscarHabilidade(String nome)
 	{
 		Habilidade buscada = null;
@@ -161,6 +165,7 @@ public class RepositorioHabilidades {
 		return buscada;
 	}
 	
+	@Override
 	public List<Habilidade> listarTodasHabilidades()
 	{
 		List<Habilidade> habs = new ArrayList<Habilidade>();
@@ -171,6 +176,7 @@ public class RepositorioHabilidades {
 		return habs;
 	}
 	
+	@Override
 	public List<Habilidade> listarHabilidadePorClasse(String nome)
 	{
 		List<Habilidade> hClasse = new ArrayList<Habilidade>();
@@ -194,6 +200,7 @@ public class RepositorioHabilidades {
 		return hClasse;
 	}
 	
+	@Override
 	public List<Habilidade> listarHabilidadesPorRaca(String nome)
 	{
 		List<Habilidade> hRaca = new ArrayList<Habilidade>();
@@ -217,6 +224,7 @@ public class RepositorioHabilidades {
 		return hRaca;
 	}
 	
+	@Override
 	public List<Habilidade> listarHabilidadesPorTipo(String tipo)
 	{
 		List<Habilidade> hTipo = new ArrayList<Habilidade>();
@@ -240,6 +248,7 @@ public class RepositorioHabilidades {
 		return hTipo;
 	}
 	
+	@Override
 	public List<Habilidade> listarHabilidadesPorCategoria(String categoria)
 	{
 		List<Habilidade> hCategoria = new ArrayList<Habilidade>();
@@ -263,6 +272,7 @@ public class RepositorioHabilidades {
 		return hCategoria;
 	}
 	
+	@Override
 	public List<Habilidade> listarHabilidadesComCustoManaMenorQue(int valor)
 	{
 		List<Habilidade> ret = new ArrayList<Habilidade>();

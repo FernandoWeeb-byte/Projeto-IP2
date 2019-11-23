@@ -19,10 +19,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-public class RepositorioPersonagens {
+public class RepositorioPersonagens implements IRepoPersonagens {
 	
 	///Singleton
-	private static RepositorioPersonagens INSTANCE;
+	private static IRepoPersonagens INSTANCE;
 	
 	
 	///Atributos
@@ -37,7 +37,7 @@ public class RepositorioPersonagens {
 
 	
 	///Metodos
-	public static RepositorioPersonagens getInstance()
+	public static IRepoPersonagens getInstance()
 	{
 		if(INSTANCE == null)
 		{
@@ -47,6 +47,7 @@ public class RepositorioPersonagens {
 	}
 	
 
+	@Override
 	public List<Personagem> todas()
 	{
 		 List<Personagem> saida = new ArrayList<Personagem>();
@@ -56,16 +57,19 @@ public class RepositorioPersonagens {
 	
 	
 	
+	@Override
 	public void AdicionarFicha(Personagem novo)
 	{
 		this.fichas.add(novo);
 	}
 	
+	@Override
 	public void removerFicha(Personagem remover)
 	{
 		this.fichas.remove(remover);	
 	}
 	
+	@Override
 	public List<Personagem> listarPorClasse(Classe classe)
 	{
 		String buscado = classe.getNome();
@@ -82,6 +86,7 @@ public class RepositorioPersonagens {
 	}
 	
 	
+	@Override
 	public List<Personagem> listarPorRaca(Raca raca)
 	{
 		List<Personagem> saida = new ArrayList<Personagem>();
@@ -96,6 +101,7 @@ public class RepositorioPersonagens {
 	}
 	
 	
+	@Override
 	public List<Personagem> listarPorJogador(String nome)
 	{
 		List<Personagem> saida = new ArrayList<Personagem>();
@@ -109,6 +115,7 @@ public class RepositorioPersonagens {
 		return saida;
 	}
 	
+	@Override
 	public Personagem buscaPorPers(String nome)
 	{
 		Personagem saida;
@@ -123,6 +130,7 @@ public class RepositorioPersonagens {
 		return null;
 	}
 	
+	@Override
 	public void editarFicha(String nomePer, int nivel, int experiencia, int inteligencia, 
 			int forca, int vontade, int vida, int mana, HashMap<String, Integer> pericias, 
 			Habilidade[] habilidadesAutomaticas,ArrayList<Habilidade> habilidades,  int quantHabilidades,
@@ -176,6 +184,7 @@ public class RepositorioPersonagens {
 		}
 	}
 	
+	@Override
 	public boolean guardar()
 	{
 		try {

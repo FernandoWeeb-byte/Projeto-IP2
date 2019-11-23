@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RepositorioRacas {
+public class RepositorioRacas implements IRepoRacas {
 	
 	/// Singleton
-	private static RepositorioRacas INSTANCE;
+	private static IRepoRacas INSTANCE;
 	
 	
 	/// Atributos
@@ -46,7 +46,7 @@ public class RepositorioRacas {
 		return str;
 	}
 	
-	public static RepositorioRacas getInstance()
+	public static IRepoRacas getInstance()
 	{
 		if(INSTANCE == null)
 		{
@@ -58,7 +58,7 @@ public class RepositorioRacas {
 	
 	private Map<String, Raca> gerarRacasPreExistentes()
 	{
-		RepositorioHabilidades repHab = RepositorioHabilidades.getInstance();
+		IRepoHabilidades repHab = RepositorioHabilidades.getInstance();
 		
 		Map<String, Raca> ret = new HashMap<String, Raca>();
 		
@@ -74,6 +74,7 @@ public class RepositorioRacas {
 		return ret;
 	}
 	
+	@Override
 	public boolean adicionarRaca(Raca raca)
 	{
 		boolean ret = false;
@@ -88,6 +89,7 @@ public class RepositorioRacas {
 		return ret;
 	}
 	
+	@Override
 	public boolean removerRaca(String nome)
 	{
 		boolean ret = false;
@@ -101,6 +103,7 @@ public class RepositorioRacas {
 		return ret;
 	}
 	
+	@Override
 	public Raca buscarRaca(String nome)
 	{
 		Raca ret = null;
@@ -118,6 +121,7 @@ public class RepositorioRacas {
 		return ret;
 	}
 	
+	@Override
 	public boolean modificarRaca(Raca raca)
 	{
 		boolean ret = false;
@@ -131,6 +135,7 @@ public class RepositorioRacas {
 		return ret;
 	}
 	
+	@Override
 	public List<Raca> listarTodasRacas()
 	{
 		List<Raca> ret = new ArrayList<Raca>();
