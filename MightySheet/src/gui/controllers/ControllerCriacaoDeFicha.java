@@ -188,38 +188,7 @@ public class ControllerCriacaoDeFicha {
     	skillListC.getItems().addAll(obLista);
     }
     
-    @FXML
-    void salvar(ActionEvent event) throws IOException
-    {
-    	try {
-    	int nivels = Integer.parseInt(nivel.getText());
-    	int force = Integer.parseInt(forca.getText());
-    	int inteligencias = Integer.parseInt(inteligencia.getText());
-    	int von = Integer.parseInt(vontade.getText());
-    	int pv = Integer.parseInt(pV.getText());
-    	int pm = Integer.parseInt(pM.getText());
-    	int desl = Integer.parseInt(Deslocamento.getText());
-    	int corr = Integer.parseInt(corrida.getText());
-    	int bloq = Integer.parseInt(bloqueio.getText());
-    	int esq = Integer.parseInt(esquiva.getText());
-    	int det = Integer.parseInt(determinacao.getText());
-    	ControladorPersonagens save = new ControladorPersonagens();
-    	
-    	Personagem person = new Personagem(nome.getText(), raca.getValue(), classe.getValue(),nivels, force, inteligencias, von, pv, pm,desl, corr, bloq, esq, det);		
-    	save.salvar(person);
-    	
-    	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
-    	Scene Criacao_Ficha_Scene = new Scene(parent_voltar);
-    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-    	appStage.setScene(Criacao_Ficha_Scene);
-    	appStage.show();
-    	}catch(Exception e)
-    	{
-    		erro.setText("Preencha todos os espaços para salvar");
-    		
-    	}
-    	
-    }
+    
     
     @FXML
     void initialize() {

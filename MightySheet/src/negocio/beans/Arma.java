@@ -9,4 +9,14 @@ public class Arma extends Equipamento {
 	private int fN;
 	private String distancia;
 	private boolean duasMaos;
+	
+	//Métodos
+	public boolean isDuasMaos() {
+		if(this.duasMaos == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
