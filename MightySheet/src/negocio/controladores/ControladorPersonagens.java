@@ -27,28 +27,29 @@ public class ControladorPersonagens {
 			}
 		}
 		repoPer.todas().add(p);
+		
 		return true;
 	}
 	
 	public List<Personagem> todas()
 	{
-		return RepositorioPersonagens.getInstance().todas();
+		return repoPer.getInstance().todas();
 	}
 	
 	public void adicionarFicha(Personagem novo)
 	{
 		if(novo != null)
 		{
-			RepositorioPersonagens.getInstance().AdicionarFicha(novo);
+			repoPer.getInstance().AdicionarFicha(novo);
 		}
 	}
 	
 	public void removerFicha(String nomePersonagem)
 	{
-		Personagem remover = RepositorioPersonagens.getInstance().buscaPorPers(nomePersonagem);
+		Personagem remover = repoPer.getInstance().buscaPorPers(nomePersonagem);
 		if(remover !=null)
 		{
-			RepositorioPersonagens.getInstance().removerFicha(remover);
+			repoPer.getInstance().removerFicha(remover);
 		}
 	}
 	
@@ -57,7 +58,7 @@ public class ControladorPersonagens {
 	{
 		if(classe != null)
 		{
-			return RepositorioPersonagens.getInstance().listarPorClasse(classe);
+			return repoPer.getInstance().listarPorClasse(classe);
 		}
 		return null;
 	}
@@ -66,7 +67,7 @@ public class ControladorPersonagens {
 	{
 		if(raca != null)
 		{
-			return RepositorioPersonagens.getInstance().listarPorRaca(raca);
+			return repoPer.getInstance().listarPorRaca(raca);
 		}
 		return null;
 	}
@@ -75,7 +76,7 @@ public class ControladorPersonagens {
 	{
 		if(nomeJogador != null)
 		{
-			return RepositorioPersonagens.getInstance().listarPorJogador(nomeJogador);
+			return repoPer.getInstance().listarPorJogador(nomeJogador);
 		}
 		return null;
 	}
@@ -84,7 +85,7 @@ public class ControladorPersonagens {
 	{
 		if(nome != null)
 		{
-			return RepositorioPersonagens.getInstance().buscaPorPers(nome);
+			return repoPer.getInstance().buscaPorPers(nome);
 		}
 		return null;
 	}
@@ -99,7 +100,7 @@ public class ControladorPersonagens {
 				&& habilidades != null && quantHabilidades != 0 && ataques != null && equipamentos != null
 				&& ouro >= 0)
 		{
-			RepositorioPersonagens.getInstance().editarFicha(nomePer, nivel, experiencia, inteligencia, 
+			repoPer.getInstance().editarFicha(nomePer, nivel, experiencia, inteligencia, 
 					forca, vontade, vida, mana, pericias, habilidadesAutomaticas, habilidades,
 					quantHabilidades, ataques, equipamentos, ouro);
 		}
