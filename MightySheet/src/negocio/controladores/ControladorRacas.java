@@ -1,6 +1,7 @@
 package negocio.controladores;
 
 import negocio.beans.Raca;
+import dados.IRepoRacas;
 import dados.RepositorioRacas;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class ControladorRacas {
 	
 	/// Atributos
-	private RepositorioRacas repRc;
+	private IRepoRacas repRc;
 	
 	
 	/// Construtores
@@ -18,7 +19,7 @@ public class ControladorRacas {
 	}
 	
 	
-	/// Métodos
+	/// Mï¿½todos
 	public boolean adicionarRaca(Raca raca)
 	{
 		boolean ret = false;

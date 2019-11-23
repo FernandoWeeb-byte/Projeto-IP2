@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dados.IRepoPersonagens;
 import dados.RepositorioPersonagens;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -78,7 +79,7 @@ public class ControllerTelaInicial {
 	    
 	    void tabela()
 	    {
-	    	RepositorioPersonagens lista = RepositorioPersonagens.getInstance();
+	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(lista.todas());
 	    	ControladorPersonagens cP = new ControladorPersonagens(); 

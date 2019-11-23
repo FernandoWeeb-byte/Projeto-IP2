@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dados.IRepoPersonagens;
 import dados.RepositorioPersonagens;
 import negocio.beans.Arma;
 import negocio.beans.Classe;
@@ -15,7 +16,7 @@ import negocio.beans.Raca;
 
 public class ControladorPersonagens {
 	
-	private RepositorioPersonagens repoPer;
+	private IRepoPersonagens repoPer;
 	
 	public ControladorPersonagens()
 	{
