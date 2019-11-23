@@ -34,28 +34,9 @@ public class RepositorioPersonagens {
 		this.fichas = new ArrayList<Personagem>();
 		carregarPersonagens();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	///Metodos
-	
-	
-
-public List<Personagem> todas()
-	{
-		 List<Personagem> saida = new ArrayList<Personagem>();
-		 saida.addAll(fichas);
-		 return saida;
-	}
-	
 	public static RepositorioPersonagens getInstance()
 	{
 		if(INSTANCE == null)
@@ -65,23 +46,24 @@ public List<Personagem> todas()
 		return INSTANCE;
 	}
 	
+
+	public List<Personagem> todas()
+	{
+		 List<Personagem> saida = new ArrayList<Personagem>();
+		 saida.addAll(fichas);
+		 return saida;
+	}
+	
+	
+	
 	public void AdicionarFicha(Personagem novo)
 	{
 		this.fichas.add(novo);
 	}
 	
-	public void RemoverFicha(String nomeJogador, String nomePersonagem)
+	public void removerFicha(Personagem remover)
 	{
-		int freioDeMao = -1;
-		for(int i=0; i<this.fichas.size() && freioDeMao < 0; i++)
-		{
-			if(this.fichas.get(i).getNomeJogador().equalsIgnoreCase(nomeJogador) && 
-					this.fichas.get(i).getNomePersonagem().equalsIgnoreCase(nomePersonagem))
-			{
-				this.fichas.remove(i);
-				freioDeMao = 42;
-			}
-		}	
+		this.fichas.remove(remover);	
 	}
 	
 	public List<Personagem> listarPorClasse(Classe classe)
@@ -147,6 +129,7 @@ public List<Personagem> todas()
 			ArrayList<Arma> ataques, ArrayList<Equipamento> equipamentos, int ouro)
 	{
 		Personagem editado = this.buscaPorPers(nomePer);
+		this.removerFicha(editado);
 		editado.setNivel(nivel);
 		editado.setExperiencia(experiencia);
 		editado.setInteligencia(inteligencia);
@@ -161,7 +144,6 @@ public List<Personagem> todas()
 		editado.setAtaques(ataques);
 		editado.setEquipamentos(equipamentos);
 		editado.setOuro(ouro);
-		this.RemoverFicha(editado.getNomeJogador(), editado.getNomePersonagem());
 		this.AdicionarFicha(editado);
 	}
 	
