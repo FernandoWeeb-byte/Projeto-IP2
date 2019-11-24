@@ -1,8 +1,8 @@
 package negocio.controladores;
 
 import negocio.beans.Classe;
-import dados.IRepoClasses;
-import dados.RepositorioClasses;
+import dados.interfaces.IRepoClasses;
+import dados.repositorios.RepositorioClasses;
 
 import java.util.List;
 

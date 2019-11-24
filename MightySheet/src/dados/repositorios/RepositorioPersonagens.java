@@ -1,4 +1,4 @@
-package dados;
+package dados.repositorios;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+
+import dados.interfaces.IRepoPersonagens;
 
 public class RepositorioPersonagens implements IRepoPersonagens {
 	

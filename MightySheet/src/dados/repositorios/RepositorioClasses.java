@@ -1,8 +1,12 @@
-package dados;
+package dados.repositorios;
 
 import negocio.beans.Classe;
 
 import java.util.Map;
+
+import dados.interfaces.IRepoClasses;
+import dados.interfaces.IRepoHabilidades;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
