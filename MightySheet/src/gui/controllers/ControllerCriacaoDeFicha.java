@@ -104,7 +104,7 @@ public class ControllerCriacaoDeFicha {
     private TextField cargaMaxima;
 
     @FXML
-    private TextField Deslocamento;
+    private TextField deslocamento;
 
     @FXML
     private TextField corrida;
@@ -129,8 +129,10 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     private Label erro;
-
-
+    
+    Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+    
+    
 
     @FXML
     void acaoBotao(ActionEvent event) throws IOException
@@ -146,7 +148,7 @@ public class ControllerCriacaoDeFicha {
     
     void carregarClasse()
     {
-    	
+   	
     	ObservableList obLista;
     	
     	List<Classe> lista = fachada.listarTodasClasses();
@@ -157,7 +159,7 @@ public class ControllerCriacaoDeFicha {
     
     void carregarRaca()
     {
-    	//estaria na futura RepositorioRacas
+    	//carrega as raças
     	ObservableList obLista;
     	
     	List<Raca> lista = fachada.listarTodasRacas();
@@ -169,26 +171,118 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void selecionarRaca(ActionEvent event) {
+    	// setar atributos
+    	String str[] = {null, null, null, null};
+    	if(classe.getValue() == null) {
+    	str[0] = String.format("%d",raca.getValue().getForca());
+    	forca.setText(str[0]);
+    	str[1] = String.format("%d",raca.getValue().getAgilidade());
+    	agilidade.setText(str[1]);
+    	str[2] = String.format("%d",raca.getValue().getInteligencia());
+    	inteligencia.setText(str[2]);
+    	str[3] = String.format("%d",raca.getValue().getVontade());
+    	vontade.setText(str[3]);
+    	}
+    	else {
+    		str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
+        	forca.setText(str[0]);
+        	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
+        	agilidade.setText(str[1]);
+        	str[2] = String.format("%d",raca.getValue().getInteligencia() + classe.getValue().getBonusInteligencia());
+        	inteligencia.setText(str[2]);
+        	str[3] = String.format("%d",raca.getValue().getVontade() + classe.getValue().getBonusVontade());
+        	vontade.setText(str[3]);
+    	}
+    	
+    	
+    	//Mostrar as habilidades da raça na lista
     	ObservableList obLista = null;
     	skilList.getItems().clear();
     	List<Habilidade> lista = null;
     	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
     	obLista = FXCollections.observableArrayList(lista);
     	skilList.getItems().addAll(obLista);
-
+    	
+    	//seta a raça e atributos
+    	
+    	person.setRaca(raca.getValue());
+    	person.setForca(Integer.parseInt(forca.getText()));
+    	person.setAgilidade(Integer.parseInt(agilidade.getText()));
+    	person.setInteligencia(Integer.parseInt(inteligencia.getText()));
+    	person.setVontade(Integer.parseInt(vontade.getText()));
+    	//calculos
+    	calcularValores();
     }
     
     @FXML
     void selecionarClasse(ActionEvent event) {
+    	// mostrar atributos
+    	String str[] = {null, null, null, null};
+    	if(raca.getValue() == null) {
+    	str[0] = String.format("%d", classe.getValue().getBonusForca());
+    	forca.setText(str[0]);
+    	str[1] = String.format("%d", classe.getValue().getBonusAgilidade());
+    	agilidade.setText(str[1]);
+    	str[2] = String.format("%d", classe.getValue().getBonusInteligencia());
+    	inteligencia.setText(str[2]);
+    	str[3] = String.format("%d",classe.getValue().getBonusVontade());
+    	vontade.setText(str[3]);
+    	}
+    	else {
+    		str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
+        	forca.setText(str[0]);
+        	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
+        	agilidade.setText(str[1]);
+        	str[2] = String.format("%d",raca.getValue().getInteligencia() + classe.getValue().getBonusInteligencia());
+        	inteligencia.setText(str[2]);
+        	str[3] = String.format("%d",raca.getValue().getVontade() + classe.getValue().getBonusVontade());
+        	vontade.setText(str[3]);
+    	}
+    	
+    	
+    	// mostrar as habilidades de classe na lista
     	ObservableList obLista = null;
     	skillListC.getItems().clear();
     	List<Habilidade> lista = null;
     	lista = fachada.listarHabilidadePorClasse(classe.getValue().getNome());
     	obLista = FXCollections.observableArrayList(lista);
     	skillListC.getItems().addAll(obLista);
+    	
+    	//seta a classe e atributos
+    	
+    	person.setClasse(classe.getValue());
+    	person.setForca(Integer.parseInt(forca.getText()));
+    	person.setAgilidade(Integer.parseInt(agilidade.getText()));
+    	person.setInteligencia(Integer.parseInt(inteligencia.getText()));
+    	person.setVontade(Integer.parseInt(vontade.getText()));
+    	//calculos
+    	calcularValores();
     }
     
-    
+    void calcularValores()
+    {
+    	String[] str = {null, null, null,null}; 
+    	
+    	//Carga basica
+    	person.setCargaBasica(Integer.parseInt(forca.getText()));
+    	str[0] = String.format("%d", person.getCargaBasica());
+    	cargaBasica.setText(str[0]);
+    	//carga Pesada
+    	person.setCargaPesada(person.getCargaBasica());
+    	str[1] = String.format("%d", person.getCargaPesada());
+    	cargaPesada.setText(str[1]);
+    	//carga Maxima
+    	person.setCargaMaxima(person.getCargaBasica());
+    	str[2] = String.format("%d", person.getCargaMaxima());
+    	cargaMaxima.setText(str[2]);
+    	//deslocamento
+    	person.setDeslocamento();
+    	str[3] = String.format("%d", person.getDeslocamento());
+    	deslocamento.setText(str[3]);
+    	
+    	
+    	
+    }
     
     @FXML
     void initialize() {
