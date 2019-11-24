@@ -111,20 +111,20 @@ public class Personagem {
 	public int getCargaBasica() {
 		return cargaBasica;
 	}
-	public void setCargaBasica() {
-		this.cargaBasica = this.forca * 7;
+	public void setCargaBasica(int forca) {
+		this.cargaBasica = forca * 7;
 	}
 	public int getCargaPesada() {
 		return cargaPesada;
 	}
-	public void setCargaPesada() {
-		this.cargaPesada = this.cargaBasica * 5;
+	public void setCargaPesada(int cargaBasica) {
+		this.cargaPesada = cargaBasica * 5;
 	}
 	public int getCargaMaxima() {
 		return cargaMaxima;
 	}
-	public void setCargaMaxima() {
-		this.cargaMaxima = this.cargaBasica * 10;
+	public void setCargaMaxima(int cargaBasica) {
+		this.cargaMaxima = cargaBasica * 10;
 	}
 	public int getForca() {
 		return forca;
@@ -309,11 +309,6 @@ public class Personagem {
 			this.classe = classe;
 			this.nivel = nivel;
 			this.experiencia = experiencia;
-			this.setDeslocamento();
-			this.setCorrida();
-			this.setCargaBasica();
-			this.setCargaPesada();
-			this.setCargaMaxima();
 			this.forca = forca;
 			this.agilidade = agilidade;
 			this.inteligencia = inteligencia;
@@ -321,12 +316,8 @@ public class Personagem {
 			this.vida = vida;
 			this.mana = mana;
 			this.pericias = pericias;
-			this.setEsquiva();
-			this.setBloqueio();
-			this.setDeterminacao();
 			this.habilidadesAutomaticas = habilidadesAutomaticas;
 			this.habilidades = habilidades;
-			this.setQuantHabilidades();
 			this.vestimenta = vestimenta;
 			this.maoDireita = maoDireita;
 			this.maoEsquerda = maoEsquerda;
