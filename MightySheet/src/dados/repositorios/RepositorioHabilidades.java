@@ -1,4 +1,4 @@
-package dados;
+package dados.repositorios;
 
 import negocio.beans.Habilidade;
 
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import dados.interfaces.IRepoHabilidades;
 
 public class RepositorioHabilidades implements IRepoHabilidades {
 	

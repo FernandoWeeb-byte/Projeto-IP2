@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import dados.IRepoPersonagens;
-import dados.RepositorioPersonagens;
+import dados.interfaces.IRepoPersonagens;
+import dados.repositorios.RepositorioPersonagens;
 import negocio.beans.Arma;
 import negocio.beans.Classe;
 import negocio.beans.Equipamento;

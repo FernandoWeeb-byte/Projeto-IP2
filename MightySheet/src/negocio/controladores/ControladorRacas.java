@@ -1,8 +1,8 @@
 package negocio.controladores;
 
 import negocio.beans.Raca;
-import dados.IRepoRacas;
-import dados.RepositorioRacas;
+import dados.interfaces.IRepoRacas;
+import dados.repositorios.RepositorioRacas;
 
 import java.util.List;
 
