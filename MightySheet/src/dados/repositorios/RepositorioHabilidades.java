@@ -1,5 +1,6 @@
 package dados.repositorios;
 
+import negocio.beans.Classe;
 import negocio.beans.Habilidade;
 
 import java.util.Map;
@@ -297,4 +298,33 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		
 		return ret;
 	}
+	
+	/*public Map<String,Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
+	{
+		Map<String,Habilidade> saida = new HashMap<String,Habilidade>();
+		String classesDeCada[] = null;
+		for(Map.Entry<String, Habilidade> entry: this.habilidadesPreExistentes.entrySet())
+		{
+			classesDeCada = entry.getValue().getClasses();
+			String chave = entry.getKey();
+			Habilidade valor = entry.getValue();
+			String req = entry.getValue().getRequisito();
+			if(level<=5)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.con)
+					{
+						saida.put(chave, valor);
+					}
+				}
+				
+			}
+			
+				
+				
+			
+		}
+		return saida;
+	}*/
 }
