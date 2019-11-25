@@ -299,7 +299,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		return ret;
 	}
 	
-	/*public Map<String,Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
+	public Map<String,Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
 	{
 		Map<String,Habilidade> saida = new HashMap<String,Habilidade>();
 		String classesDeCada[] = null;
@@ -309,22 +309,36 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			String chave = entry.getKey();
 			Habilidade valor = entry.getValue();
 			String req = entry.getValue().getRequisito();
-			if(level<=5)
+			if(level<5)
 			{
 				for(int i=0; i<classesDeCada.length; i++)
 				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.con)
+					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10"))
+					{
+						saida.put(chave, valor);
+					}
+				}	
+			} else if( level < 10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10"))
+					{
+						saida.put(chave, valor);
+					}
+				}	
+			} else if( level >=10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10"))
 					{
 						saida.put(chave, valor);
 					}
 				}
 				
-			}
-			
-				
-				
-			
+			}	
 		}
 		return saida;
-	}*/
+	}
 }
