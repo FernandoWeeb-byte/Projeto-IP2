@@ -47,4 +47,30 @@ public class Protecao extends Equipamento {
 		
 		return str;
 	}
+
+
+	/// Getters
+	public int getBloqueio() {
+		return bloqueio;
+	}
+
+	public int getEsquiva() {
+		return esquiva;
+	}
+
+	public int getfN() {
+		return fN;
+	}
+
+	public boolean isEscudo() {
+		return escudo;
+	}
+
+	public boolean isPesada() {
+		return pesada;
+	}
+	
+	public boolean isRigida() {
+		return rigida;
+	}
 }

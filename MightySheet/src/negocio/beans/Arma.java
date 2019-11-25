@@ -51,4 +51,30 @@ public class Arma extends Equipamento {
 			
 		return str;
 	}
+
+
+	/// Getters
+	public int getDano() {
+		return dano;
+	}
+
+	public String getTipoDano() {
+		return tipoDano;
+	}
+	
+	public int getfN() {
+		return fN;
+	}
+
+	public String getDistancia() {
+		return distancia;
+	}
+
+	public boolean isCarregar() {
+		return carregar;
+	}
+
+	public boolean isDuasMaos() {
+		return duasMaos;
+	}
 }
