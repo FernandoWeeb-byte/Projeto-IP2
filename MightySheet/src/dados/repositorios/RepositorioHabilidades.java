@@ -27,7 +27,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	/// Construtor
 	private RepositorioHabilidades()
 	{
-		habilidadesPreExistentes = RepositorioHabilidades.carregarHabilidades("ListaDeHabilidades.tsv");
+		habilidadesPreExistentes = RepositorioHabilidades.carregarHabilidades("Habilidades - Habilidades.tsv");
 		habilidadesCriadas = new HashMap<String, Habilidade>();
 	}
 	
