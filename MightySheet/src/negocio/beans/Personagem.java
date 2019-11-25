@@ -29,6 +29,7 @@ public class Personagem {
 	private int vida;
 	private int mana;
 	private HashMap<String, Integer> pericias;
+	private int ptsAtributo;
 	
 	// Defesas
 	private int esquiva;
@@ -253,6 +254,29 @@ public class Personagem {
 	}
 	public void setOuro(int ouro) {
 		this.ouro = ouro;
+	}
+	
+	public int getPtsAtributo()
+	{
+		return ptsAtributo;
+	}
+	
+	public void setPtsAtributo(int ptsAtributo)
+	{
+		this.ptsAtributo = ptsAtributo;
+	}
+	
+	public void calculoPtsAtributo(int nivel)
+	{
+		int n = (nivel - 1)/3;
+		if(n>=1)
+		{
+			for(int i=0;i<n;i++)
+			{
+				this.ptsAtributo += 2;
+			}
+		}
+		
 	}
 	
 

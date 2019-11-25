@@ -6,7 +6,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dados.interfaces.IRepoPersonagens;
+import dados.repositorios.RepositorioPersonagens;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableIntegerArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import negocio.Fachada;
@@ -83,7 +87,7 @@ public class ControllerCriacaoDeFicha {
     private TextField nome;
 
     @FXML
-    private TextField nivel;
+    private ComboBox<Integer> nivel;
 
     @FXML
     private TextField bloqueio;
@@ -130,6 +134,15 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private Label erro;
     
+    @FXML
+    private Label qtdHab;
+
+    @FXML
+    private Label ptsAtributos;
+    
+    @FXML
+    private TextField ouro;
+    
     Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
     
     
@@ -142,9 +155,38 @@ public class ControllerCriacaoDeFicha {
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
     	appStage.setScene(Criacao_Ficha_Scene);
     	appStage.show();
+    	
     }
     
+    @FXML
+    void escolherNivel(ActionEvent event) {
+    	person.setPtsAtributo(0);
+    	person.setNivel((int)nivel.getValue());
+    	person.calculoPtsAtributo(person.getNivel());
+    	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    	
+    	person.setQuantHabilidades();
+    	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
+    	String[] str = {null, null, null, null};
+    	if(classe.getValue() != null || raca.getValue() != null) {
+    	str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
+    	forca.setText(str[0]);
+    	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
+    	agilidade.setText(str[1]);
+    	str[2] = String.format("%d",raca.getValue().getInteligencia() + classe.getValue().getBonusInteligencia());
+    	inteligencia.setText(str[2]);
+    	str[3] = String.format("%d",raca.getValue().getVontade() + classe.getValue().getBonusVontade());
+    	vontade.setText(str[3]);
+    	}
+    }
     
+    void carregarNiveis()
+    {
+    	ObservableList<Integer> obLista;
+    	Integer[] niveis = {1,2,3,4,5,6,7,8,9,10};
+    	obLista = FXCollections.observableArrayList(niveis);
+    	nivel.setItems(obLista);
+    }
     
     void carregarClasse()
     {
@@ -280,14 +322,75 @@ public class ControllerCriacaoDeFicha {
     	str[3] = String.format("%d", person.getDeslocamento());
     	deslocamento.setText(str[3]);
     	
+    }
+    
+    @FXML
+    void upAtributo(ActionEvent event) {
+    	if(person.getPtsAtributo() > 0) {
+    	if(adcForca.isArmed())
+    	{
+    		person.forUp(1);
+    		person.setPtsAtributo(person.getPtsAtributo()-1);
+    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    		forca.setText(String.format("%d",person.getForca()));
+    	}
+    	if(adcAgilidade.isArmed())
+    	{
+    		person.agiUp(1);
+    		person.setPtsAtributo(person.getPtsAtributo()-1);
+    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    		agilidade.setText(String.format("%d",person.getAgilidade()));
+    	}
+    	if(adcInteligencia.isArmed())
+    	{
+    		person.intUp(1);
+    		person.setPtsAtributo(person.getPtsAtributo()-1);
+    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    		inteligencia.setText(String.format("%d",person.getInteligencia()));
+    	}
+    	if(adcVontade.isArmed())
+    	{
+    		person.vonUp(1);
+    		person.setPtsAtributo(person.getPtsAtributo()-1);
+    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    		vontade.setText(String.format("%d",person.getVontade()));
+    	}
+    	}
+    }
+    
+    @FXML
+    void Loja(ActionEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	FXMLLoader FxmlLoader = new FXMLLoader();
+    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Loja.fxml").openStream());
+    	Scene loja_Scene = new Scene(loja_parent);
+        stage.setScene(loja_Scene);
+        stage.setTitle("Loja");
+        stage.setResizable(false);
+        stage.showAndWait();
     	
-    	
+    }
+    
+    @FXML
+    void salvar(ActionEvent event) throws IOException {
+    	person.setNomePersonagem(nome.getText());
+    	person.setVida(Integer.parseInt(pV.getText()));
+    	person.setMana(Integer.parseInt(pM.getText()));
+    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
+    	lista.AdicionarFicha(person);
+    	//fachada.salvar(person);
+    	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+    	Scene Tela_Inicial_Scene = new Scene(parent_voltar);
+    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+    	appStage.setScene(Tela_Inicial_Scene);
+    	appStage.show();
     }
     
     @FXML
     void initialize() {
     	carregarClasse();
     	carregarRaca();
+    	carregarNiveis();
     }
 	
 }
