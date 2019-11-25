@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableIntegerArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import negocio.Fachada;
@@ -83,7 +85,7 @@ public class ControllerCriacaoDeFicha {
     private TextField nome;
 
     @FXML
-    private TextField nivel;
+    private ComboBox<Integer> nivel;
 
     @FXML
     private TextField bloqueio;
@@ -130,6 +132,12 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private Label erro;
     
+    @FXML
+    private Label qtdHab;
+
+    @FXML
+    private Label ptsAtributos;
+    
     Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
     
     
@@ -142,9 +150,27 @@ public class ControllerCriacaoDeFicha {
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
     	appStage.setScene(Criacao_Ficha_Scene);
     	appStage.show();
+    	
     }
     
+    @FXML
+    void escolherNivel(ActionEvent event) {
+    	person.setPtsAtributo(0);
+    	person.setNivel((int)nivel.getValue());
+    	person.calculoPtsAtributo(person.getNivel());
+    	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
+    	
+    	person.setQuantHabilidades();
+    	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
+    }
     
+    void carregarNiveis()
+    {
+    	ObservableList<Integer> obLista;
+    	Integer[] niveis = {1,2,3,4,5,6,7,8,9,10};
+    	obLista = FXCollections.observableArrayList(niveis);
+    	nivel.setItems(obLista);
+    }
     
     void carregarClasse()
     {
@@ -280,7 +306,17 @@ public class ControllerCriacaoDeFicha {
     	str[3] = String.format("%d", person.getDeslocamento());
     	deslocamento.setText(str[3]);
     	
-    	
+    }
+    
+    @FXML
+    void Loja(ActionEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	FXMLLoader FxmlLoader = new FXMLLoader();
+    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Loja.fxml").openStream());
+    	Scene loja_Scene = new Scene(loja_parent);
+        stage.setScene(loja_Scene);
+        stage.setTitle("Loja");
+        stage.showAndWait();
     	
     }
     
@@ -288,6 +324,7 @@ public class ControllerCriacaoDeFicha {
     void initialize() {
     	carregarClasse();
     	carregarRaca();
+    	carregarNiveis();
     }
 	
 }

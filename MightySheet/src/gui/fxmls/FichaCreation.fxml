@@ -46,7 +46,6 @@
             <Label layoutX="229.0" layoutY="204.0" prefHeight="17.0" prefWidth="27.0" text="PV" />
             <TextField fx:id="nome" layoutX="80.0" layoutY="37.0" prefHeight="25.0" prefWidth="563.0" />
             <Label layoutX="229.0" layoutY="249.0" text="PM" />
-            <TextField fx:id="nivel" layoutX="80.0" layoutY="133.0" prefHeight="25.0" prefWidth="39.0" />
             <Label layoutX="43.0" layoutY="370.0" text="Bloqueio">
                <font>
                   <Font size="15.0" />
@@ -105,12 +104,20 @@
             <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" prefWidth="150.0" />
             <ComboBox fx:id="maoDireita" layoutX="473.0" layoutY="233.0" prefWidth="150.0" />
             <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" prefWidth="150.0" />
-            <ListView fx:id="skillListC" layoutX="390.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
+            <ListView fx:id="skillListC" layoutX="358.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
             <Label fx:id="erro" layoutX="307.0" layoutY="657.0" prefHeight="21.0" prefWidth="250.0" textFill="#e80808">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
+            <Button layoutX="638.0" layoutY="440.0" mnemonicParsing="false" onAction="#Loja" prefHeight="25.0" prefWidth="69.0" text="Comprar" />
+            <ComboBox fx:id="nivel" layoutX="68.0" layoutY="133.0" onAction="#escolherNivel" prefHeight="25.0" prefWidth="45.0" />
+            <Label layoutX="33.0" layoutY="181.0" text="Pts de Atributo:" />
+            <Label layoutX="35.0" layoutY="645.0" text="Qtd de habilidades:" />
+            <Label fx:id="qtdHab" layoutX="140.0" layoutY="645.0" text="3" />
+            <Label fx:id="ptsAtributos" layoutX="118.0" layoutY="181.0" text="0" />
+            <Label layoutX="264.0" layoutY="100.0" prefHeight="17.0" prefWidth="39.0" text="Ouro" />
+            <TextField layoutX="303.0" layoutY="96.0" prefHeight="25.0" prefWidth="45.0" text="400" />
          </children>
       </AnchorPane>
    </children>
