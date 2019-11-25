@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dados.IRepoPersonagens;
-import dados.RepositorioPersonagens;
+import dados.interfaces.IRepoPersonagens;
+import dados.repositorios.RepositorioPersonagens;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

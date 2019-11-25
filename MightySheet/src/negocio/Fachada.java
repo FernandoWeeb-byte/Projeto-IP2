@@ -18,6 +18,7 @@ public class Fachada {
 	private ControladorHabilidades controlHab;
 	private ControladorRacas controlRc;
 	private ControladorPersonagens controlPer;
+	private ControladorEquipamentos controlEquips;
 	
 	
 	/// Construturo
@@ -27,6 +28,7 @@ public class Fachada {
 		controlHab = new ControladorHabilidades();
 		controlRc = new ControladorRacas();
 		controlPer = new ControladorPersonagens();
+		controlEquips = new ControladorEquipamentos();
 	}
 	
 	
@@ -167,5 +169,43 @@ public class Fachada {
 			ArrayList<Equipamento> equipamentos, int ouro) {
 		controlPer.editarFicha(nomePer, nivel, experiencia, inteligencia, forca, vontade, vida, mana, pericias,
 				habilidadesAutomaticas, habilidades, quantHabilidades, ataques, equipamentos, ouro);
+	}
+
+	
+	/// Metodos delegate <ControladorEquipamentos>
+	public boolean adicionarEquipamento(Equipamento novo) {
+		return controlEquips.adicionarEquipamento(novo);
+	}
+
+	public boolean removerEquipamento(String nome) {
+		return controlEquips.removerEquipamento(nome);
+	}
+
+	public Equipamento buscarEquipamento(String nome) {
+		return controlEquips.buscarEquipamento(nome);
+	}
+
+	public boolean modificarEquipamento(Equipamento novo) {
+		return controlEquips.modificarEquipamento(novo);
+	}
+
+	public List<Equipamento> listarTodosItens() {
+		return controlEquips.listarTodosItens();
+	}
+
+	public List<Equipamento> listarItensComuns() {
+		return controlEquips.listarItensComuns();
+	}
+
+	public List<Equipamento> listarTodosCanalizadores() {
+		return controlEquips.listarTodosCanalizadores();
+	}
+
+	public List<Arma> listarTodasArmas() {
+		return controlEquips.listarTodasArmas();
+	}
+
+	public List<Protecao> listarTodasArmaduras() {
+		return controlEquips.listarTodasArmaduras();
 	}
 }

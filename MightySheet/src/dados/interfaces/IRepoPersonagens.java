@@ -1,4 +1,4 @@
-package dados;
+package dados.interfaces;
 
 import java.util.ArrayList;
 import java.util.HashMap;

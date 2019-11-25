@@ -179,7 +179,7 @@ public class Personagem {
 		return bloqueio;
 	}
 	public void setBloqueio() {
-		if(this.maoEsquerda.isProtecao() == true) {
+		if(this.maoEsquerda.getClass().equals(Protecao.class) == true) {
 			this.bloqueio = 5 + this.forca + ((Protecao) this.vestimenta).getBloqueio() + ((Protecao) this.maoEsquerda).getBloqueio();
 		}
 		else {

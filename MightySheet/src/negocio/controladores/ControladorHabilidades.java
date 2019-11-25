@@ -1,8 +1,8 @@
 package negocio.controladores;
 
 import negocio.beans.Habilidade;
-import dados.IRepoHabilidades;
-import dados.RepositorioHabilidades;
+import dados.interfaces.IRepoHabilidades;
+import dados.repositorios.RepositorioHabilidades;
 
 import java.util.List;
 
