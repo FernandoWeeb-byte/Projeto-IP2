@@ -150,10 +150,11 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 		editado.setPericias(pericias);
 		editado.setHabilidadesAutomaticas(habilidadesAutomaticas);
 		editado.setHabilidades(habilidades);
-		editado.setQuantHabilidades(quantHabilidades);
-		editado.setAtaques(ataques);
+		editado.setQuantHabilidades();
+		//editado.setAtaques(ataques);
 		editado.setEquipamentos(equipamentos);
 		editado.setOuro(ouro);
+		
 		this.AdicionarFicha(editado);
 	}
 	
