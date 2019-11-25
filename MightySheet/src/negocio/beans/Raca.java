@@ -3,8 +3,9 @@ package negocio.beans;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.io.Serializable;
 
-public class Raca {
+public class Raca implements Serializable{
 	
 	/// Atributos
 	private String nome;
@@ -57,11 +58,11 @@ public class Raca {
 	{
 		String str = String.format("%s\n"
 				+ "Atributos Iniciais:\n"
-				+ "Força %d\n"
+				+ "Forï¿½a %d\n"
 				+ "Agilidade %d\n"
 				+ "Inteligencia %d\n"
 				+ "Vontade %d\n"
-				+ "Habilidade Automática:\n"
+				+ "Habilidade Automï¿½tica:\n"
 				+ "%s", this.nome, this.forca, this.agilidade, this.inteligencia, this.vontade,
 				this.habilidadeAutomatica);
 		return str;

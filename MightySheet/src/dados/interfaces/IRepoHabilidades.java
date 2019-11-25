@@ -26,4 +26,5 @@ public interface IRepoHabilidades {
 
 	List<Habilidade> listarHabilidadesComCustoManaMenorQue(int valor);
 
+	boolean salvarHabilidades();
 }

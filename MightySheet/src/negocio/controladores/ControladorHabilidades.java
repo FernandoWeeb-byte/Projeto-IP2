@@ -122,4 +122,8 @@ public class ControladorHabilidades {
 	public List<Habilidade> listarHabilidadesComCustoManaMenorQue(int valor) {
 		return repHab.listarHabilidadesComCustoManaMenorQue(valor);
 	}
+
+	public boolean salvarHabilidades() {
+		return repHab.salvarHabilidades();
+	}	
 }

@@ -1,15 +1,22 @@
 package dados.repositorios;
 
 import negocio.beans.Equipamento;
-import negocio.beans.Habilidade;
 import negocio.beans.Arma;
 import negocio.beans.Protecao;
+
 import dados.interfaces.IRepoEquipamentos;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class RepositorioEquipamentos implements IRepoEquipamentos {
 	
@@ -26,7 +33,7 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 	private RepositorioEquipamentos()
 	{
 		equipamentosPE = new HashMap<String, Equipamento>();
-		equipamentosC = new HashMap<String, Equipamento>();
+		equipamentosC = carregarEquipamentos();
 	}
 	
 	
@@ -226,6 +233,80 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 			}
 		}
 		
+		return ret;
+	}
+	
+	private Map<String, Equipamento> carregarEquipamentos()
+	{
+		File f = new File("Equipamentos.rep");
+		
+		Map<String, Equipamento> ret = null;
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			try
+			{
+				if((ret = (Map<String, Equipamento>)ois.readObject()) == null)
+				{
+					ret = new HashMap<String, Equipamento>();
+				}
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			ois.close();
+		}
+		catch(IOException e)
+		{
+			ret = new HashMap<String, Equipamento>();
+			System.out.println("Não existe dados no arquivo ainda");
+		}
+		
+		return ret;
+	}
+	
+	public boolean salvarEquipamentos()
+	{
+		boolean ret = false;
+		
+		File f = new File("Equipamentos.rep");
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			try
+			{
+				oos.writeObject(this.equipamentosC);
+				ret = true;
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			
+			oos.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
 		return ret;
 	}
 }

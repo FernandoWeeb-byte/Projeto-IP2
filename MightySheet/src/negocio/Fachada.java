@@ -1,5 +1,6 @@
 package negocio;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,14 @@ public class Fachada {
 		return INSTANCE;
 	}
 	
+	public void salvarTodosRepositórios()
+	{
+		salvarClasses();
+		salvarHabilidades();
+		salvarEquipamentos();
+		salvarRacas();
+	}
+	
 	
 	/// Metodos delegate <ControladorClasses>
 	public boolean adicionarClasse(Classe cls) {
@@ -63,6 +72,10 @@ public class Fachada {
 
 	public List<Classe> listarTodasClasses() {
 		return controlCls.listarTodasClasses();
+	}
+	
+	public boolean salvarClasses() {
+		return controlCls.salvarClasses();
 	}
 
 
@@ -107,6 +120,10 @@ public class Fachada {
 		return controlHab.listarHabilidadesComCustoManaMenorQue(valor);
 	}
 
+	public boolean salvarHabilidades() {
+		return controlHab.salvarHabilidades();
+	}
+
 
 	/// Metodos delegate <ControladorRacas>
 	public boolean adicionarRaca(Raca raca) {
@@ -129,7 +146,11 @@ public class Fachada {
 		return controlRc.listarTodasRacas();
 	}
 	
-	
+	public boolean salvarRacas() {
+		return controlRc.salvarRacas();
+	}
+
+
 	/// Metodos delegate <ControladorPersonagem>
 	public boolean salvar(Personagem p) {
 		return controlPer.salvar(p);
@@ -207,5 +228,9 @@ public class Fachada {
 
 	public List<Protecao> listarTodasArmaduras() {
 		return controlEquips.listarTodasArmaduras();
+	}
+
+	public boolean salvarEquipamentos() {
+		return controlEquips.salvarEquipamentos();
 	}
 }

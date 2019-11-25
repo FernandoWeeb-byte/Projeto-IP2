@@ -1,6 +1,8 @@
 package negocio.beans;
 
-public class Protecao extends Equipamento {
+import java.io.Serializable;
+
+public class Protecao extends Equipamento implements Serializable{
 	
 	/// Atributos
 	private int bloqueio;

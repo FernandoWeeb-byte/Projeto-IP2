@@ -4,6 +4,7 @@ import negocio.beans.Classe;
 import dados.interfaces.IRepoClasses;
 import dados.repositorios.RepositorioClasses;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ControladorClasses {
@@ -80,6 +81,10 @@ public class ControladorClasses {
 	public List<Classe> listarTodasClasses() {
 		return repCls.listarTodasClasses();
 	}
+
+
 	
-	
+	public boolean salvarClasses() {
+		return repCls.salvarClasses();
+	}
 }
