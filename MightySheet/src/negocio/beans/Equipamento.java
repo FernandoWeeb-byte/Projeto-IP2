@@ -7,17 +7,19 @@ public class Equipamento implements Serializable{
 	/// Atributos
 	private String nome;
 	private int custo;
+	private int fN;
 	private double peso;
 	private String descricao;
 	private boolean canalizador;
 	
 	
 	/// Construtor
-	public Equipamento(String nome, int custo, double peso,
+	public Equipamento(String nome, int custo, int fN, double peso,
 						String descricao, boolean canalizador)
 	{
 		this.nome = nome;
 		this.custo = custo;
+		this.fN = fN;
 		this.peso = peso;
 		this.descricao = descricao;
 		this.canalizador = canalizador;
@@ -28,10 +30,16 @@ public class Equipamento implements Serializable{
 	public String toString()
 	{
 		String str = String.format("%s\n"
-									+ "Custo: %d\n"
-									+ "Peso: %.2fkg\n"
-									+ "Descrição: %s\n",
-									this.nome, this.custo, this.peso, this.descricao);
+									+ "Custo: %d\n", this.nome, this.custo);
+		
+		if(fN > 0)
+		{
+			str += String.format("FN: %d\n", this.fN);
+		}
+		
+		str += String.format("Peso: %.2fkg\n"
+							+ "Descrição: %s\n",
+							this.peso, this.descricao);
 		
 		return str;
 	}
@@ -46,6 +54,11 @@ public class Equipamento implements Serializable{
 		return custo;
 	}
 
+	public int getfN()
+	{
+		return fN;
+	}
+	
 	public double getPeso() {
 		return peso;
 	}

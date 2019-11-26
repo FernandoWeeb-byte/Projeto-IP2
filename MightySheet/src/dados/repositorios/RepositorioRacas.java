@@ -168,6 +168,8 @@ public class RepositorioRacas implements IRepoRacas {
 			if(!f.exists())
 			{
 				f.createNewFile();
+				ret = new HashMap<String, Raca>();
+				return ret;
 			}
 			
 			FileInputStream fis = new FileInputStream(f);
@@ -189,7 +191,6 @@ public class RepositorioRacas implements IRepoRacas {
 		catch(IOException e)
 		{
 			ret = new HashMap<String, Raca>();
-			System.out.println("Não existe dados no arquivo ainda");
 		}
 		
 		return ret;

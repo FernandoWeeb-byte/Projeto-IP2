@@ -10,9 +10,11 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,7 +34,7 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 	/// Construtor
 	private RepositorioEquipamentos()
 	{
-		equipamentosPE = new HashMap<String, Equipamento>();
+		equipamentosPE = carregarEquipamentosPE();
 		equipamentosC = carregarEquipamentos();
 	}
 	
@@ -45,6 +47,193 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 			INSTANCE = new RepositorioEquipamentos();
 		}
 		return INSTANCE;
+	}
+	
+	private Map<String, Equipamento> carregarEquipamentosPE()
+	{
+		Map <String, Equipamento> ret = new HashMap<String, Equipamento>();
+		
+		// Equipamentos
+		try
+		{
+			File f = new File("ListaDeEquipamentos.tsv");
+			Scanner sc = new Scanner(f);
+			
+			sc.nextLine(); // Pula a linha do cabeçalho
+			
+			while(sc.hasNext())
+			{
+				String equip = sc.nextLine();
+				
+				try
+				{
+					String[] tipos = equip.split("\t");
+					
+					int custo = Integer.parseInt(tipos[1]);
+					
+					int fN = 0;
+					if(!tipos[2].equals("-"))
+					{
+						fN = Integer.parseInt(tipos[2]);
+					}
+					
+					double peso = Double.parseDouble(tipos[3]);
+					
+					boolean canalizador = false;
+					
+					if(!tipos[4].equals("-"))
+					{
+						canalizador = true;
+					}
+					
+					Equipamento e = new Equipamento(tipos[0], custo, fN, peso, tipos[5], canalizador);
+					
+					ret.put(e.getNome(), e);
+				}
+				catch(Exception e)
+				{
+					System.out.println(equip);
+					e.printStackTrace();
+				}
+			}
+			
+			sc.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		// Armas
+		try
+		{
+			File f = new File("ListaDeArmas.tsv");
+			Scanner sc = new Scanner(f);
+			
+			sc.nextLine(); // Pula a linha do cabeçalho
+			
+			while(sc.hasNext())
+			{
+				String arma = sc.nextLine();
+				
+				try
+				{
+					String[] tipos = arma.split("\t");
+					
+					int custo = Integer.parseInt(tipos[1]);
+					
+					int dano = Integer.parseInt(tipos[2]);
+					
+					int fN = 0;
+					if(!tipos[4].equals("-"))
+					{
+						fN = Integer.parseInt(tipos[4]);
+					}
+					
+					double peso = Double.parseDouble(tipos[5]);
+					
+					boolean canalizador = false;
+					if(!tipos[7].equals("-"))
+					{
+						canalizador = true;
+					}
+					
+					boolean duasMaos = false;
+					if(!tipos[8].equals("-"))
+					{
+						duasMaos = true;
+					}
+					
+					boolean carregar = false;
+					if(!tipos[9].equals("-"))
+					{
+						carregar = true;
+					}
+					
+					Arma a = new Arma(tipos[0], custo, fN, peso, "", canalizador, dano,
+										tipos[3], tipos[6], carregar, duasMaos);
+					
+					ret.put(a.getNome(), a);
+				}
+				catch(Exception e)
+				{
+					System.out.println(arma);
+					e.printStackTrace();
+				}
+			}
+			
+			sc.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		// Armaduras
+		try
+		{
+			File f = new File("ListaDeArmaduras.tsv");
+			Scanner sc = new Scanner(f);
+			
+			sc.nextLine(); // Pula a linha do cabeçalho
+			
+			while(sc.hasNext())
+			{
+				String armadura = sc.nextLine();
+				
+				try
+				{
+					String[] tipos = armadura.split("\t");
+					
+					int custo = Integer.parseInt(tipos[1]);
+					int bloqueio = Integer.parseInt(tipos[2]);
+					int esquiva = Integer.parseInt(tipos[3]);
+					
+					int fN = 0;
+					if(!tipos[4].equals("-"))
+					{
+						fN = Integer.parseInt(tipos[4]);
+					}
+					
+					double peso = Double.parseDouble(tipos[5]);
+					
+					boolean escudo = false;
+					if(!tipos[6].equals("-"))
+					{
+						escudo = true;
+					}
+					
+					boolean pesada = false;
+					if(!tipos[7].equals("-"))
+					{
+						pesada = true;
+					}
+					
+					boolean rigida = false;
+					if(!tipos[8].equals("-"))
+					{
+						rigida = true;
+					}
+					
+					Protecao p = new Protecao(tipos[0], custo, fN, peso, "", false,
+												bloqueio, esquiva, escudo, pesada, rigida);
+					
+					ret.put(p.getNome(), p);
+				}
+				catch(Exception e)
+				{
+					System.out.println(armadura);
+					e.printStackTrace();
+				}
+			}
+			sc.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return ret;
 	}
 	
 	public String toString()
@@ -247,6 +436,8 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 			if(!f.exists())
 			{
 				f.createNewFile();
+				ret = new HashMap<String, Equipamento>();
+				return ret;
 			}
 			
 			FileInputStream fis = new FileInputStream(f);
@@ -268,7 +459,6 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 		catch(IOException e)
 		{
 			ret = new HashMap<String, Equipamento>();
-			System.out.println("Não existe dados no arquivo ainda");
 		}
 		
 		return ret;

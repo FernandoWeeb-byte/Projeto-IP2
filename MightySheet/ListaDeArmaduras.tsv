@@ -1,0 +1,9 @@
+Nome	Custo	Bloqueio	Esquiva	FN	Peso	Escudo	Pesada	Rígida
+Túnica Pesada	50	0	1	1	2.5	-	-	-
+Armadura de Couro	100	0	2	2	12	-	-	-
+Armadura Simples	200	0	3	4	18	-	VERDADEIRO	-
+Armadura de Batalha	600	0	4	6	27	-	VERDADEIRO	-
+Armadura Completa	2000	0	5	8	36	-	VERDADEIRO	VERDADEIRO
+Escudo Pequeno	50	1	0	2	4	VERDADEIRO	-	-
+Escudo Médio	100	2	0	3	6	VERDADEIRO	-	-
+Escudo de Corpo	200	3	0	5	9	VERDADEIRO	-	-
