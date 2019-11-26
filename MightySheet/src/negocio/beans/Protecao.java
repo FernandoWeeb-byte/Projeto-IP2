@@ -7,20 +7,18 @@ public class Protecao extends Equipamento implements Serializable{
 	/// Atributos
 	private int bloqueio;
 	private int esquiva;
-	private int fN;
 	private boolean escudo;
 	private boolean pesada;
 	private boolean rigida;
 
 	
 	/// Construtor
-	public Protecao(String nome, int custo, double peso, String descricao, boolean canalizador,
-					int bloqueio, int esquiva, int fN, boolean escudo, boolean pesada, boolean rigida) {
-		super(nome, custo, peso, descricao, canalizador);
+	public Protecao(String nome, int custo, int fN, double peso, String descricao, boolean canalizador,
+					int bloqueio, int esquiva, boolean escudo, boolean pesada, boolean rigida) {
+		super(nome, custo, fN, peso, descricao, canalizador);
 
 		this.bloqueio = bloqueio;
 		this.esquiva = esquiva;
-		this.fN = fN;
 		this.escudo = escudo;
 		this.pesada = pesada;
 		this.rigida = rigida;
@@ -45,7 +43,7 @@ public class Protecao extends Equipamento implements Serializable{
 		}
 		
 		str += String.format("FN: %d\n"
-							+ "Peso: %.2f\n", this.fN, this.getPeso());
+							+ "Peso: %.2f\n", this.getfN(), this.getPeso());
 		
 		return str;
 	}
@@ -58,10 +56,6 @@ public class Protecao extends Equipamento implements Serializable{
 
 	public int getEsquiva() {
 		return esquiva;
-	}
-
-	public int getfN() {
-		return fN;
 	}
 
 	public boolean isEscudo() {
