@@ -1,5 +1,6 @@
 package negocio.controladores;
 
+import negocio.beans.Classe;
 import negocio.beans.Habilidade;
 import dados.interfaces.IRepoHabilidades;
 import dados.repositorios.RepositorioHabilidades;
@@ -123,7 +124,19 @@ public class ControladorHabilidades {
 		return repHab.listarHabilidadesComCustoManaMenorQue(valor);
 	}
 
+
 	public boolean salvarHabilidades() {
 		return repHab.salvarHabilidades();
 	}	
+
+	
+	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
+	{
+		if (level>0 && classe !=null)
+		{
+			return repHab.habilidadesBasicaAvancadaOuFinal(classe, level);
+		} 
+		return null;
+	}
+
 }

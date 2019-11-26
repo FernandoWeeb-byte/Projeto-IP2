@@ -41,7 +41,7 @@ public class ControllerTelaInicial {
 	    private Text textField;
 
 	    @FXML
-	    private TableView<RepositorioPersonagens> tabela;
+	    private TableView<Personagem> tabela;
 
 	    @FXML
 	    private TableColumn<Personagem, String> nomeTabela;
@@ -80,9 +80,10 @@ public class ControllerTelaInicial {
 	    void tabela()
 	    {
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
+	    	
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(lista.todas());
-	    	ControladorPersonagens cP = new ControladorPersonagens(); 
+	    	
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
 	    	racaTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRaca().getNome()));
@@ -90,12 +91,12 @@ public class ControllerTelaInicial {
 	    }
 	    
 	    @FXML
-	    void AcaoDoBotao2(ActionEvent event) throws IOException {
-	    	Parent Ficha_parent = FXMLLoader.load(getClass().getResource("Fichas.fxml"));
-	    	Scene Ficha_scene = new Scene(Ficha_parent);
-	    	Stage appStage2 = (Stage) (((Node) event.getSource()).getScene().getWindow());
-	    	appStage2.setScene(Ficha_scene);
-	    	appStage2.show();
+	    void remover(ActionEvent event) throws IOException {
+	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
+	    	lista.removerFicha(tabela.getSelectionModel().getSelectedItem());
+	    	tabela.getSelectionModel().clearSelection();
+	    	tabela();
+	    	
 	    }
 
 	    @FXML

@@ -2,6 +2,7 @@ package dados.interfaces;
 
 import java.util.List;
 
+import negocio.beans.Classe;
 import negocio.beans.Habilidade;
 
 public interface IRepoHabilidades {
@@ -25,6 +26,8 @@ public interface IRepoHabilidades {
 	List<Habilidade> listarHabilidadesPorCategoria(String categoria);
 
 	List<Habilidade> listarHabilidadesComCustoManaMenorQue(int valor);
+	
+	List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level);
 
 	boolean salvarHabilidades();
 }

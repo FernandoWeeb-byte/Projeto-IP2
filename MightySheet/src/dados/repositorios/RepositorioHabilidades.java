@@ -33,8 +33,10 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	/// Construtor
 	private RepositorioHabilidades()
 	{
+
 		habilidadesPreExistentes = carregarHabilidadesPE();
 		habilidadesCriadas = carregarHabilidadesCriadas();
+
 	}
 	
 	
@@ -304,6 +306,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		return ret;
 	}
 	
+
 	private Map<String, Habilidade> carregarHabilidadesCriadas()
 	{
 		File f = new File("Habilidades.rep");
@@ -376,5 +379,47 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		}
 
 		return ret;
+	}
+	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
+	{
+		List<Habilidade> saida = new ArrayList<Habilidade>();
+		String classesDeCada[] = null;
+		for(Map.Entry<String, Habilidade> entry: this.habilidadesPreExistentes.entrySet())
+		{
+			classesDeCada = entry.getValue().getClasses();
+			Habilidade valor = entry.getValue();
+			String req = entry.getValue().getRequisito();
+			if(level<5)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level < 10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level >=10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}
+				
+			}	
+		}
+		return saida;
+
 	}
 }

@@ -77,6 +77,8 @@ public class RepositorioClasses implements IRepoClasses {
 								repHab.listarHabilidadePorClasse("Guerreiro")));
 		ret.put("Feiticeiro", new Classe("Feiticeiro", 0, 0, 1, 1, repHab.buscarHabilidade("Conhecimento Arcano"),
 								repHab.listarHabilidadePorClasse("Feiticeiro")));
+		ret.put("Ladino", new Classe("Ladino", 0, 1, 1, 0, repHab.buscarHabilidade("Gatuno"),
+								repHab.listarHabilidadePorClasse("Ladino")));
 		
 		// Criar outras 2 classes b�sicas;
 		
