@@ -9,25 +9,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import negocio.Fachada;
-import negocio.beans.Classe;
 import negocio.beans.Personagem;
-import negocio.beans.Raca;
-import negocio.controladores.ControladorPersonagens;
 
 public class ControllerTelaInicial {
 	
@@ -81,7 +74,7 @@ public class ControllerTelaInicial {
 	    {
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	
-	    	ObservableList obLista;
+	    	ObservableList<Personagem> obLista;
 	    	obLista = FXCollections.observableArrayList(lista.todas());
 	    	
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
@@ -97,6 +90,15 @@ public class ControllerTelaInicial {
 	    	tabela.getSelectionModel().clearSelection();
 	    	tabela();
 	    	
+	    }
+	    
+	    @FXML
+	    void novoItem(ActionEvent event) throws IOException {
+	    	Parent Criar_Item_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarItem.fxml"));
+	    	Scene Criar_Item_Scene = new Scene(Criar_Item_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Item_Scene);
+	    	appStage.show();
 	    }
 
 	    @FXML

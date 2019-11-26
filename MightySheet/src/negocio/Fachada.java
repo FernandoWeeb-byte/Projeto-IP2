@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.util.Callback;
 import negocio.beans.*;
 import negocio.controladores.*;
 
@@ -207,5 +208,14 @@ public class Fachada {
 
 	public List<Protecao> listarTodasArmaduras() {
 		return controlEquips.listarTodasArmaduras();
+	}
+	
+	public List<String> listarCategorias() {
+		return controlEquips.listarCategorias();
+	}
+
+
+	public List<String> listarAlcances() {
+		return controlEquips.listarAlcances();
 	}
 }

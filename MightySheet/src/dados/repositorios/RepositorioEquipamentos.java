@@ -40,6 +40,33 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 		return INSTANCE;
 	}
 	
+	
+	public List<String> listarCategorias() {
+		List<String> lista = new ArrayList<String>();
+		lista.add("Arma Corporal 1M");
+		lista.add("Arma Corporal 2M");
+		lista.add("Arco/Funda 1M");
+		lista.add("Arco/Funda 2M");
+		lista.add("Besta/Prodd 1M");
+		lista.add("Besta/Prodd 2M");
+		lista.add("Armadura");
+		lista.add("Armadura Pesada");
+		lista.add("Armadura Rígida");
+		lista.add("Escudo");
+		lista.add("Item");
+		return lista;
+	}
+	
+	public List<String> listarAlcances() {
+		List<String> lista = new ArrayList<String>();
+		lista.add("Corpo-a-corpo");
+		lista.add("Haste");
+		lista.add("Curto");
+		lista.add("Médio");
+		lista.add("Longo");
+		return lista;
+	}
+	
 	public String toString()
 	{
 		String str = "";

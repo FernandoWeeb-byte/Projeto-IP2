@@ -26,5 +26,9 @@ public interface IRepoEquipamentos {
 	List<Arma> listarTodasArmas();
 
 	List<Protecao> listarTodasArmaduras();
+	
+	List<String> listarCategorias();
+
+	List<String> listarAlcances();
 
 }

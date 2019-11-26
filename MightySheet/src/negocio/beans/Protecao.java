@@ -12,9 +12,9 @@ public class Protecao extends Equipamento {
 
 	
 	/// Construtor
-	public Protecao(String nome, int custo, double peso, String descricao, boolean canalizador,
+	public Protecao(String nome, int custo, double peso, String descricao, boolean canalizador, String categoria,
 					int bloqueio, int esquiva, int fN, boolean escudo, boolean pesada, boolean rigida) {
-		super(nome, custo, peso, descricao, canalizador);
+		super(nome, custo, peso, descricao, canalizador, categoria);
 
 		this.bloqueio = bloqueio;
 		this.esquiva = esquiva;

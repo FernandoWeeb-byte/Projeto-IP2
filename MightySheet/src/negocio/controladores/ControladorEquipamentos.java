@@ -175,4 +175,13 @@ public class ControladorEquipamentos {
 	public List<Protecao> listarTodasArmaduras() {
 		return equips.listarTodasArmaduras();
 	}
+	
+	public List<String> listarCategorias() {
+		return equips.listarCategorias();
+	}
+
+
+	public List<String> listarAlcances() {
+		return equips.listarAlcances();
+	}
 }

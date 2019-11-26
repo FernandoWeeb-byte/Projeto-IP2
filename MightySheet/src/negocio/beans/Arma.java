@@ -12,10 +12,10 @@ public class Arma extends Equipamento {
 	
 	
 	/// Construtor
-	public Arma(String nome, int custo, double peso, String descricao, boolean canalizador,
+	public Arma(String nome, int custo, double peso, String descricao, boolean canalizador, String categoria,
 				int dano, String tipoDano, int fN, String distancia, boolean carregar, boolean duasMaos)
 	{
-		super(nome, custo, peso, descricao, canalizador);
+		super(nome, custo, peso, descricao, canalizador, categoria);
 
 		this.dano = dano;
 		this.tipoDano = tipoDano;
@@ -52,29 +52,63 @@ public class Arma extends Equipamento {
 		return str;
 	}
 
-
-	/// Getters
+	//Gets e Sets
 	public int getDano() {
 		return dano;
 	}
 
+
+	public void setDano(int dano) {
+		this.dano = dano;
+	}
+
+
 	public String getTipoDano() {
 		return tipoDano;
 	}
-	
+
+
+	public void setTipoDano(String tipoDano) {
+		this.tipoDano = tipoDano;
+	}
+
+
 	public int getfN() {
 		return fN;
 	}
+
+
+	public void setfN(int fN) {
+		this.fN = fN;
+	}
+
 
 	public String getDistancia() {
 		return distancia;
 	}
 
+
+	public void setDistancia(String distancia) {
+		this.distancia = distancia;
+	}
+
+
 	public boolean isCarregar() {
 		return carregar;
 	}
 
+
+	public void setCarregar(boolean carregar) {
+		this.carregar = carregar;
+	}
+
+
 	public boolean isDuasMaos() {
 		return duasMaos;
+	}
+
+
+	public void setDuasMaos(boolean duasMaos) {
+		this.duasMaos = duasMaos;
 	}
 }

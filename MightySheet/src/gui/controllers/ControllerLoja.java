@@ -1,12 +1,7 @@
 package gui.controllers;
 
-import java.util.Collection;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
 import dados.interfaces.IRepoEquipamentos;
 import dados.repositorios.RepositorioEquipamentos;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +13,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import negocio.beans.Equipamento;
 import negocio.beans.Protecao;
 
 public class ControllerLoja {
@@ -54,7 +48,7 @@ public class ControllerLoja {
     @FXML
     void armaduras(ActionEvent event) {
     	IRepoEquipamentos lista = RepositorioEquipamentos.getInstance();
-    	ObservableList obLista = FXCollections.observableArrayList(lista.listarTodasArmaduras());
+    	ObservableList<Protecao> obLista = FXCollections.observableArrayList(lista.listarTodasArmaduras());
     	TableColumn<Protecao, String> nome = new TableColumn<Protecao, String>("Nome");
     	TableColumn<Protecao, String> ouro = new TableColumn<>("Ouro");
     	TableColumn<Protecao, String> tipo = new TableColumn<>("Tipo");
