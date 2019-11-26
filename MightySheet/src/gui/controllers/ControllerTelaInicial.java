@@ -91,6 +91,15 @@ public class ControllerTelaInicial {
 	    }
 	    
 	    @FXML
+	    void criarClasse(ActionEvent event) throws IOException {
+	    	Parent Criar_Classe_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarClasse.fxml"));
+	    	Scene Criar_Classe_Scene = new Scene(Criar_Classe_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Classe_Scene);
+	    	appStage.show();
+	    }
+	    
+	    @FXML
 	    void remover(ActionEvent event) throws IOException {
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	lista.removerFicha(tabela.getSelectionModel().getSelectedItem());
@@ -98,6 +107,7 @@ public class ControllerTelaInicial {
 	    	tabela();
 	    	
 	    }
+	    
 
 	    @FXML
 	    void initialize() {

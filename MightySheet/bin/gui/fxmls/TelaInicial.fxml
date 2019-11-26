@@ -38,7 +38,7 @@
                   <Image url="@../Images/header.png" />
                </image>
             </ImageView>
-            <Button layoutX="441.0" layoutY="211.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Nova Classe" />
+            <Button layoutX="441.0" layoutY="211.0" mnemonicParsing="false" onAction="#criarClasse" prefHeight="25.0" prefWidth="107.0" text="Nova Classe" />
             <Button layoutX="441.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Nova Raça" />
             <Button layoutX="324.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Regras" />
             <Button layoutX="441.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Nova Habilidade" />

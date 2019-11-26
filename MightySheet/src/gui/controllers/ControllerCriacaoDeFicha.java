@@ -165,10 +165,33 @@ public class ControllerCriacaoDeFicha {
     	person.calculoPtsAtributo(person.getNivel());
     	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     	
+    	List<Habilidade> lista = null;
+		ObservableList obLista = null;
+    	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
+        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+        	skilList.getItems().removeAll(obLista2);
+        	}
+    	
+    	if(!(classe.getValue() == null)) {
+    		
+    		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
+    		if(nivel.getValue() >= 5)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 7));
+    		}
+    		if(nivel.getValue() == 10)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), nivel.getValue()));
+    		}
+    		
+    	}
+    	obLista = FXCollections.observableArrayList(lista);
+    	skilList.getItems().addAll(obLista);
+    	
     	person.setQuantHabilidades();
     	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
     	String[] str = {null, null, null, null};
-    	if(classe.getValue() != null || raca.getValue() != null) {
+    	if(!(classe.getValue() == null || raca.getValue() == null)) {
     	str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
     	forca.setText(str[0]);
     	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
@@ -239,7 +262,10 @@ public class ControllerCriacaoDeFicha {
     	
     	//Mostrar as habilidades da raça na lista
     	ObservableList obLista = null;
-    	skilList.getItems().clear();
+    	if(!(person.getRaca() == null)) {
+    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca().getNome()));
+    		skilList.getItems().removeAll(obLista2);
+    	}
     	List<Habilidade> lista = null;
     	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
     	obLista = FXCollections.observableArrayList(lista);
@@ -284,11 +310,30 @@ public class ControllerCriacaoDeFicha {
     	
     	// mostrar as habilidades de classe na lista
     	ObservableList obLista = null;
-    	skillListC.getItems().clear();
+    	if(!(person.getClasse() == null)) {
+    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+    	skilList.getItems().removeAll(obLista2);
+    	}
+    	
     	List<Habilidade> lista = null;
-    	lista = fachada.listarHabilidadePorClasse(classe.getValue().getNome());
+    	if(nivel.getValue() == null) {
+    	lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 1);
+    	}
+    	else {
+    		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
+    		if(nivel.getValue() >= 5)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 7));
+    		}
+    		if(nivel.getValue() == 10)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), nivel.getValue()));
+    		}
+    	}
+    	
     	obLista = FXCollections.observableArrayList(lista);
-    	skillListC.getItems().addAll(obLista);
+    	
+    	skilList.getItems().addAll(obLista);
     	
     	//seta a classe e atributos
     	

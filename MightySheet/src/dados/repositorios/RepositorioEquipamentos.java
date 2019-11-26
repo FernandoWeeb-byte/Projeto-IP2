@@ -1,18 +1,21 @@
 package dados.repositorios;
 
 import negocio.beans.Equipamento;
+import negocio.beans.Habilidade;
 import negocio.beans.Arma;
 import negocio.beans.Protecao;
 
 import dados.interfaces.IRepoEquipamentos;
 
 import java.util.Map;
+import java.util.Scanner;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -65,6 +68,8 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 		
 		return str;
 	}
+	
+	
 	
 	@Override
 	public boolean adicionarEquipamento(Equipamento novo)
