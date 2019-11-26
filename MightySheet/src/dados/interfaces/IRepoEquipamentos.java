@@ -27,4 +27,5 @@ public interface IRepoEquipamentos {
 
 	List<Protecao> listarTodasArmaduras();
 
+	boolean salvarEquipamentos();
 }

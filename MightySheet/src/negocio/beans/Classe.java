@@ -3,8 +3,9 @@ package negocio.beans;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.io.Serializable;
 
-public class Classe {
+public class Classe implements Serializable{
 	
 	/// Atributos
 	private String nome;
@@ -55,11 +56,11 @@ public class Classe {
 	public String descricaoCompleta()
 	{
 		String str = String.format("%s\n"
-			+ "BÙnus de Atributo:\n", this.nome);
+			+ "B√¥nus de Atributo:\n", this.nome);
 	
 		if(this.bonusForca != 0)
 		{
-			str += String.format("ForÁa +%d\n", this.bonusForca);
+			str += String.format("For√ßa +%d\n", this.bonusForca);
 		}
 		if(this.bonusAgilidade != 0)
 		{
@@ -74,7 +75,7 @@ public class Classe {
 			str += String.format("Vontade +%d\n", this.bonusVontade);
 		}
 			
-		str += String.format("Habilidade Autom·tica:\n%s", this.habilidadeAutomatica);
+		str += String.format("Habilidade Autom√°tica:\n%s", this.habilidadeAutomatica);
 			
 		return str;
 	}

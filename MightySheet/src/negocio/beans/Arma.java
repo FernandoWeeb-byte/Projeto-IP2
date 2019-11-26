@@ -1,6 +1,8 @@
 package negocio.beans;
 
-public class Arma extends Equipamento {
+import java.io.Serializable;
+
+public class Arma extends Equipamento implements Serializable{
 	
 	/// Atributos
 	private int dano;

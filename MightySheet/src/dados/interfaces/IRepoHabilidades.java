@@ -29,4 +29,5 @@ public interface IRepoHabilidades {
 	
 	List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level);
 
+	boolean salvarHabilidades();
 }

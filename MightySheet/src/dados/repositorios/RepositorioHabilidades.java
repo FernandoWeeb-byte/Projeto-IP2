@@ -9,7 +9,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import dados.interfaces.IRepoHabilidades;
@@ -28,8 +33,10 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	/// Construtor
 	private RepositorioHabilidades()
 	{
-		habilidadesPreExistentes = RepositorioHabilidades.carregarHabilidades("Habilidades - Habilidades.tsv");
-		habilidadesCriadas = new HashMap<String, Habilidade>();
+
+		habilidadesPreExistentes = carregarHabilidadesPE();
+		habilidadesCriadas = carregarHabilidadesCriadas();
+
 	}
 	
 	
@@ -62,13 +69,13 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		return INSTANCE;
 	}
 	
-	public static Map<String, Habilidade> carregarHabilidades(String path)
+	private Map<String, Habilidade> carregarHabilidadesPE()
 	{
 		Map<String, Habilidade> ret = new HashMap<String, Habilidade>();
 		
 		try
 		{
-			File arquivo = new File(path);
+			File arquivo = new File("ListaDeHabilidades.tsv");
 			Scanner sc = new Scanner(arquivo);
 			
 			sc.nextLine(); // Pula a linha do cabecalho
@@ -299,6 +306,80 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		return ret;
 	}
 	
+
+	private Map<String, Habilidade> carregarHabilidadesCriadas()
+	{
+		File f = new File("Habilidades.rep");
+		
+		Map<String, Habilidade> ret = null;
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			try
+			{
+				if((ret = (Map<String, Habilidade>)ois.readObject()) == null)
+				{
+					ret = new HashMap<String, Habilidade>();
+				}
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			ois.close();
+		}
+		catch(IOException e)
+		{
+			ret = new HashMap<String, Habilidade>();
+			System.out.println("Não existe dados no arquivo ainda");
+		}
+		
+		return ret;
+	}
+	
+	public boolean salvarHabilidades()
+	{
+		boolean ret = false;
+		
+		File f = new File("Habilidades.rep");
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			try
+			{
+				oos.writeObject(this.habilidadesCriadas);
+				ret = true;
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			
+			oos.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return ret;
+	}
 	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
 	{
 		List<Habilidade> saida = new ArrayList<Habilidade>();
@@ -339,5 +420,6 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			}	
 		}
 		return saida;
+
 	}
 }

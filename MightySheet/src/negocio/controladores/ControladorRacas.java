@@ -19,7 +19,7 @@ public class ControladorRacas {
 	}
 	
 	
-	/// M�todos
+	/// Métodos
 	public boolean adicionarRaca(Raca raca)
 	{
 		boolean ret = false;
@@ -83,5 +83,9 @@ public class ControladorRacas {
 	public List<Raca> listarTodasRacas()
 	{
 		return repRc.listarTodasRacas();
+	}
+
+	public boolean salvarRacas() {
+		return repRc.salvarRacas();
 	}
 }

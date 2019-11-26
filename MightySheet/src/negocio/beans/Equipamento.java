@@ -1,6 +1,8 @@
 package negocio.beans;
 
-public class Equipamento {
+import java.io.Serializable;
+
+public class Equipamento implements Serializable{
 	
 	/// Atributos
 	private String nome;

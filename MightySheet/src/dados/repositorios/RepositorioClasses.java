@@ -2,14 +2,21 @@ package dados.repositorios;
 
 import negocio.beans.Classe;
 
-import java.util.Map;
-
 import dados.interfaces.IRepoClasses;
 import dados.interfaces.IRepoHabilidades;
 
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import java.io.IOException;
 
 public class RepositorioClasses implements IRepoClasses {
 	
@@ -26,7 +33,7 @@ public class RepositorioClasses implements IRepoClasses {
 	private RepositorioClasses()
 	{
 		classesPreExistentes = gerarClassesPreExistentes();
-		classesCriadas = new HashMap<String, Classe>();
+		classesCriadas = carregarClasses();
 	}
 	
 	
@@ -147,6 +154,80 @@ public class RepositorioClasses implements IRepoClasses {
 		ret.addAll(classesPreExistentes.values());
 		ret.addAll(classesCriadas.values());
 		
+		return ret;
+	}
+	
+	private Map<String, Classe> carregarClasses()
+	{
+		File f = new File("Classes.rep");
+		
+		Map<String, Classe> ret = null;
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			try
+			{
+				if((ret = (Map<String, Classe>)ois.readObject()) == null)
+				{
+					ret = new HashMap<String, Classe>();
+				}
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			ois.close();
+		}
+		catch(IOException e)
+		{
+			ret = new HashMap<String, Classe>();
+			System.out.println("Não existe dados no arquivo ainda");
+		}
+		
+		return ret;
+	}
+	
+	public boolean salvarClasses()
+	{
+		boolean ret = false;
+		
+		File f = new File("Classes.rep");
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			try
+			{
+				oos.writeObject(this.classesCriadas);
+				ret = true;
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			
+			oos.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
 		return ret;
 	}
 }
