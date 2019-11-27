@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import negocio.beans.Personagem;
+import negocio.controladores.ControladorPersonagens;
 
 public class ControllerTelaInicial {
 	
@@ -73,14 +74,34 @@ public class ControllerTelaInicial {
 	    void tabela()
 	    {
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
+	    	//lista.carregarPersonagens();
 	    	
 	    	ObservableList<Personagem> obLista;
 	    	obLista = FXCollections.observableArrayList(lista.todas());
+	    	ControladorPersonagens cP = new ControladorPersonagens();
 	    	
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
 	    	racaTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRaca().getNome()));
 	    	tabela.setItems(obLista);
+	    }
+	    
+	    @FXML
+	    void criarClasse(ActionEvent event) throws IOException {
+	    	Parent Criar_Classe_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarClasse.fxml"));
+	    	Scene Criar_Classe_Scene = new Scene(Criar_Classe_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Classe_Scene);
+	    	appStage.show();
+	    }
+	    
+	    @FXML
+	    void criarRaca(ActionEvent event) throws IOException {
+	    	Parent Criar_Raca_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarRaca.fxml"));
+	    	Scene Criar_Raca_Scene = new Scene(Criar_Raca_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Raca_Scene);
+	    	appStage.show();
 	    }
 	    
 	    @FXML

@@ -124,7 +124,11 @@ public class Fachada {
 	public boolean salvarHabilidades() {
 		return controlHab.salvarHabilidades();
 	}
-
+	
+	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
+	{
+		return controlHab.habilidadesBasicaAvancadaOuFinal(classe, level);
+	}
 
 	/// Metodos delegate <ControladorRacas>
 	public boolean adicionarRaca(Raca raca) {

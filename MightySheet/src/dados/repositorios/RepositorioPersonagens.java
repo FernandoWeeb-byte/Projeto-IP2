@@ -163,7 +163,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	
 	/// Metodos de Arquivo
 	
-	private void carregarPersonagens() {
+	public void carregarPersonagens() {
 		try {
 			FileInputStream fis = new FileInputStream("Personagem.arq");
 			ObjectInputStream ois = new ObjectInputStream(fis);

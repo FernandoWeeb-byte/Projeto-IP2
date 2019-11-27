@@ -129,8 +129,14 @@ public class Habilidade implements Serializable{
 	public String[] getClasses() {
 		return this.classes;
 	}
-	public void setClasses(String[] classes) {
-		this.classes = classes;
+	public void setClasses(String classes) {
+		for(int i=0;i<this.classes.length;i++)
+		{
+			if(this.classes[i] == null)
+			{
+				this.classes[i] = classes;
+			}
+		}
 	}
 
 	public String[] getRacas() {
