@@ -113,6 +113,11 @@ public class ControladorPersonagens {
 		}
 				
 	}
+
+
+	public boolean guardar() {
+		return repoPer.guardar();
+	}
 	
 	
 

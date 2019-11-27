@@ -50,6 +50,7 @@ public class Fachada {
 		salvarHabilidades();
 		salvarEquipamentos();
 		salvarRacas();
+		salvarPersonagens();
 	}
 	
 	
@@ -196,6 +197,10 @@ public class Fachada {
 				habilidadesAutomaticas, habilidades, quantHabilidades, ataques, equipamentos, ouro);
 	}
 
+	public boolean salvarPersonagens()
+	{
+		return controlPer.guardar();
+	}
 	
 	/// Metodos delegate <ControladorEquipamentos>
 	public boolean adicionarEquipamento(Equipamento novo) {
