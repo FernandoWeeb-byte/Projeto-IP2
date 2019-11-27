@@ -80,7 +80,8 @@ public class ControllerTelaInicial {
 	    void tabela()
 	    {
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
-	    	lista.carregarPersonagens();
+	    	//lista.carregarPersonagens();
+	    	
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(lista.todas());
 	    	ControladorPersonagens cP = new ControladorPersonagens();

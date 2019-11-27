@@ -83,7 +83,7 @@ public class ControllerLoja {
     
     List<Equipamento> lista = new ArrayList<>();
     
-    Personagem person = Personagem.person;
+    Personagem novoPerson = Personagem.novoPerson;
 
     @FXML
     void armaduras(ActionEvent event) {
@@ -168,9 +168,9 @@ List<Equipamento> lista = fachada.listarItensComuns();
     	{
     		if(equip.getButton() == event.getSource())
     		{
-    			if(person.getOuro() > 0 && person.getOuro() >= equip.getCusto()) {
+    			if(novoPerson.getOuro() > 0 && novoPerson.getOuro() >= equip.getCusto()) {
     			lista.add(equip);
-    			person.setOuro(person.getOuro() - equip.getCusto());
+    			novoPerson.setOuro(novoPerson.getOuro() - equip.getCusto());
     			}
     			
     		}
@@ -178,11 +178,11 @@ List<Equipamento> lista = fachada.listarItensComuns();
     	ObservableList obLista;
 		obLista = FXCollections.observableArrayList(lista);
 		compras.setItems(obLista);
-		ouros.setText(String.format("%d", person.getOuro()));
+		ouros.setText(String.format("%d", novoPerson.getOuro()));
     }
     void carregarValor()
     {
-    	ouros.setText(String.format("%d", person.getOuro()));
+    	ouros.setText(String.format("%d", novoPerson.getOuro()));
     }
     
     @FXML
@@ -194,7 +194,7 @@ List<Equipamento> lista = fachada.listarItensComuns();
         } else {
             showing = new ArrayList<>(lista);
         }
-    	person.setEquipamentos(showing);
+    	novoPerson.setEquipamentos(showing);
     	Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
     	stage.close();
     	

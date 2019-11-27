@@ -145,8 +145,8 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private TextField ouro;
     
-    //Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
-    Personagem person = Personagem.person;
+    Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+    Personagem novoPerson = Personagem.novoPerson;
     
 
     @FXML
@@ -411,7 +411,7 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void Loja(ActionEvent event) throws IOException {
-    	person.setOuro(Integer.parseInt(ouro.getText()));
+    	novoPerson.setOuro(Integer.parseInt(ouro.getText()));
     	
     	Stage stage = new Stage();
     	FXMLLoader FxmlLoader = new FXMLLoader();
@@ -428,7 +428,9 @@ public class ControllerCriacaoDeFicha {
     @FXML
     void entrega(ActionEvent event) {
     	ObservableList obLista;
-    	List<Equipamento> lista = person.getEquipamentos();
+    	List<Equipamento> lista = novoPerson.getEquipamentos();
+    	person.setEquipamentos(novoPerson.getEquipamentos());
+    	novoPerson.setEquipamentos(null);
     	obLista = FXCollections.observableArrayList(lista);
     	skillListC.getItems().addAll(obLista);
     	carregarItens();
@@ -450,9 +452,10 @@ public class ControllerCriacaoDeFicha {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
+    	
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
-    	fachada.salvar(person);
+    	//fachada.salvar(person);
     	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
     	Scene Tela_Inicial_Scene = new Scene(parent_voltar);
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
