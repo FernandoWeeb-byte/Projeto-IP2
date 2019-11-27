@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 import negocio.Fachada;
 import negocio.beans.Classe;
+import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
 import negocio.beans.Personagem;
 import negocio.beans.Raca;
@@ -143,8 +144,8 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private TextField ouro;
     
-    Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
-    
+    //Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+    Personagem person = Personagem.person;
     
 
     @FXML
@@ -405,6 +406,8 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void Loja(ActionEvent event) throws IOException {
+    	person.setOuro(Integer.parseInt(ouro.getText()));
+    	
     	Stage stage = new Stage();
     	FXMLLoader FxmlLoader = new FXMLLoader();
     	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Loja.fxml").openStream());
@@ -413,8 +416,18 @@ public class ControllerCriacaoDeFicha {
         stage.setTitle("Loja");
         stage.setResizable(false);
         stage.showAndWait();
+        
     	
     }
+    
+    @FXML
+    void vender(ActionEvent event) {
+    	ObservableList obLista;
+    	List<Equipamento> lista = person.getEquipamentos();
+    	obLista = FXCollections.observableArrayList(lista);
+    	skillListC.getItems().addAll(obLista);
+    }
+    
     
     @FXML
     void salvar(ActionEvent event) throws IOException {
@@ -423,7 +436,7 @@ public class ControllerCriacaoDeFicha {
     	person.setMana(Integer.parseInt(pM.getText()));
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
-    	//fachada.salvar(person);
+    	fachada.salvar(person);
     	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
     	Scene Tela_Inicial_Scene = new Scene(parent_voltar);
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
@@ -436,6 +449,7 @@ public class ControllerCriacaoDeFicha {
     	carregarClasse();
     	carregarRaca();
     	carregarNiveis();
+    	
     }
 	
 }

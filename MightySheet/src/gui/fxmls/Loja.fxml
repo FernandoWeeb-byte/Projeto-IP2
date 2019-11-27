@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerLoja">
    <children>
       <AnchorPane layoutX="-7.0" layoutY="-6.0" prefHeight="551.0" prefWidth="656.0">
          <children>
-            <TableView fx:id="tabela" layoutX="7.0" prefHeight="551.0" prefWidth="399.0">
+            <TableView fx:id="tabela" layoutX="7.0" onSort="#mostraDescricao" prefHeight="551.0" prefWidth="399.0">
               <columns>
-                <TableColumn fx:id="nome" prefWidth="75.0" text="Nome" />
-                <TableColumn fx:id="ouro" prefWidth="75.0" text="Ouro" />
-                  <TableColumn fx:id="tipo" prefWidth="75.0" text="Tipo" />
-                  <TableColumn fx:id="compra" prefWidth="75.0" text="Comprar" />
+                <TableColumn fx:id="nome" prefWidth="128.0" text="Nome" />
+                <TableColumn fx:id="ouro" prefWidth="72.0" text="Ouro" />
+                  <TableColumn fx:id="tipo" prefWidth="89.0" text="Tipo" />
+                  <TableColumn fx:id="compra" prefWidth="84.0" text="Comprar" />
               </columns>
             </TableView>
             <TextArea fx:id="descricao" editable="false" layoutX="410.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="terminar" layoutX="533.0" layoutY="512.0" mnemonicParsing="false" text="Terminar Compra" />
+            <Button fx:id="terminar" layoutX="533.0" layoutY="512.0" mnemonicParsing="false" onAction="#terminarCompra" text="Terminar Compra" />
             <Button fx:id="cancelar" layoutX="448.0" layoutY="512.0" mnemonicParsing="false" text="Cancelar" />
             <Label layoutX="406.0" layoutY="6.0" text="Descrição" />
             <ListView fx:id="compras" layoutX="419.0" layoutY="327.0" prefHeight="158.0" prefWidth="200.0" />
             <Label layoutX="423.0" layoutY="302.0" text="Carrinho de Compras" />
-            <CheckBox fx:id="armadura" layoutX="419.0" layoutY="234.0" mnemonicParsing="false" onAction="#armaduras" text="Armaduras" />
-            <CheckBox fx:id="armas" layoutX="421.0" layoutY="264.0" mnemonicParsing="false" text="Armas" />
-            <CheckBox fx:id="equipamento" layoutX="519.0" layoutY="234.0" mnemonicParsing="false" text="Equipamentos" />
-            <CheckBox fx:id="itensConjuracao" layoutX="519.0" layoutY="264.0" mnemonicParsing="false" text="Itens de Conjuração" />
+            <Label layoutX="560.0" layoutY="302.0" text="Ouro:" />
+            <Label fx:id="ouros" layoutX="596.0" layoutY="302.0" />
+            <RadioButton fx:id="armadura" layoutX="423.0" layoutY="234.0" mnemonicParsing="false" onAction="#armaduras" text="Armaduras">
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupo" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="519.0" layoutY="234.0" mnemonicParsing="false" onAction="#equipamentos" text="Equipamentos" toggleGroup="$grupo" />
+            <RadioButton layoutX="421.0" layoutY="264.0" mnemonicParsing="false" onAction="#armas" text="Armas" toggleGroup="$grupo" />
+            <RadioButton layoutX="517.0" layoutY="264.0" mnemonicParsing="false" onAction="#itensConjuracao" text="Itens de Conjuração" toggleGroup="$grupo" />
          </children>
       </AnchorPane>
    </children>

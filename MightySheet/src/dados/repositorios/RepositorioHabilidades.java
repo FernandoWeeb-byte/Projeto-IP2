@@ -318,8 +318,6 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			if(!f.exists())
 			{
 				f.createNewFile();
-				ret = new HashMap<String, Habilidade>();
-				return ret;
 			}
 			
 			FileInputStream fis = new FileInputStream(f);
@@ -341,6 +339,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		catch(IOException e)
 		{
 			ret = new HashMap<String, Habilidade>();
+			System.out.println("Não existe dados no arquivo ainda");
 		}
 		
 		return ret;

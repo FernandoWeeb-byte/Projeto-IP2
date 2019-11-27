@@ -118,6 +118,7 @@
             <Label fx:id="ptsAtributos" layoutX="118.0" layoutY="181.0" text="0" />
             <Label layoutX="264.0" layoutY="100.0" prefHeight="17.0" prefWidth="39.0" text="Ouro" />
             <TextField fx:id="ouro" layoutX="303.0" layoutY="96.0" prefHeight="25.0" prefWidth="45.0" text="400" />
+            <Button layoutX="647.0" layoutY="479.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
          </children>
       </AnchorPane>
    </children>
