@@ -419,6 +419,41 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 				
 			}	
 		}
+		for(Map.Entry<String, Habilidade> entry: this.habilidadesCriadas.entrySet())
+		{
+			classesDeCada = entry.getValue().getClasses();
+			Habilidade valor = entry.getValue();
+			String req = entry.getValue().getRequisito();
+			if(level<5)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level < 10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level >=10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}
+				
+			}	
+		}
 		return saida;
 
 	}
