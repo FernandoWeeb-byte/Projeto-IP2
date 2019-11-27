@@ -67,7 +67,7 @@ public class ControllerCriacaoItem {
     @FXML
     private CheckBox canalizador;
 
-    Equipamento item = new Equipamento("", 0, 0, "", false, "");
+    Equipamento item = new Equipamento("", 0, 0, 0, "", false, "");
     
     @FXML
     void escolherAlcance(ActionEvent event) {
