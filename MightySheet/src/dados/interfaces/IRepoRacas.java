@@ -16,4 +16,5 @@ public interface IRepoRacas {
 
 	List<Raca> listarTodasRacas();
 
+	boolean salvarRacas();
 }

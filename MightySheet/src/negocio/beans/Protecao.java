@@ -1,24 +1,23 @@
 package negocio.beans;
 
-public class Protecao extends Equipamento {
+import java.io.Serializable;
+
+public class Protecao extends Equipamento implements Serializable{
 	
 	/// Atributos
 	private int bloqueio;
 	private int esquiva;
-	private int fN;
 	private boolean escudo;
 	private boolean pesada;
 	private boolean rigida;
 
 	
 	/// Construtor
-	public Protecao(String nome, int custo, double peso, String descricao, boolean canalizador, String categoria,
-					int bloqueio, int esquiva, int fN, boolean escudo, boolean pesada, boolean rigida) {
-		super(nome, custo, peso, descricao, canalizador, categoria);
-
+	public Protecao(String nome, int custo, int fN, double peso, String descricao, boolean canalizador,
+			String categoria, int bloqueio, int esquiva, boolean escudo, boolean pesada, boolean rigida) {
+		super(nome, custo, fN, peso, descricao, canalizador, categoria);
 		this.bloqueio = bloqueio;
 		this.esquiva = esquiva;
-		this.fN = fN;
 		this.escudo = escudo;
 		this.pesada = pesada;
 		this.rigida = rigida;
@@ -43,11 +42,10 @@ public class Protecao extends Equipamento {
 		}
 		
 		str += String.format("FN: %d\n"
-							+ "Peso: %.2f\n", this.fN, this.getPeso());
+							+ "Peso: %.2f\n", this.getfN(), this.getPeso());
 		
 		return str;
 	}
-
 
 	/// Getters
 	public int getBloqueio() {
@@ -56,10 +54,6 @@ public class Protecao extends Equipamento {
 
 	public int getEsquiva() {
 		return esquiva;
-	}
-
-	public int getfN() {
-		return fN;
 	}
 
 	public boolean isEscudo() {

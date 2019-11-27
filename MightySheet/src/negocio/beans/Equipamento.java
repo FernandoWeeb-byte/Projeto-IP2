@@ -1,10 +1,13 @@
 package negocio.beans;
 
-public class Equipamento {
+import java.io.Serializable;
+
+public class Equipamento implements Serializable{
 	
 	/// Atributos
 	private String nome;
 	private int custo;
+	private int fN;
 	private double peso;
 	private String descricao;
 	private boolean canalizador;
@@ -12,11 +15,11 @@ public class Equipamento {
 	
 	
 	/// Construtor
-	public Equipamento(String nome, int custo, double peso,
-						String descricao, boolean canalizador, String categoria)
+	public Equipamento(String nome, int custo, int fN, double peso, String descricao, boolean canalizador, String categoria)
 	{
 		this.nome = nome;
 		this.custo = custo;
+		this.fN = fN;
 		this.peso = peso;
 		this.descricao = descricao;
 		this.canalizador = canalizador;
@@ -27,13 +30,16 @@ public class Equipamento {
 	/// Métodos
 	public String toString()
 	{
-		String str = String.format("%s\n"
-									+ "Custo: %d\n"
-									+ "Peso: %.2fkg\n"
-									+ "Descrição: %s\n"
-									+ "Categoria: %s\n",
-									this.nome, this.custo, this.peso, this.descricao, this.categoria);
+		String str = String.format("%s\n" + "Custo: %d\n", this.nome, this.custo);
 		
+		if(fN > 0)
+		{
+			str += String.format("FN: %d\n", this.fN);
+		}
+		
+		str += String.format("Peso: %.2fkg\n"
+							+"Descrição: %s\n", 
+							this.peso, this.descricao);
 		return str;
 	}
 	
@@ -55,6 +61,11 @@ public class Equipamento {
 		this.custo = custo;
 	}
 
+	public int getfN()
+	{
+		return fN;
+	}
+	
 	public double getPeso() {
 		return peso;
 	}

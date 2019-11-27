@@ -1,25 +1,23 @@
 package negocio.beans;
 
-public class Arma extends Equipamento {
+import java.io.Serializable;
+
+public class Arma extends Equipamento implements Serializable{
 	
 	/// Atributos
 	private int dano;
 	private String tipoDano;
-	private int fN;
 	private String distancia;
 	private boolean carregar;
 	private boolean duasMaos;
 	
 	
 	/// Construtor
-	public Arma(String nome, int custo, double peso, String descricao, boolean canalizador, String categoria,
-				int dano, String tipoDano, int fN, String distancia, boolean carregar, boolean duasMaos)
-	{
-		super(nome, custo, peso, descricao, canalizador, categoria);
-
+	public Arma(String nome, int custo, int fN, double peso, String descricao, boolean canalizador, String categoria,
+			int dano, String tipoDano, String distancia, boolean carregar, boolean duasMaos) {
+		super(nome, custo, fN, peso, descricao, canalizador, categoria);
 		this.dano = dano;
 		this.tipoDano = tipoDano;
-		this.fN = fN;
 		this.distancia = distancia;
 		this.carregar = carregar;
 		this.duasMaos = duasMaos;
@@ -47,7 +45,7 @@ public class Arma extends Equipamento {
 							+ "FN: %d\n"
 							+ "Peso: %.2f\n"
 							+ "Distância: %s\n",
-							this.tipoDano, this.fN, this.getPeso(), this.distancia);
+							this.tipoDano, this.getfN(), this.getPeso(), this.distancia);
 			
 		return str;
 	}
@@ -67,21 +65,9 @@ public class Arma extends Equipamento {
 		return tipoDano;
 	}
 
-
 	public void setTipoDano(String tipoDano) {
 		this.tipoDano = tipoDano;
 	}
-
-
-	public int getfN() {
-		return fN;
-	}
-
-
-	public void setfN(int fN) {
-		this.fN = fN;
-	}
-
 
 	public String getDistancia() {
 		return distancia;

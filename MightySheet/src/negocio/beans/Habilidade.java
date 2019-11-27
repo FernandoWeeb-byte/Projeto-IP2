@@ -1,6 +1,8 @@
 package negocio.beans;
 
-public class Habilidade {
+import java.io.Serializable;
+
+public class Habilidade implements Serializable{
 	
 	/// Atributos
 	private String nome;

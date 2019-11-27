@@ -1,0 +1,39 @@
+Nome	Custo	Dano	Tipo	FN	Peso	Distância	Canalizador	Duas Mãos	Carregar
+Soco, chute	0	0	Contusão	1	0	Corpo-a-corpo	-	-	-
+Adaga	50	4	Corte e Perf	1	0.25	Corpo-a-corpo	TRUE	-	-
+Alabarda	250	11	Corte	6	6	Haste	-	TRUE	-
+Azagaia	50	5	Perfuração	2	1	Corpo-a-corpo	-	-	-
+Bico-de-Corvo	125	6	Cont e Perf	2	1	Corpo-a-corpo	-	-	-
+Bordão	50	5	Contusão	1	2	Corpo-a-corpo	VERDADEIRO	VERDADEIRO	-
+Cimitarra	225	9	Corte e Perf	5	2.5	Corpo-a-corpo	-	-	-
+Clava	75	6	Contusão	3	1.5	Corpo-a-corpo	VERDADEIRO	-	-
+Claymore	250	11	Corte e Perf	5	3	Corpo-a-corpo	-	VERDADEIRO	-
+Espada Curta	100	6	Corte e Perf	2	1	Corpo-a-corpo	-	-	-
+Espada Longa	175	8	Corte e Perf	4	2	Corpo-a-corpo	-	-	-
+Glaive	225	10	Corte	4	4	Haste	-	VERDADEIRO	-
+Lança	100	7	Perfuração	3	2	Haste	-	VERDADEIRO	-
+Maça Leve	25	5	Contusão	2	1	Corpo-a-corpo	-	-	-
+Maça Pesada	150	8	Contusão	5	2.5	Corpo-a-corpo	-	-	-
+Maça Estrela	100	7	Contusão	4	2	Corpo-a-corpo	-	-	-
+Machadinha	100	6	Corte	2	1	Corpo-a-corpo	-	-	-
+Machado de Batalha	150	8	Corte	5	3	Corpo-a-corpo	-	-	-
+Machado Pesado	175	11	Corte	5	4	Corpo-a-corpo	-	VERDADEIRO	-
+Mangual	200	9	Contusão	6	3	Corpo-a-corpo	-	-	-
+Marreta	175	11	Contusão	5	5	Corpo-a-corpo	-	VERDADEIRO	-
+Martelo Lucerno	275	11	Cont e Perf	7	5	Haste	-	VERDADEIRO	-
+Matelo de Guerra	175	8	Cont e Perf	4	3	Corpo-a-corpo	-	-	-
+Rapieira	125	7	Perfuração	2	1	Corpo-a-corpo	-	-	-
+Sabre	100	7	Corte e Perf	3	1	Corpo-a-corpo	-	-	-
+Soqueira/Manopla	25	2	Contusão	1	0.25	Corpo-a-corpo	-	-	-
+Tridente	175	8	Perfuração	5	3	Haste	-	-	-
+Arco Simples	75	4	Perfuração	2	0.75	Médio	-	VERDADEIRO	-
+Arco Composto	175	6	Perfuração	3	1	Longo	-	VERDADEIRO	-
+Arco de Guerra	250	8	Perfuração	4	1.5	Longo	-	VERDADEIRO	-
+Arco Recurvo	250	7	Perfuração	2	1.5	Longo	-	VERDADEIRO	-
+Besta Leve	175	10	Perfuração	2	2	Médio	-	VERDADEIRO	VERDADEIRO
+Besta Pesada	225	14	Perfuração	5	3	Médio	-	VERDADEIRO	VERDADEIRO
+Funda/estilingue	50	2	Contusão	1	0.25	Médio	-	-	-
+Fustíbalo	200	6	Contusão	2	2	Médio	-	VERDADEIRO	-
+Plumbata	100	4	Perfuração	1	0.5	Médio	-	-	-
+Prodd	175	12	Contusão	4	3	Médio	-	VERDADEIRO	VERDADEIRO
+Zarabatana	25	0	Perfuração	1	0.5	Curto	-	-	-

@@ -31,4 +31,5 @@ public interface IRepoEquipamentos {
 
 	List<String> listarAlcances();
 
+	boolean salvarEquipamentos();
 }

@@ -1,5 +1,6 @@
 package dados.repositorios;
 
+import negocio.beans.Classe;
 import negocio.beans.Raca;
 
 import java.util.Map;
@@ -7,6 +8,12 @@ import java.util.Map;
 import dados.interfaces.IRepoHabilidades;
 import dados.interfaces.IRepoRacas;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +33,7 @@ public class RepositorioRacas implements IRepoRacas {
 	private RepositorioRacas()
 	{
 		racasPreExistentes = gerarRacasPreExistentes();
-		racasCriadas = new HashMap<String, Raca>();
+		racasCriadas = carregarRacasCriadas();
 	}
 	
 	
@@ -147,6 +154,81 @@ public class RepositorioRacas implements IRepoRacas {
 		ret.addAll(racasPreExistentes.values());
 		ret.addAll(racasCriadas.values());
 		
+		return ret;
+	}
+	
+	private Map<String, Raca> carregarRacasCriadas()
+	{
+		File f = new File("Racas.rep");
+		
+		Map<String, Raca> ret = null;
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+				ret = new HashMap<String, Raca>();
+				return ret;
+			}
+			
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+
+			try
+			{
+				if((ret = (Map<String, Raca>)ois.readObject()) == null)
+				{
+					ret = new HashMap<String, Raca>();
+				}
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			ois.close();
+		}
+		catch(IOException e)
+		{
+			ret = new HashMap<String, Raca>();
+		}
+		
+		return ret;
+	}
+	
+	public boolean salvarRacas()
+	{
+		boolean ret = false;
+		
+		File f = new File("Racas.rep");
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+			}
+			
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			try
+			{
+				oos.writeObject(this.racasCriadas);
+				ret = true;
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			
+			oos.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
 		return ret;
 	}
 }

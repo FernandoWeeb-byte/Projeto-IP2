@@ -2,10 +2,9 @@ package negocio.beans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.Serializable;
 
-
-
-public class Personagem {
+public class Personagem implements Serializable{
 	
 	/// Atributos
 	// Informacoes

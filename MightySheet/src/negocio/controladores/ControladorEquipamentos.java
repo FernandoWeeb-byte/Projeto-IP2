@@ -39,15 +39,20 @@ public class ControladorEquipamentos {
 	public boolean adicionarEquipamento(Equipamento novo) {
 		boolean ret = false;
 
+		
 		if(novo != null)
 		{
+			boolean isValid = false;
 			if(novo.getNome() != null &&
 					novo.getCusto() >= 0 &&
 					novo.getPeso() >= 0 &&
 					novo.getDescricao() != null)
 			{
+				isValid = true;
+				
 				if(novo.getClass().equals(Arma.class))
 				{
+					isValid = false;
 					if(((Arma) novo).getDano() >= 0 &&
 							
 							(CONTUSAO.equals(((Arma)novo).getTipoDano()) || CORTEPERF.equals(((Arma)novo).getTipoDano()) ||
@@ -60,21 +65,22 @@ public class ControladorEquipamentos {
 							CURTO.equals(((Arma)novo).getDistancia()) || MEDIO.equals(((Arma)novo).getDistancia()) ||
 							LONGO.equals(((Arma)novo).getDistancia())))
 					{
-						ret = true;
+						isValid = true;
 					}
 				}
 				
 				if(novo.getClass().equals(Protecao.class))
 				{
-					if(((Protecao)novo).getBloqueio() >= 0 &&
+					isValid = false;
+					if((((Protecao)novo).getBloqueio() >= 0 &&
 							((Protecao)novo).getEsquiva() >= 0 &&
-							((Protecao)novo).getfN() >= 0)
+							((Protecao)novo).getfN() >= 0))
 					{
-						ret = true;
+						isValid = true;
 					}
 				}
 				
-				if(ret)
+				if(isValid)
 				{
 					ret = equips.adicionarEquipamento(novo);
 				}
@@ -180,8 +186,11 @@ public class ControladorEquipamentos {
 		return equips.listarCategorias();
 	}
 
-
 	public List<String> listarAlcances() {
 		return equips.listarAlcances();
+	}
+	
+	public boolean salvarEquipamentos() {
+		return equips.salvarEquipamentos();
 	}
 }

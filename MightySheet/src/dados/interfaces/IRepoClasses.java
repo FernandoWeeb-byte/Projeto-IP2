@@ -1,8 +1,8 @@
 package dados.interfaces;
 
-import java.util.List;
-
 import negocio.beans.Classe;
+
+import java.util.List;
 
 public interface IRepoClasses {
 
@@ -15,5 +15,6 @@ public interface IRepoClasses {
 	boolean modificarClasse(Classe classe);
 
 	List<Classe> listarTodasClasses();
-
+	
+	boolean salvarClasses();
 }
