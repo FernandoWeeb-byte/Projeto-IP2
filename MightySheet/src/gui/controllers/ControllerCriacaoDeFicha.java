@@ -196,12 +196,16 @@ public class ControllerCriacaoDeFicha {
     	if(!(classe.getValue() == null || raca.getValue() == null)) {
     	str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
     	forca.setText(str[0]);
+    	person.setForca(Integer.parseInt(forca.getText()));
     	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
     	agilidade.setText(str[1]);
+    	person.setAgilidade(Integer.parseInt(agilidade.getText()));
     	str[2] = String.format("%d",raca.getValue().getInteligencia() + classe.getValue().getBonusInteligencia());
     	inteligencia.setText(str[2]);
+    	person.setInteligencia(Integer.parseInt(inteligencia.getText()));
     	str[3] = String.format("%d",raca.getValue().getVontade() + classe.getValue().getBonusVontade());
     	vontade.setText(str[3]);
+    	person.setVontade(Integer.parseInt(vontade.getText()));
     	}
     }
     
@@ -422,7 +426,7 @@ public class ControllerCriacaoDeFicha {
     }
     
     @FXML
-    void vender(ActionEvent event) {
+    void entrega(ActionEvent event) {
     	ObservableList obLista;
     	List<Equipamento> lista = person.getEquipamentos();
     	obLista = FXCollections.observableArrayList(lista);
