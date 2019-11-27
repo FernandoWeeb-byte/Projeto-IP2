@@ -33,8 +33,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	///Contrutor
 	public RepositorioPersonagens()
 	{
-		this.fichas = new ArrayList<Personagem>();
-		carregarPersonagens();
+		this.fichas = carregarPersonagens();
 	}
 
 	
@@ -162,36 +161,46 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	
 	
 	/// Metodos de Arquivo
-	
-	public void carregarPersonagens() {
-		try {
+	private List<Personagem> carregarPersonagens()
+	{	
+		File f = new File("Personagem.rep");
+		List<Personagem> ret = null;
+		
+		try
+		{
+			if(!f.exists())
+			{
+				f.createNewFile();
+				ret = new ArrayList<Personagem>();
+				return ret;
+			}
+			
 			FileInputStream fis = new FileInputStream("Personagem.arq");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			// Le um objeto do arquivo
-			this.fichas = (List<Personagem>)ois.readObject();
-			 
-			
-
+			try
+			{
+				ret = (List<Personagem>)ois.readObject();
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
 			ois.close();
-			fis.close();
-			
-			
-			
-		} catch (FileNotFoundException e) {
-			
-		} catch (IOException e) {
-			
-		} catch (ClassNotFoundException e) {
-			
 		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return ret;
 	}
 	
 	@Override
 	public boolean guardar()
 	{
 		try {
-			FileOutputStream fos = new FileOutputStream("Personagem.arq");
+			FileOutputStream fos = new FileOutputStream("Personagem.rep");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
 			// Escreve o objeto no arquivo
