@@ -2,11 +2,12 @@ package gui.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import dados.interfaces.IRepoPersonagens;
+import dados.repositorios.RepositorioEquipamentos;
 import dados.repositorios.RepositorioPersonagens;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableIntegerArray;
@@ -426,6 +427,17 @@ public class ControllerCriacaoDeFicha {
     	List<Equipamento> lista = person.getEquipamentos();
     	obLista = FXCollections.observableArrayList(lista);
     	skillListC.getItems().addAll(obLista);
+    	carregarItens();
+    	
+    }
+    
+    void carregarItens()
+    {
+    	List<Equipamento> lista = person.getEquipamentos();
+    	ObservableList obLista;
+    	obLista = FXCollections.observableArrayList(lista);
+    	vestimenta.getItems().addAll(obLista);
+    	
     }
     
     
