@@ -324,7 +324,7 @@ public class Personagem implements Serializable{
 	public void dtrUp(int up) {
 		this.determinacao += up;
 	}	
-	public static Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+	public static Personagem novoPerson = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
 	
 	//Construtor
 		public Personagem(String nomePersonagem, String nomeJogador, Raca raca, Classe classe, int nivel, int experiencia, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
