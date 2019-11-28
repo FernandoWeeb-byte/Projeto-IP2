@@ -269,11 +269,11 @@ public class ControllerCriacaoDeFicha {
     	//Mostrar as habilidades da raça na lista
     	ObservableList obLista = null;
     	if(!(person.getRaca() == null)) {
-    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca().getNome()));
+    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca()));
     		skilList.getItems().removeAll(obLista2);
     	}
     	List<Habilidade> lista = null;
-    	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
+    	lista = fachada.listarHabilidadesPorRaca(raca.getValue());
     	obLista = FXCollections.observableArrayList(lista);
     	skilList.getItems().addAll(obLista);
     	

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -24,6 +25,8 @@
             <Label layoutX="165.0" layoutY="103.0" text="Agilidade" />
             <Label layoutX="276.0" layoutY="103.0" text="Inteligencia" />
             <Label layoutX="403.0" layoutY="103.0" text="Vontade" />
+            <ComboBox fx:id="habAuto" layoutX="351.0" layoutY="204.0" prefWidth="150.0" />
+            <Label layoutX="251.0" layoutY="208.0" text="Hab Automatica" />
          </children>
       </AnchorPane>
    </children>

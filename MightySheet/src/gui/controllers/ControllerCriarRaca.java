@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -53,19 +54,30 @@ public class ControllerCriarRaca {
     @FXML
     private Button voltar;
     
+    @FXML
+    private ComboBox<Habilidade> habAuto;
     
 
     @FXML
-    void salvar(ActionEvent event) {
+    void salvar(ActionEvent event) throws IOException {
     	ObservableList obLista = habList.getSelectionModel().getSelectedItems();
     	List<Habilidade> lista = new ArrayList<>();
     	lista.addAll(obLista);
-    	Raca raca = new Raca(null, 0, 0, 0, 0, null, lista);
+    	lista.add(habAuto.getValue());
+    	Raca raca = new Raca(null, 0, 0, 0, 0, habAuto.getValue(), lista);
     	raca.setNome(nome.getText());
     	raca.setForca(Integer.parseInt(forca.getText()));
     	raca.setAgilidade(Integer.parseInt(agilidade.getText()));
     	raca.setInteligencia(Integer.parseInt(inteligencia.getText()));
     	raca.setVontade(Integer.parseInt(vontade.getText()));
+    	fachada.adicionarRaca(raca);
+    	fachada.salvarRacas();
+    	
+    	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+    	Scene voltar_Scene = new Scene(parent_voltar);
+    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+    	appStage.setScene(voltar_Scene);
+    	appStage.show();
     }
 
     @FXML
@@ -79,6 +91,7 @@ public class ControllerCriarRaca {
     
     void carregarHab()
     {
+    	// habilidade na lista
     	List<Habilidade> lista = new ArrayList<>();
     	for(Raca raca : fachada.listarTodasRacas())
     	{
@@ -87,6 +100,19 @@ public class ControllerCriarRaca {
     	ObservableList obLista = FXCollections.observableArrayList(lista);
     	habList.setItems(obLista);
     	habList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	
+    	//habilidadeAuto
+    	List<Habilidade> lista2 = new ArrayList<>();
+    	for(Habilidade hab : fachada.listarTodasHabilidades())
+    	{
+    		if(hab.getTipo().contains("Suporte") && hab.getRequisito().contains("-"))
+    		{
+    			lista2.add(hab);
+    		}
+    	}
+    	ObservableList obLista2 = FXCollections.observableArrayList(lista2);
+    	habAuto.setItems(obLista2);
+    			
     }
 
     @FXML
