@@ -4,6 +4,7 @@ import java.util.List;
 
 import negocio.beans.Classe;
 import negocio.beans.Habilidade;
+import negocio.beans.Raca;
 
 public interface IRepoHabilidades {
 
@@ -22,6 +23,8 @@ public interface IRepoHabilidades {
 	List<Habilidade> listarHabilidadePorClasse(Classe classe);
 
 	List<Habilidade> listarHabilidadesPorRaca(String nome);
+	
+	List<Habilidade> listarHabilidadesPorRaca(Raca raca);
 
 	List<Habilidade> listarHabilidadesPorTipo(String tipo);
 
