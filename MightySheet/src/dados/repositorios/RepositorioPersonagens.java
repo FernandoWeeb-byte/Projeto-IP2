@@ -52,7 +52,12 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	public List<Personagem> todas()
 	{
 		 List<Personagem> saida = new ArrayList<Personagem>();
+		 try {
 		 saida.addAll(fichas);
+		 }catch (Exception e)
+		 {
+			 e.printStackTrace();
+		 }
 		 return saida;
 	}
 	

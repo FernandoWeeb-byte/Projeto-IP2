@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -30,6 +31,7 @@ import negocio.beans.Raca;
 import negocio.controladores.ControladorPersonagens;
 
 public class ControllerTelaInicial {
+		Fachada fachada = Fachada.getInstance();
 	
 	 	@FXML
 	    private ResourceBundle resources;
@@ -51,6 +53,9 @@ public class ControllerTelaInicial {
 
 	    @FXML
 	    private TableColumn<Personagem, String> racaTabela;
+	    
+	    @FXML
+	    private TableColumn<Personagem,  String> visualizarTabela;
 	    
 	    @FXML
 	    private Button criarFicha;
@@ -79,17 +84,38 @@ public class ControllerTelaInicial {
 	    
 	    void tabela()
 	    {
-	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
+	    	
 	    	//lista.carregarPersonagens();
 	    	
 	    	ObservableList obLista;
-	    	obLista = FXCollections.observableArrayList(lista.todas());
-	    	ControladorPersonagens cP = new ControladorPersonagens();
+	    	obLista = FXCollections.observableArrayList(fachada.todas());
+	    	
 	    	
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
 	    	racaTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRaca().getNome()));
+	    	
 	    	tabela.setItems(obLista);
+	    	
+	    	
+	    	
+	    }
+	    
+	    @FXML
+	    void visualizar(ActionEvent event) throws IOException
+	    {
+	    	
+	    	Personagem.novoPerson = tabela.getSelectionModel().getSelectedItem();
+	    	
+	    	Stage stage = new Stage();
+	    	FXMLLoader FxmlLoader = new FXMLLoader();
+	    	Parent visualizar_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/VisualizarPersonagem.fxml").openStream());
+	    	Scene visualizar_Scene = new Scene(visualizar_parent);
+	        stage.setScene(visualizar_Scene);
+	        stage.setTitle("Ficha");
+	        stage.setResizable(false);
+	        stage.showAndWait();
+	    	
 	    }
 	    
 	    @FXML
