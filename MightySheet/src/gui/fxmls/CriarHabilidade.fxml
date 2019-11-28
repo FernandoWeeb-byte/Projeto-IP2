@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerCriarHabilidade">
+   <children>
+      <Button layoutX="58.0" layoutY="381.0" mnemonicParsing="false" onAction="#cancelarHabilidade" prefHeight="45.0" prefWidth="156.0" text="Cancelar" />
+      <Button layoutX="480.0" layoutY="381.0" mnemonicParsing="false" onAction="#salvarHabilidade" prefHeight="45.0" prefWidth="156.0" text="Salvar" />
+      <TextField fx:id="textRequisitos" layoutX="76.0" layoutY="62.0" onAction="#setTextRequisitos" prefHeight="25.0" prefWidth="602.0" />
+      <TextField fx:id="textDificuldade" layoutX="527.0" layoutY="14.0" onAction="#setTextDificuldade" />
+      <TextField fx:id="textNome" layoutX="62.0" layoutY="14.0" onAction="#setTextNome" />
+      <TextField fx:id="textMana" layoutX="291.0" layoutY="14.0" onAction="#setTextMana" />
+      <TextField fx:id="textDescricao" layoutX="15.0" layoutY="270.0" onAction="#setTextDescricao" prefHeight="101.0" prefWidth="661.0" />
+      <ComboBox fx:id="comboCategoria" layoutX="75.0" layoutY="124.0" onAction="#selectCategoria" prefWidth="150.0" />
+      <ComboBox fx:id="comboTipo" layoutX="377.0" layoutY="124.0" onAction="#selectTipo" prefWidth="150.0" />
+      <Label layoutX="15.0" layoutY="246.0" text="Descrição" />
+      <Label layoutX="15.0" layoutY="128.0" text="Categoria" />
+      <Label layoutX="346.0" layoutY="128.0" text="Tipo" />
+      <Label layoutX="15.0" layoutY="192.0" text="Raças" />
+      <Label layoutX="347.0" layoutY="192.0" text="Classes" />
+      <Label layoutX="14.0" layoutY="18.0" text="Nome" />
+      <Label layoutX="237.0" layoutY="18.0" text="Mana" />
+      <Label layoutX="450.0" layoutY="18.0" text="Dificuldade" />
+      <TextField fx:id="textRacas" layoutX="62.0" layoutY="189.0" onAction="#setTextRacas" prefHeight="25.0" prefWidth="280.0" />
+      <TextField fx:id="textClasses" layoutX="396.0" layoutY="188.0" onAction="#setTextClasses" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="17.0" layoutY="66.0" text="Requisitos" />
+   </children>
+</AnchorPane>
