@@ -156,7 +156,7 @@ List<Equipamento> lista = fachada.listarItensComuns();
     	tabela.setItems(obLista);
     	for(int i=0;i<lista.size();i++)
     	{
-    		lista.get(i).getButton().setOnAction(this::acao);;
+    		lista.get(i).getButton().setOnAction(this::acao);
     	}
     }
 

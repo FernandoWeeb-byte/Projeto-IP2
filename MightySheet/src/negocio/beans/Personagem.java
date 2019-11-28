@@ -2,6 +2,9 @@ package negocio.beans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javafx.scene.control.Button;
+
 import java.io.Serializable;
 
 public class Personagem implements Serializable{
@@ -29,6 +32,7 @@ public class Personagem implements Serializable{
 	private int mana;
 	private HashMap<String, Integer> pericias;
 	private int ptsAtributo;
+	
 	
 	// Defesas
 	private int esquiva;
@@ -264,6 +268,7 @@ public class Personagem implements Serializable{
 	{
 		this.ptsAtributo = ptsAtributo;
 	}
+	
 	
 	public void calculoPtsAtributo(int nivel)
 	{
