@@ -215,6 +215,8 @@ public class ControllerCriarItem {
 		 	textDano.setDisable(false);
 		 	tipoDano.setDisable(false);
 		 	tipoDistancia.setDisable(false);
+		 	
+		 	
     	}
     	else if ((String) tipoItem.getSelectionModel().getSelectedItem() == "Protecao") {
     		checkCarregar.setDisable(true);

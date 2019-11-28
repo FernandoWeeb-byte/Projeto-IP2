@@ -64,13 +64,23 @@ public class ControllerCriarHabilidade {
 
     @FXML
 	 void salvarHabilidade(ActionEvent event) throws IOException {
-		 fachada.adicionarHabilidade(hab);
+    	hab.setClasses(textClasses.getText());
+		hab.setNome(textNome.getText());
+		hab.setDescricao(textDescricao.getText());
+		hab.setDificuldade(Integer.parseInt(textDificuldade.getText()));
+		hab.setMana(Integer.parseInt(textMana.getText()));
+		hab.setRacas(textRacas.getText());
+		hab.setRequisito(textRequisitos.getText());
+    	
+    	fachada.adicionarHabilidade(hab);
 		 fachada.salvarHabilidades();
 		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
 		 Scene Criacao_Habilidade_Scene = new Scene(parent_voltar);
 		 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 		 appStage.setScene(Criacao_Habilidade_Scene);
 		 appStage.show();
+		 fachada.salvarTodosRepositórios();
+		 
 	 }
     
     void carregarCategorias() {
