@@ -145,7 +145,7 @@ public class ControllerLoja {
     @FXML
     void equipamentos(ActionEvent event) {
 
-List<Equipamento> lista = fachada.listarItensComuns();
+    	List<Equipamento> lista = fachada.listarItensComuns();
     	
     	ObservableList obLista = FXCollections.observableArrayList(lista);
     	
