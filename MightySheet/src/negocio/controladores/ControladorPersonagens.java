@@ -33,7 +33,7 @@ public class ControladorPersonagens {
 				return false;
 			}
 		}
-		repoPer.todas().add(p);
+		repoPer.AdicionarFicha(p);;
 		repoPer.guardar();
 		return true;
 	}
@@ -114,6 +114,9 @@ public class ControladorPersonagens {
 				
 	}
 	
-	
+	public void salvarPersonagens()
+	{
+		repoPer.guardar();
+	}
 
 }

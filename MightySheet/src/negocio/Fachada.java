@@ -50,6 +50,7 @@ public class Fachada {
 		salvarHabilidades();
 		salvarEquipamentos();
 		salvarRacas();
+		salvarPersonagens();
 	}
 	
 	
@@ -204,6 +205,11 @@ public class Fachada {
 			ArrayList<Equipamento> equipamentos, int ouro) {
 		controlPer.editarFicha(nomePer, nivel, experiencia, inteligencia, forca, vontade, vida, mana, pericias,
 				habilidadesAutomaticas, habilidades, quantHabilidades, ataques, equipamentos, ouro);
+	}
+	
+	public void salvarPersonagens()
+	{
+		this.controlPer.salvarPersonagens();
 	}
 
 	

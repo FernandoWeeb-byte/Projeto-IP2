@@ -462,6 +462,7 @@ public class ControllerCriacaoDeFicha {
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
     	appStage.setScene(Tela_Inicial_Scene);
     	appStage.show();
+    	fachada.salvarTodosRepositórios();
     }
     
     @FXML
