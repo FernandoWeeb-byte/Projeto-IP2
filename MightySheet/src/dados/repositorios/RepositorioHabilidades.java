@@ -75,7 +75,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		
 		try
 		{
-			File arquivo = new File("ListaDeHabilidades.tsv");
+			File arquivo = new File("Habilidades - Habilidades.tsv");
 			Scanner sc = new Scanner(arquivo);
 			
 			sc.nextLine(); // Pula a linha do cabecalho
@@ -318,8 +318,6 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			if(!f.exists())
 			{
 				f.createNewFile();
-				ret = new HashMap<String, Habilidade>();
-				return ret;
 			}
 			
 			FileInputStream fis = new FileInputStream(f);
@@ -341,6 +339,7 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		catch(IOException e)
 		{
 			ret = new HashMap<String, Habilidade>();
+			System.out.println("Não existe dados no arquivo ainda");
 		}
 		
 		return ret;
@@ -386,6 +385,41 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		List<Habilidade> saida = new ArrayList<Habilidade>();
 		String classesDeCada[] = null;
 		for(Map.Entry<String, Habilidade> entry: this.habilidadesPreExistentes.entrySet())
+		{
+			classesDeCada = entry.getValue().getClasses();
+			Habilidade valor = entry.getValue();
+			String req = entry.getValue().getRequisito();
+			if(level<5)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level < 10 && level >= 5)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 5") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}	
+			} else if( level >=10)
+			{
+				for(int i=0; i<classesDeCada.length; i++)
+				{
+					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
+					{
+						saida.add(valor);
+					}
+				}
+				
+			}	
+		}
+		for(Map.Entry<String, Habilidade> entry: this.habilidadesCriadas.entrySet())
 		{
 			classesDeCada = entry.getValue().getClasses();
 			Habilidade valor = entry.getValue();

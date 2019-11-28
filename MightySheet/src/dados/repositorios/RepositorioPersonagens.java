@@ -163,7 +163,6 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	/// Metodos de Arquivo
 	private List<Personagem> carregarPersonagens() {
 		List<Personagem> ret = null;
-		
 		try {
 			File f = new File("Personagem.arq");
 			

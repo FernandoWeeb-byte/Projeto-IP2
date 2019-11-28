@@ -102,4 +102,27 @@ public class Classe implements Serializable{
 	public Map<String, Habilidade> getHabilidades() {
 		return habilidades;
 	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setBonusForca(int bonusForca) {
+		this.bonusForca = bonusForca;
+	}
+	public void setBonusAgilidade(int  bonusAgilidade) {
+		this.bonusAgilidade = bonusAgilidade;
+	}
+	public void setBonusInteligencia(int bonusInteligencia) {
+		this.bonusInteligencia = bonusInteligencia;
+	}
+	public void setBonusVontade(int bonusVontade) {
+		this.bonusVontade = bonusVontade;
+	}
+	public void setHabilidadeAutomatica(Habilidade habilidade) {
+		this.habilidadeAutomatica = habilidade;
+	}
+	public void setHabilidades(Map<String,Habilidade> habilidades) {
+		this.habilidades = habilidades;
+	}
+	
 }

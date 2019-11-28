@@ -31,7 +31,7 @@ public interface IRepoPersonagens {
 			int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas,
 			ArrayList<Habilidade> habilidades, int quantHabilidades, ArrayList<Arma> ataques,
 			ArrayList<Equipamento> equipamentos, int ouro);
-
+	
 	boolean guardar();
 
 }

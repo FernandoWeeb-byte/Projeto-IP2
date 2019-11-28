@@ -2,11 +2,12 @@ package gui.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import dados.interfaces.IRepoPersonagens;
+import dados.repositorios.RepositorioEquipamentos;
 import dados.repositorios.RepositorioPersonagens;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableIntegerArray;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 
 import negocio.Fachada;
 import negocio.beans.Classe;
+import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
 import negocio.beans.Personagem;
 import negocio.beans.Raca;
@@ -144,7 +146,7 @@ public class ControllerCriacaoDeFicha {
     private TextField ouro;
     
     Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
-    
+    Personagem novoPerson = Personagem.novoPerson;
     
 
     @FXML
@@ -165,18 +167,45 @@ public class ControllerCriacaoDeFicha {
     	person.calculoPtsAtributo(person.getNivel());
     	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     	
+    	List<Habilidade> lista = null;
+		ObservableList obLista = null;
+    	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
+        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+        	skilList.getItems().removeAll(obLista2);
+        	}
+    	
+    	if(!(classe.getValue() == null)) {
+    		
+    		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
+    		if(nivel.getValue() >= 5)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 7));
+    		}
+    		if(nivel.getValue() == 10)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), nivel.getValue()));
+    		}
+    		
+    	}
+    	obLista = FXCollections.observableArrayList(lista);
+    	skilList.getItems().addAll(obLista);
+    	
     	person.setQuantHabilidades();
     	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
     	String[] str = {null, null, null, null};
-    	if(classe.getValue() != null || raca.getValue() != null) {
+    	if(!(classe.getValue() == null || raca.getValue() == null)) {
     	str[0] = String.format("%d",raca.getValue().getForca() + classe.getValue().getBonusForca());
     	forca.setText(str[0]);
+    	person.setForca(Integer.parseInt(forca.getText()));
     	str[1] = String.format("%d",raca.getValue().getAgilidade() + classe.getValue().getBonusAgilidade());
     	agilidade.setText(str[1]);
+    	person.setAgilidade(Integer.parseInt(agilidade.getText()));
     	str[2] = String.format("%d",raca.getValue().getInteligencia() + classe.getValue().getBonusInteligencia());
     	inteligencia.setText(str[2]);
+    	person.setInteligencia(Integer.parseInt(inteligencia.getText()));
     	str[3] = String.format("%d",raca.getValue().getVontade() + classe.getValue().getBonusVontade());
     	vontade.setText(str[3]);
+    	person.setVontade(Integer.parseInt(vontade.getText()));
     	}
     }
     
@@ -239,7 +268,10 @@ public class ControllerCriacaoDeFicha {
     	
     	//Mostrar as habilidades da raça na lista
     	ObservableList obLista = null;
-    	skilList.getItems().clear();
+    	if(!(person.getRaca() == null)) {
+    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca().getNome()));
+    		skilList.getItems().removeAll(obLista2);
+    	}
     	List<Habilidade> lista = null;
     	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
     	obLista = FXCollections.observableArrayList(lista);
@@ -284,11 +316,30 @@ public class ControllerCriacaoDeFicha {
     	
     	// mostrar as habilidades de classe na lista
     	ObservableList obLista = null;
-    	skillListC.getItems().clear();
+    	if(!(person.getClasse() == null)) {
+    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+    	skilList.getItems().removeAll(obLista2);
+    	}
+    	
     	List<Habilidade> lista = null;
-    	lista = fachada.listarHabilidadePorClasse(classe.getValue().getNome());
+    	if(nivel.getValue() == null) {
+    	lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 1);
+    	}
+    	else {
+    		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
+    		if(nivel.getValue() >= 5)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 7));
+    		}
+    		if(nivel.getValue() == 10)
+    		{
+    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), nivel.getValue()));
+    		}
+    	}
+    	
     	obLista = FXCollections.observableArrayList(lista);
-    	skillListC.getItems().addAll(obLista);
+    	
+    	skilList.getItems().addAll(obLista);
     	
     	//seta a classe e atributos
     	
@@ -360,6 +411,8 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void Loja(ActionEvent event) throws IOException {
+    	novoPerson.setOuro(Integer.parseInt(ouro.getText()));
+    	
     	Stage stage = new Stage();
     	FXMLLoader FxmlLoader = new FXMLLoader();
     	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Loja.fxml").openStream());
@@ -368,14 +421,38 @@ public class ControllerCriacaoDeFicha {
         stage.setTitle("Loja");
         stage.setResizable(false);
         stage.showAndWait();
+        
     	
     }
+    
+    @FXML
+    void entrega(ActionEvent event) {
+    	ObservableList obLista;
+    	List<Equipamento> lista = novoPerson.getEquipamentos();
+    	person.setEquipamentos(novoPerson.getEquipamentos());
+    	novoPerson.setEquipamentos(null);
+    	obLista = FXCollections.observableArrayList(lista);
+    	skillListC.getItems().addAll(obLista);
+    	carregarItens();
+    	
+    }
+    
+    void carregarItens()
+    {
+    	List<Equipamento> lista = person.getEquipamentos();
+    	ObservableList obLista;
+    	obLista = FXCollections.observableArrayList(lista);
+    	vestimenta.getItems().addAll(obLista);
+    	
+    }
+    
     
     @FXML
     void salvar(ActionEvent event) throws IOException {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
+    	
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
     	//fachada.salvar(person);
@@ -391,6 +468,7 @@ public class ControllerCriacaoDeFicha {
     	carregarClasse();
     	carregarRaca();
     	carregarNiveis();
+    	
     }
 	
 }

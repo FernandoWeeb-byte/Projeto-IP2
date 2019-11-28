@@ -29,7 +29,7 @@ public class Protecao extends Equipamento implements Serializable{
 	@Override
 	public String toString()
 	{
-		String str = String.format("%s\n"
+		/*String str = String.format("%s\n"
 									+ "Custo: %d\n"
 									+ "Defesa: ", this.getNome(), this.getCusto());
 		
@@ -43,9 +43,9 @@ public class Protecao extends Equipamento implements Serializable{
 		}
 		
 		str += String.format("FN: %d\n"
-							+ "Peso: %.2f\n", this.getfN(), this.getPeso());
+							+ "Peso: %.2f\n", this.getfN(), this.getPeso());*/
 		
-		return str;
+		return this.getNome();
 	}
 
 

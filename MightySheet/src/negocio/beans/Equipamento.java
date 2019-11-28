@@ -2,6 +2,8 @@ package negocio.beans;
 
 import java.io.Serializable;
 
+import javafx.scene.control.Button;
+
 public class Equipamento implements Serializable{
 	
 	/// Atributos
@@ -11,6 +13,7 @@ public class Equipamento implements Serializable{
 	private double peso;
 	private String descricao;
 	private boolean canalizador;
+	private Button button;
 	
 	
 	/// Construtor
@@ -23,13 +26,15 @@ public class Equipamento implements Serializable{
 		this.peso = peso;
 		this.descricao = descricao;
 		this.canalizador = canalizador;
+		this.button = new Button("Comprar");
 	}
 	
-	
+
+
 	/// Métodos
 	public String toString()
 	{
-		String str = String.format("%s\n"
+		/*String str = String.format("%s\n"
 									+ "Custo: %d\n", this.nome, this.custo);
 		
 		if(fN > 0)
@@ -39,9 +44,9 @@ public class Equipamento implements Serializable{
 		
 		str += String.format("Peso: %.2fkg\n"
 							+ "Descrição: %s\n",
-							this.peso, this.descricao);
+							this.peso, this.descricao);*/
 		
-		return str;
+		return this.getNome();
 	}
 	
 	
@@ -69,5 +74,13 @@ public class Equipamento implements Serializable{
 
 	public boolean isCanalizador() {
 		return canalizador;
+	}
+	
+	public Button getButton() {
+		return button;
+	}
+
+	public void setButton(Button button) {
+		this.button = button;
 	}
 }
