@@ -47,7 +47,7 @@ public class Personagem implements Serializable{
 	// Equipamentos
 	private Protecao vestimenta;
 	private Arma maoDireita;
-	private Equipamento maoEsquerda;
+	private Protecao maoEsquerda;
 	private ArrayList<Equipamento> equipamentos;
 	private int ouro;
 	
@@ -238,13 +238,11 @@ public class Personagem implements Serializable{
 	public Equipamento getMaoEsquerda() {
 		return maoEsquerda;
 	}
-	public void setMaoEsquerda(Equipamento maoEsquerda) {
-		if(((Arma) this.maoDireita).isDuasMaos() == false) {
+	public void setMaoEsquerda(Protecao maoEsquerda) {
+		
 			this.maoEsquerda = maoEsquerda;
-		}
-		else {
-			this.maoEsquerda = null;
-		}
+		
+		
 	}
 	public ArrayList<Equipamento> getEquipamentos() {
 		return equipamentos;
@@ -336,7 +334,7 @@ public class Personagem implements Serializable{
 	
 	//Construtor
 		public Personagem(String nomePersonagem, String nomeJogador, Raca raca, Classe classe, int nivel, int experiencia, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
-				int inteligencia, int vontade, int vida, int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Equipamento maoEsquerda,
+				int inteligencia, int vontade, int vida, int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Protecao maoEsquerda,
 				ArrayList<Equipamento> equipamentos, int ouro) {
 			super();
 			this.nomePersonagem = nomePersonagem;

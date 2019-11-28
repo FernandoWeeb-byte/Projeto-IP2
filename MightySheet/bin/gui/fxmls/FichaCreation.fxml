@@ -101,9 +101,9 @@
             <TextField fx:id="pM" editable="false" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="39.0" />
             <ComboBox fx:id="raca" layoutX="31.0" layoutY="96.0" onAction="#selecionarRaca" prefWidth="150.0" />
             <ComboBox fx:id="classe" layoutX="473.0" layoutY="96.0" onAction="#selecionarClasse" prefWidth="150.0" />
-            <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" prefWidth="150.0" />
+            <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" onAction="#escolherVestimenta" prefWidth="150.0" />
             <ComboBox fx:id="maoDireita" layoutX="473.0" layoutY="233.0" prefWidth="150.0" />
-            <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" prefWidth="150.0" />
+            <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" onAction="#escolherEscudo" prefWidth="150.0" />
             <ListView fx:id="skillListC" layoutX="358.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
             <Label fx:id="erro" layoutX="307.0" layoutY="657.0" prefHeight="21.0" prefWidth="250.0" textFill="#e80808">
                <font>

@@ -30,10 +30,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import negocio.Fachada;
+import negocio.beans.Arma;
 import negocio.beans.Classe;
 import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
 import negocio.beans.Personagem;
+import negocio.beans.Protecao;
 import negocio.beans.Raca;
 import negocio.controladores.ControladorPersonagens;
 
@@ -70,10 +72,10 @@ public class ControllerCriacaoDeFicha {
     private ComboBox<?> vestimenta;
 
     @FXML
-    private ComboBox<?> maoDireita;
+    private ComboBox<Arma> maoDireita;
 
     @FXML
-    private ComboBox<?> maoEsquerda;
+    private ComboBox<Protecao> maoEsquerda;
 
     @FXML
     private Button adcForca;
@@ -169,9 +171,11 @@ public class ControllerCriacaoDeFicha {
     	person.calculoPtsAtributo(person.getNivel());
     	person.calcularVida();
     	person.calcularMana();
+    	person.setDeslocamento();
     	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     	pV.setText(String.format("%d", person.getVida()));
     	pM.setText(String.format("%d", person.getMana()));
+    	deslocamento.setText(String.format("%d", person.getDeslocamento()));
     	List<Habilidade> lista = null;
 		ObservableList obLista = null;
     	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
@@ -360,7 +364,7 @@ public class ControllerCriacaoDeFicha {
     
     void calcularValores()
     {
-    	String[] str = {null, null, null,null}; 
+    	String[] str = {null, null, null,null, null}; 
     	
     	//Carga basica
     	person.setCargaBasica(Integer.parseInt(forca.getText()));
@@ -378,6 +382,10 @@ public class ControllerCriacaoDeFicha {
     	person.setDeslocamento();
     	str[3] = String.format("%d", person.getDeslocamento());
     	deslocamento.setText(str[3]);
+    	//Determinação
+    	person.setDeterminacao();
+    	str[4] = String.format("%d", person.getDeterminacao());
+    	determinacao.setText(str[4]);
     	
     }
     
@@ -397,6 +405,8 @@ public class ControllerCriacaoDeFicha {
     		person.setPtsAtributo(person.getPtsAtributo()-1);
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		agilidade.setText(String.format("%d",person.getAgilidade()));
+    		person.setDeslocamento();
+    		
     	}
     	if(adcInteligencia.isArmed())
     	{
@@ -445,12 +455,70 @@ public class ControllerCriacaoDeFicha {
     
     void carregarItens()
     {
+    	List<Protecao> protecoes = new ArrayList<>();
+    	List<Protecao> armadura = new ArrayList<>();
+    	List<Protecao> escudos = new ArrayList<>();
+    	List<Arma> armas = new ArrayList<>();
+    	for(Equipamento equip : person.getEquipamentos())
+    	{
+    		if(equip.getClass().equals(Protecao.class))
+    		{
+    			protecoes.add((Protecao) equip);
+    			
+    		}
+    	}
     	
-    	List<Equipamento> lista = person.getEquipamentos();
+    	for(Protecao prot : protecoes)
+    	{
+    		if(!prot.isEscudo())
+    		{
+    			armadura.add(prot);
+    		}
+    		else {
+    			escudos.add(prot);
+    		}
+    	}
+    	
+    	for(Equipamento equip : person.getEquipamentos())
+    	{
+    		if(equip.getClass().equals(Arma.class))
+    		{
+    			armas.add((Arma) equip);
+    		}
+    	}
+    	
+    	
     	ObservableList obLista;
-    	obLista = FXCollections.observableArrayList(lista);
+    	ObservableList obLista2;
+    	ObservableList obLista3;
+    	obLista = FXCollections.observableArrayList(armadura);
+    	obLista2 = FXCollections.observableArrayList(escudos);
+    	obLista3 = FXCollections.observableArrayList(armas);
     	vestimenta.getItems().addAll(obLista);
+    	maoEsquerda.getItems().addAll(obLista2);
+    	maoDireita.getItems().addAll(obLista3);
     	
+    	
+    	
+    }
+    
+    @FXML
+    void escolherEscudo(ActionEvent event) {
+    	person.setMaoEsquerda(maoEsquerda.getValue());
+    	person.setBloqueio();
+    	
+    	
+    	
+    }
+    
+    @FXML
+    void escolherVestimenta(ActionEvent event) {
+    	
+    	person.setVestimenta((Protecao) vestimenta.getValue());
+    	person.setCorrida();
+    	corrida.setText(String.format("%d", person.getCorrida()));
+    	person.setEsquiva();
+    	esquiva.setText(String.format("%d", person.getEsquiva()));
     }
     
     

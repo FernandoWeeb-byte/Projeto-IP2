@@ -30,7 +30,7 @@ public class Arma extends Equipamento implements Serializable{
 	@Override
 	public String toString()
 	{
-		String str = String.format("%s\n"
+		/*String str = String.format("%s\n"
 									+ "Custo: %d\n"
 									+ "Dano: ", this.getNome(), this.getCusto());	
 		
@@ -49,7 +49,9 @@ public class Arma extends Equipamento implements Serializable{
 							+ "Distância: %s\n",
 							this.tipoDano, this.getfN(), this.getPeso(), this.distancia);
 			
-		return str;
+		return str;*/
+		
+		return this.getNome();
 	}
 
 
