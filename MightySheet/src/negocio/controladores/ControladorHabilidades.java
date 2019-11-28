@@ -138,5 +138,10 @@ public class ControladorHabilidades {
 		} 
 		return null;
 	}
+	
+	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	{
+		return repHab.listarHabilidadePorClasse(classe);
+	}
 
 }

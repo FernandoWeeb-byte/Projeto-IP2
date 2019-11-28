@@ -170,7 +170,7 @@ public class ControllerCriacaoDeFicha {
     	List<Habilidade> lista = null;
 		ObservableList obLista = null;
     	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
-        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
         	skilList.getItems().removeAll(obLista2);
         	}
     	
@@ -317,7 +317,7 @@ public class ControllerCriacaoDeFicha {
     	// mostrar as habilidades de classe na lista
     	ObservableList obLista = null;
     	if(!(person.getClasse() == null)) {
-    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
     	skilList.getItems().removeAll(obLista2);
     	}
     	

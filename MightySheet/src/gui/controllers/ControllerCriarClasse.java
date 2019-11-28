@@ -77,9 +77,12 @@ public class ControllerCriarClasse {
     void acaoSalvar(ActionEvent event) throws IOException {
     	ObservableList lista = listHabBasicas.getSelectionModel().getSelectedItems(); 
     	ObservableList  lista2  = listHabAvancadas.getSelectionModel().getSelectedItems();
+    	
     	List<Habilidade> listaH = new ArrayList<>();
     	listaH.addAll(lista);
     	listaH.addAll(lista2);
+    	listaH.add((Habilidade) habAuto.getSelectionModel().getSelectedItem());
+    	listaH.add((Habilidade) habFinal.getSelectionModel().getSelectedItem());
     	for(int i=0;i<listaH.size();i++)
     	{
     		for(int j=0;j<fachada.listarTodasHabilidades().size();j++) {
@@ -118,11 +121,6 @@ public class ControllerCriarClasse {
     	appStage.show();
     }
 
-    @FXML
-    void selecionarHabAuto(ActionEvent event) {
-    	
-    	
-    }
     void carregarHab()
     {
     	//Carregar Hab Auto
@@ -167,10 +165,7 @@ public class ControllerCriarClasse {
     	listHabAvancadas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    @FXML
-    void selecionarHabFinal(ActionEvent event) {
-    	
-    }
+    
 
     @FXML
     void initialize() {

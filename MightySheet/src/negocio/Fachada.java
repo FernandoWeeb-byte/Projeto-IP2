@@ -128,6 +128,11 @@ public class Fachada {
 	{
 		return controlHab.habilidadesBasicaAvancadaOuFinal(classe, level);
 	}
+	
+	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	{
+		return controlHab.listarHabilidadePorClasse(classe);
+	}
 
 	/// Metodos delegate <ControladorRacas>
 	public boolean adicionarRaca(Raca raca) {

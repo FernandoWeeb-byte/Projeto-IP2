@@ -406,13 +406,15 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 				}
 			} else if(level < 10)
 			{
-				if( !entry.getValue().getRequisito().contains("Nível 10"))
+				if( !entry.getValue().getRequisito().contains("Nível 10") && entry.getValue().getRequisito().contains("Nível 5") )
 				{
 					saida.add(entry.getValue());
 				}
 			} else
 			{
+				if(entry.getValue().getRequisito().contains("Nível 10")) {
 				saida.add(entry.getValue());
+				}
 			}
 		}
 		return saida;
