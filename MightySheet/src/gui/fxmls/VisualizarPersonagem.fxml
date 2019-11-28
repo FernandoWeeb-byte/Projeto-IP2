@@ -10,52 +10,52 @@
       <AnchorPane prefHeight="602.0" prefWidth="431.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Nome" />
-            <TextField editable="false" layoutX="56.0" layoutY="10.0" prefHeight="25.0" prefWidth="212.0" />
+            <TextField fx:id="nome" editable="false" layoutX="56.0" layoutY="10.0" prefHeight="25.0" prefWidth="212.0" />
             <Label layoutX="17.0" layoutY="48.0" text="Raça" />
             <Label layoutX="225.0" layoutY="48.0" text="Classe" />
-            <TextField editable="false" layoutX="56.0" layoutY="44.0" />
-            <TextField editable="false" layoutX="268.0" layoutY="44.0" />
+            <TextField fx:id="raca" editable="false" layoutX="56.0" layoutY="44.0" />
+            <TextField fx:id="classe" editable="false" layoutX="268.0" layoutY="44.0" />
             <Label layoutX="17.0" layoutY="83.0" text="Nivel" />
-            <TextField editable="false" layoutX="56.0" layoutY="79.0" prefHeight="25.0" prefWidth="41.0" />
+            <TextField fx:id="nivel" editable="false" layoutX="56.0" layoutY="79.0" prefHeight="25.0" prefWidth="41.0" />
             <Label layoutX="131.0" layoutY="83.0" text="Ouro" />
-            <TextField editable="false" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="41.0" />
+            <TextField fx:id="ouro" editable="false" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="41.0" />
             <Label layoutX="17.0" layoutY="135.0" text="Atributos" />
-            <TextField editable="false" layoutX="66.0" layoutY="160.0" prefHeight="25.0" prefWidth="33.0" />
-            <TextField editable="false" layoutX="66.0" layoutY="197.0" prefHeight="25.0" prefWidth="33.0" />
-            <TextField editable="false" layoutX="66.0" layoutY="241.0" prefHeight="25.0" prefWidth="33.0" />
-            <TextField editable="false" layoutX="66.0" layoutY="285.0" prefHeight="25.0" prefWidth="33.0" />
+            <TextField fx:id="forca" editable="false" layoutX="66.0" layoutY="160.0" prefHeight="25.0" prefWidth="33.0" />
+            <TextField fx:id="agilidade" editable="false" layoutX="66.0" layoutY="197.0" prefHeight="25.0" prefWidth="33.0" />
+            <TextField fx:id="inteligencia" editable="false" layoutX="66.0" layoutY="241.0" prefHeight="25.0" prefWidth="33.0" />
+            <TextField fx:id="vontade" editable="false" layoutX="66.0" layoutY="285.0" prefHeight="25.0" prefWidth="33.0" />
             <Label layoutX="17.0" layoutY="164.0" text="Força" />
             <Label layoutX="5.0" layoutY="201.0" text="Agilidade" />
             <Label layoutX="1.0" layoutY="245.0" text="Inteligencia" />
             <Label layoutX="9.0" layoutY="289.0" text="Vontade" />
             <Label layoutX="242.0" layoutY="83.0" text="PV" />
-            <TextField editable="false" layoutX="268.0" layoutY="79.0" prefHeight="25.0" prefWidth="45.0" />
+            <TextField fx:id="vida" editable="false" layoutX="268.0" layoutY="79.0" prefHeight="25.0" prefWidth="45.0" />
             <Label layoutX="329.0" layoutY="83.0" text="PM" />
-            <TextField editable="false" layoutX="364.0" layoutY="79.0" prefHeight="25.0" prefWidth="45.0" />
+            <TextField fx:id="mana" editable="false" layoutX="364.0" layoutY="79.0" prefHeight="25.0" prefWidth="45.0" />
             <Label layoutX="205.0" layoutY="164.0" text="Vestimenta" />
             <Label layoutX="202.0" layoutY="201.0" text=" Mão Direita" />
             <Label layoutX="197.0" layoutY="245.0" text="Mão Esquerda" />
-            <TextField editable="false" layoutX="273.0" layoutY="160.0" />
-            <TextField editable="false" layoutX="273.0" layoutY="197.0" />
-            <TextField editable="false" layoutX="273.0" layoutY="241.0" />
+            <TextField fx:id="vestimenta" editable="false" layoutX="273.0" layoutY="160.0" />
+            <TextField fx:id="maoDireita" editable="false" layoutX="273.0" layoutY="197.0" />
+            <TextField fx:id="maoEsquerda" editable="false" layoutX="273.0" layoutY="241.0" />
             <Label layoutX="126.0" layoutY="289.0" text="Corrida" />
             <Label layoutX="265.0" layoutY="289.0" text="Deslocamento" />
-            <TextField editable="false" layoutX="183.0" layoutY="285.0" prefHeight="25.0" prefWidth="66.0" />
-            <TextField editable="false" layoutX="354.0" layoutY="285.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="corrida" editable="false" layoutX="183.0" layoutY="285.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="deslocamento" editable="false" layoutX="354.0" layoutY="285.0" prefHeight="25.0" prefWidth="66.0" />
             <Label layoutX="8.0" layoutY="335.0" text="Bloqueio" />
             <Label layoutX="63.0" layoutY="335.0" text="Esquiva" />
             <Label layoutX="108.0" layoutY="335.0" text="Determinação" />
             <Label layoutX="192.0" layoutY="335.0" text="Carga Basica" />
             <Label layoutX="268.0" layoutY="335.0" text="Carga Pesada" />
             <Label layoutX="349.0" layoutY="335.0" text="Carga Maxima" />
-            <TextField editable="false" layoutX="6.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField editable="false" layoutX="63.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField editable="false" layoutX="126.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField editable="false" layoutX="200.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField editable="false" layoutX="278.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <TextField editable="false" layoutX="361.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
-            <ListView layoutX="14.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
-            <ListView layoutX="234.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
+            <TextField fx:id="bloqueio" editable="false" layoutX="6.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="esquiva" editable="false" layoutX="63.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="determinacao" editable="false" layoutX="126.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="cargaBasica" editable="false" layoutX="200.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="cargaPesada" editable="false" layoutX="278.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="cargaMaxima" editable="false" layoutX="361.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
+            <ListView fx:id="listaHab" layoutX="14.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
+            <ListView fx:id="listaEquip" layoutX="234.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
          </children>
       </AnchorPane>
    </children>

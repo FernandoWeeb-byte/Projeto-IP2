@@ -529,12 +529,13 @@ public class ControllerCriacaoDeFicha {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
+    	person.setMaoDireita(maoDireita.getValue());
     	ArrayList<Habilidade> hab = new ArrayList<>();
     	hab.addAll((Collection<? extends Habilidade>) skilList.getSelectionModel().getSelectedItems());
     	person.setHabilidades(hab);
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
-    	//fachada.salvar(person);
+    	fachada.salvar(person);
     	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
     	Scene Tela_Inicial_Scene = new Scene(parent_voltar);
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());

@@ -331,6 +331,7 @@ public class Personagem implements Serializable{
 		this.determinacao += up;
 	}	
 	public static Personagem novoPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
+	public static Personagem visuPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
 	
 	//Construtor
 		public Personagem(String nomePersonagem, Raca raca, Classe classe, int nivel, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,

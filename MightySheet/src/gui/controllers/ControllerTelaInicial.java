@@ -43,7 +43,7 @@ public class ControllerTelaInicial {
 	    private Text textField;
 
 	    @FXML
-	    private TableView<Personagem> tabela;
+	    public TableView<Personagem> tabela;
 
 	    @FXML
 	    private TableColumn<Personagem, String> nomeTabela;
@@ -105,8 +105,9 @@ public class ControllerTelaInicial {
 	    void visualizar(ActionEvent event) throws IOException
 	    {
 	    	
-	    	Personagem.novoPerson = tabela.getSelectionModel().getSelectedItem();
 	    	
+	    	Personagem nPerson = tabela.getSelectionModel().getSelectedItem();
+	    	Personagem.visuPerson = nPerson;
 	    	Stage stage = new Stage();
 	    	FXMLLoader FxmlLoader = new FXMLLoader();
 	    	Parent visualizar_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/VisualizarPersonagem.fxml").openStream());
@@ -115,6 +116,7 @@ public class ControllerTelaInicial {
 	        stage.setTitle("Ficha");
 	        stage.setResizable(false);
 	        stage.showAndWait();
+	    	
 	    	
 	    }
 	    
