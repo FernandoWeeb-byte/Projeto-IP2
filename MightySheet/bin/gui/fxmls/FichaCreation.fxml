@@ -97,8 +97,8 @@
             <ListView fx:id="skilList" layoutX="33.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
             <Button fx:id="voltar" layoutX="575.0" layoutY="653.0" mnemonicParsing="false" onAction="#acaoBotao" text="Voltar" />
             <Button fx:id="salvar" layoutX="650.0" layoutY="653.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-            <TextField fx:id="pV" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="27.0" />
-            <TextField fx:id="pM" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="pV" editable="false" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="39.0" />
+            <TextField fx:id="pM" editable="false" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="39.0" />
             <ComboBox fx:id="raca" layoutX="31.0" layoutY="96.0" onAction="#selecionarRaca" prefWidth="150.0" />
             <ComboBox fx:id="classe" layoutX="473.0" layoutY="96.0" onAction="#selecionarClasse" prefWidth="150.0" />
             <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" prefWidth="150.0" />

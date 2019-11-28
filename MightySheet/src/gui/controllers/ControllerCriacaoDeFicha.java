@@ -3,6 +3,7 @@ package gui.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -23,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -165,8 +167,11 @@ public class ControllerCriacaoDeFicha {
     	person.setPtsAtributo(0);
     	person.setNivel((int)nivel.getValue());
     	person.calculoPtsAtributo(person.getNivel());
+    	person.calcularVida();
+    	person.calcularMana();
     	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
-    	
+    	pV.setText(String.format("%d", person.getVida()));
+    	pM.setText(String.format("%d", person.getMana()));
     	List<Habilidade> lista = null;
 		ObservableList obLista = null;
     	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
@@ -226,6 +231,7 @@ public class ControllerCriacaoDeFicha {
     	
     	obLista = FXCollections.observableArrayList(lista);
     	classe.setItems(obLista);
+    	skilList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
     
     void carregarRaca()
@@ -453,7 +459,9 @@ public class ControllerCriacaoDeFicha {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
-    	
+    	ArrayList<Habilidade> hab = new ArrayList<>();
+    	hab.addAll((Collection<? extends Habilidade>) skilList.getSelectionModel().getSelectedItems());
+    	person.setHabilidades(hab);
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
     	//fachada.salvar(person);

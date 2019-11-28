@@ -283,11 +283,14 @@ public class Personagem implements Serializable{
 		
 	}
 	
-	public void zerandoPersonagem()
+	public void calcularVida()
 	{
-		
+		this.vida = this.nivel*5 + 55;
 	}
-	
+	public void calcularMana()
+	{
+		this.mana = this.nivel*5 + 55;
+	}
 
 	//Métodos Extras (adicionadores de coisa)
 	public void levelUp(int up) {
