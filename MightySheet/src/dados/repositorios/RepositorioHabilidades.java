@@ -211,6 +211,17 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	}
 	
 	@Override
+	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	{
+		List<Habilidade> saida = new ArrayList<Habilidade>();
+		for(Habilidade hab: classe.getHabilidades().values())
+		{
+			saida.add(hab);
+		}
+		return saida;
+	}
+	
+	@Override
 	public List<Habilidade> listarHabilidadesPorRaca(String nome)
 	{
 		List<Habilidade> hRaca = new ArrayList<Habilidade>();
