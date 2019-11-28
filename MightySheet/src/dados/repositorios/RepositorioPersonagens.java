@@ -33,7 +33,12 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	///Contrutor
 	private RepositorioPersonagens()
 	{
+		if(carregarPersonagens() == null) {
+			fichas = new ArrayList<>();
+		}
+		else {
 		fichas = carregarPersonagens();
+		}
 	}
 
 	

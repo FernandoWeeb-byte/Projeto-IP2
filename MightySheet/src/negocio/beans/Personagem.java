@@ -330,27 +330,27 @@ public class Personagem implements Serializable{
 	public void dtrUp(int up) {
 		this.determinacao += up;
 	}	
-	public static Personagem novoPerson = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+	public static Personagem novoPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
 	
 	//Construtor
-		public Personagem(String nomePersonagem, String nomeJogador, Raca raca, Classe classe, int nivel, int experiencia, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
-				int inteligencia, int vontade, int vida, int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Protecao maoEsquerda,
+		public Personagem(String nomePersonagem, Raca raca, Classe classe, int nivel, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
+				int inteligencia, int vontade, int vida, int mana, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Protecao maoEsquerda,
 				ArrayList<Equipamento> equipamentos, int ouro) {
 			super();
+			
 			this.nomePersonagem = nomePersonagem;
-			this.nomeJogador = nomeJogador;
 			this.raca = raca;
 			this.classe = classe;
 			this.nivel = nivel;
-			this.experiencia = experiencia;
+			
 			this.forca = forca;
 			this.agilidade = agilidade;
 			this.inteligencia = inteligencia;
 			this.vontade = vontade;
 			this.vida = vida;
 			this.mana = mana;
-			this.pericias = pericias;
-			this.habilidadesAutomaticas = habilidadesAutomaticas;
+			
+			
 			this.habilidades = habilidades;
 			this.vestimenta = vestimenta;
 			this.maoDireita = maoDireita;

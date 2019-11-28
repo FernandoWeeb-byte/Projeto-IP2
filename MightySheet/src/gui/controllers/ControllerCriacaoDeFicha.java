@@ -149,7 +149,7 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private TextField ouro;
     
-    Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+    Personagem person = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
     Personagem novoPerson = Personagem.novoPerson;
     
 
