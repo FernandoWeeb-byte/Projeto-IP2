@@ -383,76 +383,26 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
 	{
 		List<Habilidade> saida = new ArrayList<Habilidade>();
-		String classesDeCada[] = null;
-		for(Map.Entry<String, Habilidade> entry: this.habilidadesPreExistentes.entrySet())
+		Map<String, Habilidade> agoraVai = new HashMap<String, Habilidade>();
+		agoraVai.putAll(classe.getHabilidades());
+		for(Map.Entry<String, Habilidade> entry : agoraVai.entrySet())
 		{
-			classesDeCada = entry.getValue().getClasses();
-			Habilidade valor = entry.getValue();
-			String req = entry.getValue().getRequisito();
 			if(level<5)
 			{
-				for(int i=0; i<classesDeCada.length; i++)
+				if(!entry.getValue().getRequisito().contains("Nível 5") && !entry.getValue().getRequisito().contains("Nível 10"))
 				{
-					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level < 10 && level >= 5)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 5") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level >=10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
+					saida.add(entry.getValue());
 				}
-				
-			}	
-		}
-		for(Map.Entry<String, Habilidade> entry: this.habilidadesCriadas.entrySet())
-		{
-			classesDeCada = entry.getValue().getClasses();
-			Habilidade valor = entry.getValue();
-			String req = entry.getValue().getRequisito();
-			if(level<5)
+			} else if(level < 10)
 			{
-				for(int i=0; i<classesDeCada.length; i++)
+				if( !entry.getValue().getRequisito().contains("Nível 10"))
 				{
-					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level < 10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level >=10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
+					saida.add(entry.getValue());
 				}
-				
-			}	
+			} else
+			{
+				saida.add(entry.getValue());
+			}
 		}
 		return saida;
 
