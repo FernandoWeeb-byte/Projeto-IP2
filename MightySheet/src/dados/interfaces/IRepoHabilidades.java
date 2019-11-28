@@ -17,7 +17,7 @@ public interface IRepoHabilidades {
 
 	List<Habilidade> listarTodasHabilidades();
 
-	List<Habilidade> listarHabilidadePorClasse(Classe classe);
+	List<Habilidade> listarHabilidadePorClasse(String nome);
 
 	List<Habilidade> listarHabilidadesPorRaca(String nome);
 

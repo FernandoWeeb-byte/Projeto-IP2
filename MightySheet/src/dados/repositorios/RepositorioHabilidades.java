@@ -187,13 +187,26 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	}
 	
 	@Override
-	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	public List<Habilidade> listarHabilidadePorClasse(String nome)
 	{
 		List<Habilidade> hClasse = new ArrayList<Habilidade>();
-		for(Habilidade hab : classe.getHabilidades().values())
+		
+		for(Habilidade hab : habilidadesPreExistentes.values())
 		{
-			hClasse.add(hab);
+			if(hab.containsClasse(nome))
+			{
+				hClasse.add(hab);
+			}
 		}
+		
+		for(Habilidade hab : habilidadesCriadas.values())
+		{
+			if(hab.containsClasse(nome))
+			{
+				hClasse.add(hab);
+			}
+		}
+		
 		return hClasse;
 	}
 	
