@@ -2,6 +2,7 @@ package dados.repositorios;
 
 import negocio.beans.Classe;
 import negocio.beans.Habilidade;
+import negocio.beans.Raca;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -243,6 +244,17 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		}
 		
 		return hRaca;
+	}
+	
+	@Override
+	public List<Habilidade> listarHabilidadesPorRaca(Raca raca)
+	{
+		List<Habilidade> saida = new ArrayList<Habilidade>();
+		for(Habilidade hab: raca.getHabilidades().values())
+		{
+			saida.add(hab);
+		}
+		return saida;
 	}
 	
 	@Override
