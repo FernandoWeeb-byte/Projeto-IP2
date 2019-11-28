@@ -121,6 +121,19 @@ public class ControllerTelaInicial {
 	    }
 	    
 	    @FXML
+	    void editarPersonagem(ActionEvent event) throws IOException {
+	    	Personagem nPerson = tabela.getSelectionModel().getSelectedItem();
+	    	Personagem.visuPerson = nPerson;
+	    	fachada.removerFicha(tabela.getSelectionModel().getSelectedItem().getNomePersonagem());
+	    	tabela.getSelectionModel().clearSelection();
+	    	Parent Editar_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/EditarFicha.fxml"));
+	    	Scene Editar_Scene = new Scene(Editar_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Editar_Scene);
+	    	appStage.show();
+	    }
+	    
+	    @FXML
 	    void criarClasse(ActionEvent event) throws IOException {
 	    	Parent Criar_Classe_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarClasse.fxml"));
 	    	Scene Criar_Classe_Scene = new Scene(Criar_Classe_parent);

@@ -92,6 +92,9 @@ public class ControllerCriarItem {
 	
 	 @FXML
 	 void salvarItem(ActionEvent event) throws IOException {
+		 item.setNome(textNome.getText());
+		 item.setCusto(Integer.parseInt(textCusto.getText()));
+		 
 		 fachada.adicionarEquipamento(item);
 		 fachada.salvarEquipamentos();
 		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
@@ -99,6 +102,7 @@ public class ControllerCriarItem {
 		 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 		 appStage.setScene(Criacao_Item_Scene);
 		 appStage.show();
+		 fachada.salvarTodosRepositórios();
 	 }
 	
     @FXML

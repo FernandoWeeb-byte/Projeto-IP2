@@ -333,8 +333,8 @@ public class ControllerCriacaoDeFicha {
     	
     	List<Habilidade> lista = null;
     	if(nivel.getValue() == null) {
-    	//lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 1);
-    		lista = fachada.listarTodasHabilidades();
+    	lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 1);
+    		//lista = fachada.listarTodasHabilidades();
     	}
     	else {
     		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
