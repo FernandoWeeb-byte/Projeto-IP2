@@ -133,6 +133,11 @@ public class Fachada {
 	{
 		return controlHab.listarHabilidadePorClasse(classe);
 	}
+	
+	public List<Habilidade> listarHabilidadesPorRaca(Raca raca)
+	{
+		return controlHab.listarHabilidadesPorRaca(raca);
+	}
 
 	/// Metodos delegate <ControladorRacas>
 	public boolean adicionarRaca(Raca raca) {

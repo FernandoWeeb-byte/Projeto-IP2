@@ -439,6 +439,7 @@ public class ControllerCriacaoDeFicha {
     
     void carregarItens()
     {
+    	
     	List<Equipamento> lista = person.getEquipamentos();
     	ObservableList obLista;
     	obLista = FXCollections.observableArrayList(lista);
