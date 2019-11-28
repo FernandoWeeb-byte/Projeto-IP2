@@ -2,7 +2,7 @@ package negocio.beans;
 
 import java.io.Serializable;
 
-public class Habilidade implements Serializable{
+public class Habilidade implements Serializable {
 	
 	/// Atributos
 	private String nome;
@@ -130,7 +130,7 @@ public class Habilidade implements Serializable{
 		return this.classes;
 	}
 	public void setClasses(String classes) {
-		for(int i=0;i<this.classes.length;i++)
+		for(int i = 0; i < this.classes.length; i++)
 		{
 			if(this.classes[i] == null)
 			{
@@ -142,8 +142,14 @@ public class Habilidade implements Serializable{
 	public String[] getRacas() {
 		return this.racas;
 	}
-	public void setRacas(String[] racas) {
-		this.racas = racas;
+	public void setRacas(String racas) {
+		for(int i = 0; i < this.racas.length; i++)
+		{
+			if(this.racas[i] == null)
+			{
+				this.racas[i] = racas;
+			}
+		}
 	}
 
 	public String getTipo() {

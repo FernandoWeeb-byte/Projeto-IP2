@@ -119,6 +119,24 @@ public class ControllerTelaInicial {
 	    	
 	    }
 	    
+	    @FXML
+	    void criarItem(ActionEvent event) throws IOException {
+	    	Parent Criar_Item_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarItem.fxml"));
+	    	Scene Criar_Item_Scene = new Scene(Criar_Item_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Item_Scene);
+	    	appStage.show();
+	    }
+	    
+	    @FXML
+	    void criarHabilidade(ActionEvent event) throws IOException {
+	    	Parent Criar_Habilidade_parent = FXMLLoader.load(getClass().getResource("/gui/fxmls/CriarHabilidade.fxml"));
+	    	Scene Criar_Habilidade_Scene = new Scene(Criar_Habilidade_parent);
+	    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	    	appStage.setScene(Criar_Habilidade_Scene);
+	    	appStage.show();
+	    }
+	    
 
 	    @FXML
 	    void initialize() {
