@@ -177,8 +177,6 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 
 			// Le um objeto do arquivo
 			ret = (List<Personagem>)ois.readObject();
-			 
-			
 
 			ois.close();
 			fis.close();
@@ -205,7 +203,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 
 			// Escreve o objeto no arquivo
 			oos.writeObject(this.fichas);
-			oos.flush();
+			//oos.flush();
 
 			oos.close();
 			fos.close();
