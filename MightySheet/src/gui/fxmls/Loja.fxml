@@ -14,12 +14,11 @@
    <children>
       <AnchorPane layoutX="-7.0" layoutY="-6.0" prefHeight="551.0" prefWidth="656.0">
          <children>
-            <TableView fx:id="tabela" layoutX="7.0" onSort="#mostraDescricao" prefHeight="551.0" prefWidth="399.0">
+            <TableView fx:id="tabela" layoutX="7.0" onSort="#mostraDescricao" prefHeight="551.0" prefWidth="297.0">
               <columns>
                 <TableColumn fx:id="nome" prefWidth="128.0" text="Nome" />
                 <TableColumn fx:id="ouro" prefWidth="72.0" text="Ouro" />
                   <TableColumn fx:id="tipo" prefWidth="89.0" text="Tipo" />
-                  <TableColumn fx:id="compra" prefWidth="84.0" text="Comprar" />
               </columns>
             </TableView>
             <TextArea fx:id="descricao" editable="false" layoutX="410.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
@@ -38,6 +37,8 @@
             <RadioButton layoutX="519.0" layoutY="234.0" mnemonicParsing="false" onAction="#equipamentos" text="Equipamentos" toggleGroup="$grupo" />
             <RadioButton layoutX="421.0" layoutY="264.0" mnemonicParsing="false" onAction="#armas" text="Armas" toggleGroup="$grupo" />
             <RadioButton layoutX="517.0" layoutY="264.0" mnemonicParsing="false" onAction="#itensConjuracao" text="Itens de Conjuração" toggleGroup="$grupo" />
+            <Button fx:id="visualizar" layoutX="304.0" layoutY="34.0" mnemonicParsing="false" onAction="#visualizarEquip" text="Visualizar" />
+            <Button fx:id="comprar" layoutX="304.0" layoutY="66.0" mnemonicParsing="false" onAction="#acao" text="Comprar" />
          </children>
       </AnchorPane>
    </children>

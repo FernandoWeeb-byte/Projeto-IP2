@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerCriarHabilidade">
    <children>
       <Button layoutX="58.0" layoutY="381.0" mnemonicParsing="false" onAction="#cancelarHabilidade" prefHeight="45.0" prefWidth="156.0" text="Cancelar" />
@@ -26,8 +25,8 @@
       <Label layoutX="14.0" layoutY="18.0" text="Nome" />
       <Label layoutX="237.0" layoutY="18.0" text="Mana" />
       <Label layoutX="450.0" layoutY="18.0" text="Dificuldade" />
-      <TextField fx:id="textRacas" layoutX="62.0" layoutY="189.0" onAction="#setTextRacas" prefHeight="25.0" prefWidth="280.0" />
-      <TextField fx:id="textClasses" layoutX="396.0" layoutY="188.0" onAction="#setTextClasses" prefHeight="25.0" prefWidth="286.0" />
       <Label layoutX="17.0" layoutY="66.0" text="Requisitos" />
+      <ComboBox fx:id="racas" layoutX="75.0" layoutY="188.0" prefWidth="150.0" />
+      <ComboBox fx:id="classes" layoutX="405.0" layoutY="188.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

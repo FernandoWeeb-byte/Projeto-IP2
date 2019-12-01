@@ -85,7 +85,7 @@ public class ControllerTelaInicial {
 	    void tabela()
 	    {
 	    	
-	    	//lista.carregarPersonagens();
+	    	
 	    	
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(fachada.todas());
@@ -153,9 +153,10 @@ public class ControllerTelaInicial {
 	    
 	    @FXML
 	    void remover(ActionEvent event) throws IOException {
-	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
-	    	lista.removerFicha(tabela.getSelectionModel().getSelectedItem());
+	    	
+	    	fachada.removerFicha(tabela.getSelectionModel().getSelectedItem().getNomePersonagem());
 	    	tabela.getSelectionModel().clearSelection();
+	    	fachada.salvarTodosRepositórios();
 	    	tabela();
 	    	
 	    }

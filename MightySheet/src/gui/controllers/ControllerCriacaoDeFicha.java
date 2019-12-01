@@ -120,10 +120,10 @@ public class ControllerCriacaoDeFicha {
     private TextField corrida;
     
     @FXML
-    private ListView<?> skilList;
+    private ListView<Habilidade> skilList;
     
     @FXML
-    private ListView<?> skillListC;
+    private ListView<Equipamento> skillListC;
 
     @FXML
     private Button voltar;
@@ -176,7 +176,7 @@ public class ControllerCriacaoDeFicha {
     	pV.setText(String.format("%d", person.getVida()));
     	pM.setText(String.format("%d", person.getMana()));
     	deslocamento.setText(String.format("%d", person.getDeslocamento()));
-    	List<Habilidade> lista = null;
+    	/*List<Habilidade> lista = null;
 		ObservableList obLista = null;
     	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
         	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
@@ -197,7 +197,7 @@ public class ControllerCriacaoDeFicha {
     		
     	}
     	obLista = FXCollections.observableArrayList(lista);
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	person.setQuantHabilidades();
     	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
@@ -216,6 +216,34 @@ public class ControllerCriacaoDeFicha {
     	vontade.setText(str[3]);
     	person.setVontade(Integer.parseInt(vontade.getText()));
     	}
+    }
+    
+    @FXML
+    void escolherH(ActionEvent event) throws IOException {
+
+    	if(!(classe.getValue() == null && raca.getValue() == null && nivel.getValue() == null)) {
+    	novoPerson.setClasse(classe.getValue());
+    	novoPerson.setRaca(raca.getValue());
+    	novoPerson.setNivel(nivel.getValue());
+    	
+    	Stage stage = new Stage();
+    	FXMLLoader FxmlLoader = new FXMLLoader();
+    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
+    	Scene loja_Scene = new Scene(loja_parent);
+        stage.setScene(loja_Scene);
+        stage.setTitle("Loja");
+        stage.setResizable(false);
+        stage.showAndWait();
+    	}
+    	else {
+    		erro.setText("selecione a classe, a raça e o nivel");
+    	}
+    }
+    
+    @FXML
+    void removerH(ActionEvent event) {
+    	skilList.getItems().remove(skilList.getSelectionModel().getSelectedItem());
+    	
     }
     
     void carregarNiveis()
@@ -251,6 +279,16 @@ public class ControllerCriacaoDeFicha {
     }
     
     @FXML
+    void carregarH(ActionEvent event) {
+    	ObservableList obLista;
+    	List<Habilidade> lista = novoPerson.getHabilidades();
+    	person.setHabilidades(novoPerson.getHabilidades());
+    	novoPerson.setHabilidades(null);
+    	obLista = FXCollections.observableArrayList(lista);
+    	skilList.getItems().addAll(obLista);
+    }
+    
+    @FXML
     void selecionarRaca(ActionEvent event) {
     	// setar atributos
     	String str[] = {null, null, null, null};
@@ -277,7 +315,7 @@ public class ControllerCriacaoDeFicha {
     	
     	
     	//Mostrar as habilidades da raça na lista
-    	ObservableList obLista = null;
+    	/*ObservableList obLista = null;
     	if(!(person.getRaca() == null)) {
     		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca()));
     		skilList.getItems().removeAll(obLista2);
@@ -285,7 +323,7 @@ public class ControllerCriacaoDeFicha {
     	List<Habilidade> lista = null;
     	lista = fachada.listarHabilidadesPorRaca(raca.getValue());
     	obLista = FXCollections.observableArrayList(lista);
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	//seta a raça e atributos
     	
@@ -325,7 +363,7 @@ public class ControllerCriacaoDeFicha {
     	
     	
     	// mostrar as habilidades de classe na lista
-    	ObservableList obLista = null;
+    	/*ObservableList obLista = null;
     	if(!(person.getClasse() == null)) {
     	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
     	skilList.getItems().removeAll(obLista2);
@@ -350,7 +388,7 @@ public class ControllerCriacaoDeFicha {
     	
     	obLista = FXCollections.observableArrayList(lista);
     	
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	//seta a classe e atributos
     	
@@ -448,6 +486,8 @@ public class ControllerCriacaoDeFicha {
     	List<Equipamento> lista = novoPerson.getEquipamentos();
     	person.setEquipamentos(novoPerson.getEquipamentos());
     	novoPerson.setEquipamentos(null);
+    	person.setOuro(novoPerson.getOuro());
+    	ouro.setText(String.format("%d", person.getOuro()));
     	obLista = FXCollections.observableArrayList(lista);
     	skillListC.getItems().addAll(obLista);
     	carregarItens();
@@ -485,6 +525,7 @@ public class ControllerCriacaoDeFicha {
     		if(equip.getClass().equals(Arma.class))
     		{
     			armas.add((Arma) equip);
+    			
     		}
     	}
     	
@@ -523,6 +564,14 @@ public class ControllerCriacaoDeFicha {
     	esquiva.setText(String.format("%d", person.getEsquiva()));
     }
     
+    @FXML
+    void vender(ActionEvent event) {
+    	skillListC.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+    	person.setOuro(person.getOuro()+skillListC.getSelectionModel().getSelectedItem().getCusto());
+    	ouro.setText(String.format("%d", person.getOuro()));
+    	
+    }
+    
     
     @FXML
     void salvar(ActionEvent event) throws IOException {
@@ -531,7 +580,9 @@ public class ControllerCriacaoDeFicha {
     	person.setMana(Integer.parseInt(pM.getText()));
     	person.setMaoDireita(maoDireita.getValue());
     	ArrayList<Habilidade> hab = new ArrayList<>();
-    	hab.addAll((Collection<? extends Habilidade>) skilList.getSelectionModel().getSelectedItems());
+    	ArrayList<Equipamento> equip = new ArrayList<>();
+    	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
+    	equip.addAll(skillListC.getItems());
     	person.setHabilidades(hab);
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);

@@ -18,8 +18,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import negocio.Fachada;
 import negocio.beans.Arma;
+import negocio.beans.Classe;
 import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
+import negocio.beans.Raca;
 
 public class ControllerCriarHabilidade {
 	Fachada fachada = Fachada.getInstance();
@@ -46,10 +48,10 @@ public class ControllerCriarHabilidade {
     private ComboBox<?> comboTipo;
 
     @FXML
-    private TextField textRacas;
+    private ComboBox<Raca> racas;
 
     @FXML
-    private TextField textClasses;
+    private ComboBox<Classe> classes;
     
     Habilidade hab = new Habilidade("", "", "", "", 0, 0, null, null, "");
 
@@ -64,13 +66,15 @@ public class ControllerCriarHabilidade {
 
     @FXML
 	 void salvarHabilidade(ActionEvent event) throws IOException {
-    	hab.setClasses(textClasses.getText());
+    	//hab.setClasses(classes.getValue().getNome());
 		hab.setNome(textNome.getText());
 		hab.setDescricao(textDescricao.getText());
-		hab.setDificuldade(Integer.parseInt(textDificuldade.getText()));
+		//hab.setDificuldade(Integer.parseInt(textDificuldade.getText()));
 		hab.setMana(Integer.parseInt(textMana.getText()));
-		hab.setRacas(textRacas.getText());
+		//hab.setRacas(racas.getValue().getNome());
 		hab.setRequisito(textRequisitos.getText());
+		racas.getValue().getHabilidades().put(textNome.getText(), hab);
+		classes.getValue().getHabilidades().put(textNome.getText(), hab);
     	
     	fachada.adicionarHabilidade(hab);
 		 fachada.salvarHabilidades();
@@ -113,6 +117,25 @@ public class ControllerCriarHabilidade {
     	comboTipo.setItems(obLista);
     }
     
+    void carregarClasses()
+    {
+    	List<Classe> lista = new ArrayList<>();
+    	lista.addAll(fachada.listarTodasClasses());
+    	ObservableList obLista = FXCollections.observableArrayList(lista);
+    	classes.getItems().addAll(obLista);
+    }
+    
+    void carregarRacas()
+    {
+    	List<Raca> lista = new ArrayList<>();
+    	lista.addAll(fachada.listarTodasRacas());
+    	ObservableList obLista = FXCollections.observableArrayList(lista);
+    	racas.getItems().addAll(obLista);
+    			
+    		
+    			
+    }
+    
     @FXML
     void selectTipo(ActionEvent event) {
     	hab.setTipo((String) comboTipo.getSelectionModel().getSelectedItem());
@@ -124,10 +147,6 @@ public class ControllerCriarHabilidade {
     	}
     }
 
-    @FXML
-    void setTextClasses(ActionEvent event) {
-    	hab.setClasses(textClasses.getText());
-    }
 
     @FXML
     void setTextDescricao(ActionEvent event) {
@@ -149,10 +168,6 @@ public class ControllerCriarHabilidade {
     	hab.setNome(textNome.getText());
     }
 
-    @FXML
-    void setTextRacas(ActionEvent event) {
-    	hab.setRacas(textRacas.getText());
-    }
 
     @FXML
     void setTextRequisitos(ActionEvent event) {
@@ -163,6 +178,8 @@ public class ControllerCriarHabilidade {
     void initialize() {
     	carregarCategorias();
     	carregarTipos();
+    	carregarClasses();
+    	carregarRacas();
     }
 
 }

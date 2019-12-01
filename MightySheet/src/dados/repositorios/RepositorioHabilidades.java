@@ -345,13 +345,14 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			
 			FileInputStream fis = new FileInputStream(f);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-
+			
 			try
 			{
 				if((ret = (Map<String, Habilidade>)ois.readObject()) == null)
 				{
 					ret = new HashMap<String, Habilidade>();
 				}
+				
 			}
 			catch(ClassNotFoundException e)
 			{

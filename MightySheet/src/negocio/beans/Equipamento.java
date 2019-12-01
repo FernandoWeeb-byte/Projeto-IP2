@@ -13,7 +13,7 @@ public class Equipamento implements Serializable {
 	private double peso;
 	private String descricao;
 	private boolean canalizador;
-	private Button button;
+	
 	
 	
 	/// Construtor
@@ -26,7 +26,7 @@ public class Equipamento implements Serializable {
 		this.peso = peso;
 		this.descricao = descricao;
 		this.canalizador = canalizador;
-		this.button = new Button("Comprar");
+		
 	}
 	
 
@@ -100,11 +100,5 @@ public class Equipamento implements Serializable {
 		this.canalizador = canalizador;
 	}
 	
-	public Button getButton() {
-		return button;
-	}
-
-	public void setButton(Button button) {
-		this.button = button;
-	}
+	
 }

@@ -137,7 +137,12 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista1 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista1.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 10));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 10))
+    		{
+    			if(!(lista1.contains(hab))) {
+    				lista1.add(hab);
+    			}
+    		}
     	}
     	obLista1 = FXCollections.observableArrayList(lista1);
     	habFinal.getItems().addAll(obLista1);
@@ -147,7 +152,12 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista2 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista2.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 1));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 1))
+    		{	
+    			if(!lista2.contains(hab)) {
+    				lista2.add(hab);
+    			} 
+    		}
     	}
     	obLista2 = FXCollections.observableArrayList(lista2);
     	listHabBasicas.getItems().addAll(obLista2);
@@ -158,7 +168,13 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista3 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista3.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 5));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 5))
+    		{
+    			if(!(lista3.contains(hab))) {
+    				lista3.add(hab);
+    			}
+    		}
+    		
     	}
     	obLista3 = FXCollections.observableArrayList(lista3);
     	listHabAvancadas.getItems().addAll(obLista3);

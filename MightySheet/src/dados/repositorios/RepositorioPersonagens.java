@@ -174,7 +174,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	private List<Personagem> carregarPersonagens() {
 		List<Personagem> ret = null;
 		try {
-			File f = new File("Personagem.arq");
+			File f = new File("Personagem.rep");
 			
 			if(!f.exists())
 			{
@@ -182,7 +182,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 				ret = new ArrayList<Personagem>();
 			}
 			
-			FileInputStream fis = new FileInputStream("Personagem.arq");
+			FileInputStream fis = new FileInputStream("Personagem.rep");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			// Le um objeto do arquivo
@@ -208,7 +208,7 @@ public class RepositorioPersonagens implements IRepoPersonagens {
 	public boolean guardar()
 	{
 		try {
-			FileOutputStream fos = new FileOutputStream("Personagem.arq");
+			FileOutputStream fos = new FileOutputStream("Personagem.rep");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
 			// Escreve o objeto no arquivo

@@ -142,6 +142,8 @@ public class ControllerEditarFicha {
 	    
 	    Personagem person = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
 	    Personagem novoPerson = Personagem.visuPerson;
+	    Personagem lojaPerson = Personagem.novoPerson;
+	     
 	    
 
 	    
@@ -262,6 +264,7 @@ public class ControllerEditarFicha {
 	    	person.setEquipamentos(novoPerson.getEquipamentos());
 	    	skilList.setItems(obLista);
 	    	skillListC.setItems(obLista2);
+	    	person = novoPerson;
 	    }
 	    
 	    @FXML
@@ -302,7 +305,7 @@ public class ControllerEditarFicha {
 	    
 	    @FXML
 	    void Loja(ActionEvent event) throws IOException {
-	    	novoPerson.setOuro(Integer.parseInt(ouro.getText()));
+	    	lojaPerson.setOuro(Integer.parseInt(ouro.getText()));
 	    	
 	    	Stage stage = new Stage();
 	    	FXMLLoader FxmlLoader = new FXMLLoader();
@@ -319,9 +322,9 @@ public class ControllerEditarFicha {
 	    @FXML
 	    void entrega(ActionEvent event) {
 	    	ObservableList obLista;
-	    	List<Equipamento> lista = novoPerson.getEquipamentos();
-	    	person.setEquipamentos(novoPerson.getEquipamentos());
-	    	novoPerson.setEquipamentos(null);
+	    	person.setEquipamentos(lojaPerson.getEquipamentos());
+	    	List<Equipamento> lista = person.getEquipamentos();
+	    	lojaPerson.setEquipamentos(null);
 	    	obLista = FXCollections.observableArrayList(lista);
 	    	skillListC.getItems().addAll(obLista);
 	    	carregarItens();
@@ -407,7 +410,7 @@ public class ControllerEditarFicha {
 	    	person.setMana(Integer.parseInt(pM.getText()));
 	    	person.setMaoDireita(maoDireita.getValue());
 	    	ArrayList<Habilidade> hab = new ArrayList<>();
-	    	hab.addAll((Collection<? extends Habilidade>) skilList.getSelectionModel().getSelectedItems());
+	    	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
 	    	person.setHabilidades(hab);
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	lista.AdicionarFicha(person);

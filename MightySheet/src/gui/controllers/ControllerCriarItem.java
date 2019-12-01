@@ -79,7 +79,9 @@ public class ControllerCriarItem {
     @FXML
     private ComboBox<?> tipoDistancia;
 
-	Equipamento item = new Equipamento("", 0, 0, 0, "", true);
+	Equipamento item = new Equipamento("", 0, 0, 0, "", false);
+	Arma arma = new Arma(null, 0, 0, 0, null, false, 0, null, null, false, false);
+	Protecao prot = new Protecao(null, 0, 0, 0, null, false, 0, 0, false, false, false);
     
 	@FXML
     void cancelarItem(ActionEvent event) throws IOException {
@@ -92,21 +94,83 @@ public class ControllerCriarItem {
 	
 	 @FXML
 	 void salvarItem(ActionEvent event) throws IOException {
-		 item.setNome(textNome.getText());
-		 item.setCusto(Integer.parseInt(textCusto.getText()));
 		 
-		 fachada.adicionarEquipamento(item);
-		 fachada.salvarEquipamentos();
-		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
-		 Scene Criacao_Item_Scene = new Scene(parent_voltar);
-		 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		 appStage.setScene(Criacao_Item_Scene);
-		 appStage.show();
-		 fachada.salvarTodosRepositórios();
+		 if((String) tipoItem.getSelectionModel().getSelectedItem() == "Arma") {
+			 arma.setNome(textNome.getText());
+			 arma.setCusto(Integer.parseInt(textCusto.getText()));
+			 arma.setDescricao(textDescricao.getText());
+			 arma.setfN(Integer.parseInt(textFN.getText()));
+			 arma.setNome(textNome.getText());
+			 arma.setPeso(Double.parseDouble(textPeso.getText()));
+			 arma.setCusto(Integer.parseInt(textCusto.getText()));
+			 arma.setDano(Integer.parseInt(textDano.getText()));
+			 checkIsCarregar();
+			 checkIsDuasMaos();
+			 checkIsRigida();
+			 fachada.adicionarEquipamento(arma);
+			 fachada.salvarEquipamentos();
+			 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+			 Scene Criacao_Item_Scene = new Scene(parent_voltar);
+			 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+			 appStage.setScene(Criacao_Item_Scene);
+			 appStage.show();
+			 fachada.salvarTodosRepositórios();
+			 	
+			 	
+	    	}
+	    	else if ((String) tipoItem.getSelectionModel().getSelectedItem() == "Protecao") {
+	    	prot.setNome(textNome.getText());
+	   		 prot.setCusto(Integer.parseInt(textCusto.getText()));
+	   		 prot.setDescricao(textDescricao.getText());
+			 prot.setfN(Integer.parseInt(textFN.getText()));
+			 prot.setNome(textNome.getText());
+			 prot.setPeso(Double.parseDouble(textPeso.getText()));
+			 prot.setCusto(Integer.parseInt(textCusto.getText()));
+			 checkIsEscudo();
+			 checkIsPesada();
+			 if(checkEscudo.isSelected() == true) {
+		    		prot.setBloqueio(Integer.parseInt(textDefesa.getText()));
+		    		prot.setEsquiva(0);
+		    	}
+		    	else {
+		    		prot.setBloqueio(Integer.parseInt(textDefesa.getText()));
+		    		prot.setEsquiva(Integer.parseInt(textDefesa.getText()));
+		    	}
+	   		 fachada.adicionarEquipamento(item);
+	   		 fachada.salvarEquipamentos();
+	   		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+	   		 Scene Criacao_Item_Scene = new Scene(parent_voltar);
+	   		 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	   		 appStage.setScene(Criacao_Item_Scene);
+	   		 appStage.show();
+	   		 fachada.salvarTodosRepositórios();
+	    	}
+	    	else {
+	    	item.setNome(textNome.getText());
+	   		 item.setCusto(Integer.parseInt(textCusto.getText()));
+	   		 item.setDescricao(textDescricao.getText());
+			 item.setfN(Integer.parseInt(textFN.getText()));
+			 item.setNome(textNome.getText());
+			 item.setPeso(Double.parseDouble(textPeso.getText()));
+			 item.setCusto(Integer.parseInt(textCusto.getText()));
+			 checkIsCanalizador();
+	   		 fachada.adicionarEquipamento(item);
+	   		 fachada.salvarEquipamentos();
+	   		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
+	   		 Scene Criacao_Item_Scene = new Scene(parent_voltar);
+	   		 Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+	   		 appStage.setScene(Criacao_Item_Scene);
+	   		 appStage.show();
+	   		 fachada.salvarTodosRepositórios();
+	    	}
+		 
+		 
+		 
+		 
 	 }
 	
-    @FXML
-    void checkIsCanalizador(ActionEvent event) {
+    
+    void checkIsCanalizador() {
     	if(checkCanalizador.isSelected() == true) {
     		item.setCanalizador(true);
     	}
@@ -115,53 +179,53 @@ public class ControllerCriarItem {
     	}
     }
 
-    @FXML
-    void checkIsCarregar(ActionEvent event) {
+    
+    void checkIsCarregar() {
     	if(checkCarregar.isSelected() == true) {
-    		((Arma) item).setCarregar(true);
+    		arma.setCarregar(true);
     	}
     	else {
-    		((Arma) item).setCarregar(false);
+    		arma.setCarregar(false);
     	}
     }
 
-    @FXML
-    void checkIsDuasMaos(ActionEvent event) {
+    
+    void checkIsDuasMaos() {
     	if(checkDuasMaos.isSelected() == true) {
-    		((Arma) item).setDuasMaos(true);
+    		arma.setDuasMaos(true);
     	}
     	else {
-    		((Arma) item).setDuasMaos(false);
+    		arma.setDuasMaos(false);
     	}
     }
 
-    @FXML
-    void checkIsEscudo(ActionEvent event) {
+    
+    void checkIsEscudo() {
     	if(checkEscudo.isSelected() == true) {
-    		((Protecao) item).setEscudo(true);
+    		prot.setEscudo(true);
     	}
     	else {
-    		((Protecao) item).setEscudo(false);
+    		prot.setEscudo(false);
     	}
     }
 
-    @FXML
-    void checkIsPesada(ActionEvent event) {
+    
+    void checkIsPesada() {
     	if(checkPesada.isSelected() == true) {
-    		((Protecao) item).setPesada(true);
+    		prot.setPesada(true);
     	}
     	else {
-    		((Protecao) item).setPesada(false);
+    		prot.setPesada(false);
     	}
     }
 
-    @FXML
-    void checkIsRigida(ActionEvent event) {
+    
+    void checkIsRigida() {
     	if(checkRigida.isSelected() == true) {
-    		((Protecao) item).setRigida(true);
+    		prot.setRigida(true);
     	}
     	else {
-    		((Protecao) item).setRigida(false);
+    		prot.setRigida(false);
     	}
     }
     
@@ -178,7 +242,7 @@ public class ControllerCriarItem {
     
     @FXML
     void selectDano(ActionEvent event) {
-    	((Arma) item).setTipoDano((String) tipoDano.getSelectionModel().getSelectedItem());
+    	arma.setTipoDano((String) tipoDano.getSelectionModel().getSelectedItem());
     }
     
     void carregarDistancias() {
@@ -194,7 +258,7 @@ public class ControllerCriarItem {
     
     @FXML
     void selectDistancia(ActionEvent event) {
-    	((Arma) item).setDistancia((String) tipoDistancia.getSelectionModel().getSelectedItem());
+    	arma.setDistancia((String) tipoDistancia.getSelectionModel().getSelectedItem());
     }
     
     void carregarItens() {
@@ -221,6 +285,8 @@ public class ControllerCriarItem {
 		 	tipoDistancia.setDisable(false);
 		 	
 		 	
+		 	
+		 	
     	}
     	else if ((String) tipoItem.getSelectionModel().getSelectedItem() == "Protecao") {
     		checkCarregar.setDisable(true);
@@ -233,6 +299,7 @@ public class ControllerCriarItem {
 		 	textDano.setDisable(true);
 		 	tipoDano.setDisable(true);
 		 	tipoDistancia.setDisable(true);
+		 	
     	}
     	else {
     		checkCarregar.setDisable(true);
@@ -248,47 +315,6 @@ public class ControllerCriarItem {
     	}
     }
 
-    @FXML
-    void setTextCusto(ActionEvent event) {
-    	item.setCusto(Integer.parseInt(textCusto.getText()));
-    }
-
-    @FXML
-    void setTextDano(ActionEvent event) {
-        ((Arma)item).setDano(Integer.parseInt(textDano.getText()));
-    }
-
-    @FXML
-    void setTextDefesa(ActionEvent event) {
-    	if(checkEscudo.isSelected() == true) {
-    		((Protecao)item).setBloqueio(Integer.parseInt(textDefesa.getText()));
-    		((Protecao)item).setEsquiva(0);
-    	}
-    	else {
-    		((Protecao)item).setBloqueio(Integer.parseInt(textDefesa.getText()));
-    		((Protecao)item).setEsquiva(Integer.parseInt(textDefesa.getText()));
-    	}
-    }
-
-    @FXML
-    void setTextDescricao(ActionEvent event) {
-    	item.setDescricao(textDescricao.getText());
-    }
-
-    @FXML
-    void setTextFN(ActionEvent event) {
-    	item.setfN(Integer.parseInt(textFN.getText()));
-    }
-
-    @FXML
-    void setTextNome(ActionEvent event) {
-    	item.setNome(textNome.getText());
-    }
-
-    @FXML
-    void setTextPeso(ActionEvent event) {
-    	item.setPeso(Double.parseDouble(textPeso.getText()));
-    }
     
     @FXML
     void initialize() {
