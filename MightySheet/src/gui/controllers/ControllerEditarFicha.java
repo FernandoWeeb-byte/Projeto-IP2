@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 import dados.interfaces.IRepoPersonagens;
 import dados.repositorios.RepositorioPersonagens;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -195,7 +197,7 @@ public class ControllerEditarFicha {
 	    	lojaPerson.setClasse(novoPerson.getClasse());
 	    	lojaPerson.setRaca(novoPerson.getRaca());
 	    	lojaPerson.setNivel(nivel.getValue());
-	    	
+	    	lojaPerson.setHabilidades(novoPerson.getHabilidades());
 	    	Stage stage = new Stage();
 	    	FXMLLoader FxmlLoader = new FXMLLoader();
 	    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
@@ -258,6 +260,7 @@ public class ControllerEditarFicha {
 	    	nome.setText(novoPerson.getNomePersonagem());
 	    	raca.setText(novoPerson.getRaca().getNome());
 	    	classe.setText(novoPerson.getClasse().getNome());
+	    	nivel.setValue(novoPerson.getNivel());
 	    	ouro.setText(String.format("%d", novoPerson.getOuro()));
 	    	forca.setText(String.format("%d", novoPerson.getForca()));
 	    	agilidade.setText(String.format("%d", novoPerson.getAgilidade()));
@@ -290,6 +293,7 @@ public class ControllerEditarFicha {
 	    		person.setPtsAtributo(person.getPtsAtributo()-1);
 	    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
 	    		forca.setText(String.format("%d",person.getForca()));
+	    		calcularValores();
 	    	}
 	    	if(adcAgilidade.isArmed())
 	    	{
@@ -298,6 +302,7 @@ public class ControllerEditarFicha {
 	    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
 	    		agilidade.setText(String.format("%d",person.getAgilidade()));
 	    		person.setDeslocamento();
+	    		calcularValores();
 	    		
 	    	}
 	    	if(adcInteligencia.isArmed())
@@ -306,6 +311,7 @@ public class ControllerEditarFicha {
 	    		person.setPtsAtributo(person.getPtsAtributo()-1);
 	    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
 	    		inteligencia.setText(String.format("%d",person.getInteligencia()));
+	    		calcularValores();
 	    	}
 	    	if(adcVontade.isArmed())
 	    	{
@@ -313,6 +319,7 @@ public class ControllerEditarFicha {
 	    		person.setPtsAtributo(person.getPtsAtributo()-1);
 	    		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
 	    		vontade.setText(String.format("%d",person.getVontade()));
+	    		calcularValores();
 	    	}
 	    	}
 	    }
@@ -345,7 +352,17 @@ public class ControllerEditarFicha {
 	    	
 	    }
 	    
-	    
+	    void soNumeros() {
+	    	ouro.textProperty().addListener(new ChangeListener<String>() {
+	    	    @Override
+	    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+	    	        String newValue) {
+	    	        if (!newValue.matches("\\d*")) {
+	    	            ouro.setText(newValue.replaceAll("[^\\d]", ""));
+	    	        }
+	    	    }
+	    	});
+	    }
 	    
 	    void carregarItens()
 	    {
@@ -431,6 +448,7 @@ public class ControllerEditarFicha {
 	    	person.setVida(Integer.parseInt(pV.getText()));
 	    	person.setMana(Integer.parseInt(pM.getText()));
 	    	person.setMaoDireita(maoDireita.getValue());
+	    	person.setOuro(Integer.parseInt(ouro.getText()));
 	    	ArrayList<Habilidade> hab = new ArrayList<>();
 	    	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
 	    	person.setHabilidades(hab);
@@ -453,6 +471,7 @@ public class ControllerEditarFicha {
 	    	carregarPersonagem();
 	    	carregarNiveis();
 	    	carregarItens();
+	    	soNumeros();
 	    	
 	    	
 	    }

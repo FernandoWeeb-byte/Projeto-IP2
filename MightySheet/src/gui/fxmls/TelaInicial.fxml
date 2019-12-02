@@ -33,7 +33,7 @@
             </TableView>
             <Button fx:id="editarFicha" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" onAction="#editarPersonagem" prefHeight="25.0" prefWidth="107.0" text="Editar Ficha" />
             <Button fx:id="removerFicha" layoutX="324.0" layoutY="294.0" mnemonicParsing="false" onAction="#remover" prefHeight="25.0" prefWidth="107.0" text="Remover Ficha" />
-            <TextField layoutX="394.0" layoutY="162.0" prefHeight="25.0" prefWidth="142.0" promptText="Buscar ficha" />
+            <TextField fx:id="buscaFicha" layoutX="394.0" layoutY="162.0" prefHeight="25.0" prefWidth="142.0" promptText="Buscar ficha" />
             <ImageView fx:id="fundo" fitHeight="125.0" fitWidth="260.0" layoutX="307.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/header.png" />
@@ -44,8 +44,8 @@
 
             <Button layoutX="324.0" layoutY="211.0" mnemonicParsing="false" onAction="#visualizar" prefHeight="25.0" prefWidth="107.0" text="Ver Ficha" />
             
-            <ComboBox layoutX="307.0" layoutY="162.0" prefHeight="25.0" prefWidth="86.0" />
-            <Button layoutX="536.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="22.0" text="Button" />
+            <ComboBox fx:id="buscaCombo" layoutX="307.0" layoutY="162.0" onAction="#busca" prefHeight="25.0" prefWidth="86.0" />
+            <Button fx:id="ok" layoutX="536.0" layoutY="162.0" mnemonicParsing="false" onAction="#okFicha" prefHeight="25.0" prefWidth="22.0" text="Button" />
             <Button layoutX="443.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Novo Item" />
 
 

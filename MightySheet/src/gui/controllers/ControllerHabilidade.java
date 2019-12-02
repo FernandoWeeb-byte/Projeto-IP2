@@ -1,5 +1,6 @@
 package gui.controllers;
 
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -48,6 +50,9 @@ public class ControllerHabilidade {
 
 	    @FXML
 	    private Button cancelar;
+	    
+	    @FXML
+	    private Label nHab;
 
 	    Personagem person = Personagem.novoPerson;
 	    Personagem novoPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
@@ -75,9 +80,11 @@ public class ControllerHabilidade {
 
 	    @FXML
 	    void pegarHabilidade(ActionEvent event) {
-	    	if(listaHE.getItems().size() < person.getQuantHabilidades()) {
-	    	listaHE.getItems().add(listaH.getSelectionModel().getSelectedItem());
-	    	person.setNumeroHabilidades(person.getQuantHabilidades()-1);
+	    	if(0 < person.getQuantHabilidades() && !listaHE.getItems().contains(listaH.getSelectionModel().getSelectedItem()) && !person.getHabilidades().contains(listaH.getSelectionModel().getSelectedItem())) {
+	    	
+	    		listaHE.getItems().add(listaH.getSelectionModel().getSelectedItem());
+	    		person.setNumeroHabilidades(person.getQuantHabilidades()-1);
+	    		nHab.setText(String.format("%d", person.getQuantHabilidades()));
 	    	}
 	    }
 
@@ -93,15 +100,22 @@ public class ControllerHabilidade {
 	    	{
 	    		obLista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(person.getClasse(), 5));
 	    		
-	    	}else if(person.getNivel() == 10)
+	    	}
+	    	if(person.getNivel() == 10)
 	    	{
 	    		obLista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(person.getClasse(), 10));
 	    	}
 	    	
 	    	obLista.addAll(fachada.listarHabilidadesPorRaca(person.getRaca()));
 	    	listaH.getItems().addAll(obLista);
-	    	person.setQuantHabilidades();
-	    
+	    	if(person.getHabilidades()==null) {
+	    		person.setQuantHabilidades();
+	    	}
+	    	else {
+	    		person.setQuantHabilidades();
+	    		person.setNumeroHabilidades(person.getQuantHabilidades()- person.getHabilidades().size());
+	    	}
+	    	nHab.setText(String.format("%d", person.getQuantHabilidades()));
 	    }
 
 	    @FXML

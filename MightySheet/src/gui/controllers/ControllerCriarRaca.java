@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -114,9 +116,52 @@ public class ControllerCriarRaca {
     	habAuto.setItems(obLista2);
     			
     }
+    
+    void soNumeros() {
+    	forca.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            forca.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	inteligencia.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            inteligencia.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	agilidade.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            agilidade.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	vontade.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            vontade.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    }
 
     @FXML
     void initialize() {
     	carregarHab();
+    	soNumeros();
     }
 }

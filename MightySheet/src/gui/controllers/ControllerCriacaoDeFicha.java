@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import dados.interfaces.IRepoPersonagens;
 import dados.repositorios.RepositorioEquipamentos;
 import dados.repositorios.RepositorioPersonagens;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableIntegerArray;
 import javafx.collections.ObservableList;
@@ -26,6 +28,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -221,19 +225,22 @@ public class ControllerCriacaoDeFicha {
     @FXML
     void escolherH(ActionEvent event) throws IOException {
 
-    	if(!(classe.getValue() == null && raca.getValue() == null && nivel.getValue() == null)) {
-    	novoPerson.setClasse(classe.getValue());
-    	novoPerson.setRaca(raca.getValue());
-    	novoPerson.setNivel(nivel.getValue());
-    	
-    	Stage stage = new Stage();
-    	FXMLLoader FxmlLoader = new FXMLLoader();
-    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
-    	Scene loja_Scene = new Scene(loja_parent);
-        stage.setScene(loja_Scene);
-        stage.setTitle("Loja");
-        stage.setResizable(false);
-        stage.showAndWait();
+    	if(!(classe.getValue() == null || raca.getValue() == null || nivel.getValue() == null)) {
+    		novoPerson.setClasse(classe.getValue());
+    		novoPerson.setRaca(raca.getValue());
+    		novoPerson.setNivel(nivel.getValue());
+    		ArrayList<Habilidade> hab = new ArrayList<>();
+    		hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
+    		novoPerson.setHabilidades(hab);
+    		erro.setText("");
+    		Stage stage = new Stage();
+    		FXMLLoader FxmlLoader = new FXMLLoader();
+    		Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
+    		Scene loja_Scene = new Scene(loja_parent);
+    		stage.setScene(loja_Scene);
+    		stage.setTitle("Loja");
+    		stage.setResizable(false);
+    		stage.showAndWait();
     	}
     	else {
     		erro.setText("selecione a classe, a raça e o nivel");
@@ -280,12 +287,14 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void carregarH(ActionEvent event) {
+    	if(!(novoPerson.getHabilidades() == null)) {
     	ObservableList obLista;
     	List<Habilidade> lista = novoPerson.getHabilidades();
     	person.setHabilidades(novoPerson.getHabilidades());
     	novoPerson.setHabilidades(null);
     	obLista = FXCollections.observableArrayList(lista);
     	skilList.getItems().addAll(obLista);
+    	}
     }
     
     @FXML
@@ -437,6 +446,7 @@ public class ControllerCriacaoDeFicha {
     		person.setPtsAtributo(person.getPtsAtributo()-1);
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		forca.setText(String.format("%d",person.getForca()));
+    		calcularValores();
     	}
     	if(adcAgilidade.isArmed())
     	{
@@ -445,6 +455,7 @@ public class ControllerCriacaoDeFicha {
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		agilidade.setText(String.format("%d",person.getAgilidade()));
     		person.setDeslocamento();
+    		calcularValores();
     		
     	}
     	if(adcInteligencia.isArmed())
@@ -453,6 +464,7 @@ public class ControllerCriacaoDeFicha {
     		person.setPtsAtributo(person.getPtsAtributo()-1);
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		inteligencia.setText(String.format("%d",person.getInteligencia()));
+    		calcularValores();
     	}
     	if(adcVontade.isArmed())
     	{
@@ -460,6 +472,7 @@ public class ControllerCriacaoDeFicha {
     		person.setPtsAtributo(person.getPtsAtributo()-1);
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		vontade.setText(String.format("%d",person.getVontade()));
+    		calcularValores();
     	}
     	}
     }
@@ -573,8 +586,23 @@ public class ControllerCriacaoDeFicha {
     }
     
     
+    void soNumeros() {
+    	ouro.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            ouro.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    }
+
+    
     @FXML
     void salvar(ActionEvent event) throws IOException {
+    	if(!(nome.getText()==null || classe.getValue()==null || raca.getValue()==null || nivel.getValue()==null 
+    			|| skilList.getItems()==null || vestimenta.getValue()==null || maoDireita.getValue()==null || maoEsquerda.getValue()==null)) {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
@@ -584,6 +612,7 @@ public class ControllerCriacaoDeFicha {
     	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
     	equip.addAll(skillListC.getItems());
     	person.setHabilidades(hab);
+    	person.setEquipamentos(equip);
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
     	fachada.salvar(person);
@@ -593,6 +622,9 @@ public class ControllerCriacaoDeFicha {
     	appStage.setScene(Tela_Inicial_Scene);
     	appStage.show();
     	fachada.salvarTodosRepositórios();
+    	} else {
+    		erro.setText("Preencha todos os espaços");
+    	}
     }
     
     @FXML
@@ -600,6 +632,7 @@ public class ControllerCriacaoDeFicha {
     	carregarClasse();
     	carregarRaca();
     	carregarNiveis();
+    	soNumeros();
     	
     }
 	

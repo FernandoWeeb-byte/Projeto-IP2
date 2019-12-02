@@ -19,6 +19,7 @@
             <Button fx:id="cancelar" layoutX="364.0" layoutY="461.0" mnemonicParsing="false" onAction="#cancelarH" text="Cancelar" />
             <Label layoutX="310.0" layoutY="6.0" text="Descrição" />
             <Label layoutX="296.0" layoutY="233.0" text="Habilidades escolhidas" />
+            <Label fx:id="nHab" layoutX="465.0" layoutY="233.0" />
          </children>
       </AnchorPane>
    </children>

@@ -129,27 +129,16 @@ public class Habilidade implements Serializable {
 	public String[] getClasses() {
 		return this.classes;
 	}
-	public void setClasses(String classes) {
-		for(int i = 0; i < this.classes.length; i++)
-		{
-			if(this.classes[i] == null)
-			{
-				this.classes[i] = classes;
-			}
-		}
+	public void setClasses(String[] classes) {
+		this.classes = classes;
 	}
 
 	public String[] getRacas() {
 		return this.racas;
 	}
-	public void setRacas(String racas) {
-		for(int i = 0; i < this.racas.length; i++)
-		{
-			if(this.racas[i] == null)
-			{
-				this.racas[i] = racas;
-			}
-		}
+	public void setRacas(String[] racas) {
+		
+		this.racas = racas;
 	}
 
 	public String getTipo() {

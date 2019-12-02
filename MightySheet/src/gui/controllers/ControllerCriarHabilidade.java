@@ -1,10 +1,13 @@
 package gui.controllers;
 
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import negocio.Fachada;
@@ -53,6 +57,10 @@ public class ControllerCriarHabilidade {
     @FXML
     private ComboBox<Classe> classes;
     
+    @FXML
+    private Label erro;
+
+    
     Habilidade hab = new Habilidade("", "", "", "", 0, 0, null, null, "");
 
     @FXML
@@ -66,16 +74,24 @@ public class ControllerCriarHabilidade {
 
     @FXML
 	 void salvarHabilidade(ActionEvent event) throws IOException {
-    	//hab.setClasses(classes.getValue().getNome());
+    	
+    	if(!(textNome.getText() == null || textDescricao.getText() == null || classes.getValue()==null|| racas.getValue()==null
+    			|| textRequisitos==null || comboCategoria.getValue()==null || comboTipo == null)) {
+    	String[] str = {classes.getValue().getNome()};
+    	hab.setClasses(str);
 		hab.setNome(textNome.getText());
 		hab.setDescricao(textDescricao.getText());
-		//hab.setDificuldade(Integer.parseInt(textDificuldade.getText()));
+		if(!textDificuldade.isDisable()) {
+			hab.setDificuldade(Integer.parseInt(textDificuldade.getText()));
+		}
+		if(!textMana.isDisable()) {
 		hab.setMana(Integer.parseInt(textMana.getText()));
-		//hab.setRacas(racas.getValue().getNome());
+		}
+		String[] str2 = {racas.getValue().getNome()};
+		hab.setRacas(str2);
 		hab.setRequisito(textRequisitos.getText());
 		racas.getValue().getHabilidades().put(textNome.getText(), hab);
 		classes.getValue().getHabilidades().put(textNome.getText(), hab);
-    	
     	fachada.adicionarHabilidade(hab);
 		 fachada.salvarHabilidades();
 		 Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
@@ -84,6 +100,12 @@ public class ControllerCriarHabilidade {
 		 appStage.setScene(Criacao_Habilidade_Scene);
 		 appStage.show();
 		 fachada.salvarTodosRepositórios();
+    	}
+    	else {
+    		erro.setText("Preencha todos os espaços");
+    	}
+    		
+    		
 		 
 	 }
     
@@ -174,12 +196,37 @@ public class ControllerCriarHabilidade {
     	hab.setRequisito(textRequisitos.getText());
     }
     
+    void soNumeros() {
+    	textMana.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            textMana.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	textDificuldade.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            textDificuldade.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	
+    }
+    
     @FXML
     void initialize() {
     	carregarCategorias();
     	carregarTipos();
     	carregarClasses();
     	carregarRacas();
+    	soNumeros();
     }
 
 }

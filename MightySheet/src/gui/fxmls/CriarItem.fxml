@@ -37,5 +37,6 @@
       <ComboBox fx:id="tipoItem" layoutX="14.0" layoutY="124.0" onAction="#selectItem" prefWidth="150.0" />
       <ComboBox fx:id="tipoDano" layoutX="269.0" layoutY="124.0" onAction="#selectDano" prefWidth="150.0" />
       <ComboBox fx:id="tipoDistancia" layoutX="513.0" layoutY="124.0" onAction="#selectDistancia" prefWidth="150.0" />
+      <Label fx:id="erro" layoutX="244.0" layoutY="408.0" prefHeight="17.0" prefWidth="200.0" textFill="#ff0606" />
    </children>
 </AnchorPane>
