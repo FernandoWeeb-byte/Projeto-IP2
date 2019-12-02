@@ -346,6 +346,8 @@ public class ControllerEditarFicha {
 	    	person.setEquipamentos(lojaPerson.getEquipamentos());
 	    	List<Equipamento> lista = person.getEquipamentos();
 	    	lojaPerson.setEquipamentos(null);
+	    	person.setOuro(lojaPerson.getOuro());
+	    	ouro.setText(String.format("%d", person.getOuro()));
 	    	obLista = FXCollections.observableArrayList(lista);
 	    	skillListC.getItems().addAll(obLista);
 	    	carregarItens();
@@ -435,15 +437,30 @@ public class ControllerEditarFicha {
 	    
 	    @FXML
 	    void vender(ActionEvent event) {
+	    	if(skillListC.getSelectionModel().getSelectedItem().getClass().equals(Protecao.class)) {
+	    		Protecao prot = (Protecao) skillListC.getSelectionModel().getSelectedItem();
+	    		if(!prot.isEscudo()) {
+	    			vestimenta.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+	    		}
+	    		else {
+	    			maoEsquerda.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+	    		}
+	    	}
+	    	else if(skillListC.getSelectionModel().getSelectedItem().getClass().equals(Arma.class)) {
+	    		maoDireita.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+	    	}
 	    	skillListC.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
 	    	person.setOuro(person.getOuro()+skillListC.getSelectionModel().getSelectedItem().getCusto());
 	    	ouro.setText(String.format("%d", person.getOuro()));
+	    	
 	    	
 	    }
 	    
 	    
 	    @FXML
 	    void salvar(ActionEvent event) throws IOException {
+	    	if(!(nome.getText()==null || nivel.getValue()==null || skilList.getItems()==null || vestimenta.getValue()==null
+	    			|| maoDireita.getValue()==null || maoEsquerda.getValue()==null)) {
 	    	person.setNomePersonagem(nome.getText());
 	    	person.setVida(Integer.parseInt(pV.getText()));
 	    	person.setMana(Integer.parseInt(pM.getText()));
@@ -464,6 +481,7 @@ public class ControllerEditarFicha {
 	    	appStage.setScene(Tela_Inicial_Scene);
 	    	appStage.show();
 	    	fachada.salvarTodosRepositórios();
+	    	}
 	    }
 	    
 	    @FXML

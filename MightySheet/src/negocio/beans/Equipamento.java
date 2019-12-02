@@ -100,5 +100,5 @@ public class Equipamento implements Serializable {
 		this.canalizador = canalizador;
 	}
 	
-	
+	public static Equipamento equipamento = new Equipamento(null, 0, 0, 0, null, false);
 }

@@ -255,6 +255,12 @@ List<Equipamento> lista = fachada.listarItensComuns();
     	}
     }
 
+    @FXML
+    void cancelar(ActionEvent event) {
+    	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+    	
+    	appStage.close();
+    }
     
     @FXML
     void initialize() {

@@ -23,7 +23,7 @@
             </TableView>
             <TextArea fx:id="descricao" editable="false" layoutX="410.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="terminar" layoutX="533.0" layoutY="512.0" mnemonicParsing="false" onAction="#terminarCompra" text="Terminar Compra" />
-            <Button fx:id="cancelar" layoutX="448.0" layoutY="512.0" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="cancelar" layoutX="448.0" layoutY="512.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
             <Label layoutX="406.0" layoutY="6.0" text="Descrição" />
             <ListView fx:id="compras" layoutX="419.0" layoutY="327.0" prefHeight="158.0" prefWidth="200.0" />
             <Label layoutX="423.0" layoutY="302.0" text="Carrinho de Compras" />
