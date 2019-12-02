@@ -160,47 +160,24 @@ public class ControllerEditarFicha {
 	    	pV.setText(String.format("%d", person.getVida()));
 	    	pM.setText(String.format("%d", person.getMana()));
 	    	deslocamento.setText(String.format("%d", person.getDeslocamento()));
-	    	List<Habilidade> lista = null;
-			ObservableList obLista = null;
-	    	if(!(person.getClasse() == null && person.getClasse() == novoPerson.getClasse())) {
-	        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
-	        	skilList.getItems().removeAll(obLista2);
-	        	}
-	    	
-	    	if(!(novoPerson.getClasse() == null)) {
-	    		
-	    		lista = fachada.habilidadesBasicaAvancadaOuFinal(novoPerson.getClasse(), 4);
-	    		if(nivel.getValue() >= 5)
-	    		{
-	    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(novoPerson.getClasse(), 7));
-	    		}
-	    		if(nivel.getValue() == 10)
-	    		{
-	    			lista.addAll(fachada.habilidadesBasicaAvancadaOuFinal(novoPerson.getClasse(), nivel.getValue()));
-	    		}
-	    		
-	    	
-	    	obLista = FXCollections.observableArrayList(lista);
-	    	skilList.getItems().addAll(obLista);
-	    	
 	    	person.setQuantHabilidades();
 	    	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
 	    	String[] str = {null, null, null, null};
 	    	if(!(novoPerson.getClasse() == null || novoPerson.getRaca() == null)) {
-	    	str[0] = String.format("%d",novoPerson.getRaca().getForca() + novoPerson.getClasse().getBonusForca());
-	    	forca.setText(str[0]);
-	    	person.setForca(Integer.parseInt(forca.getText()));
-	    	str[1] = String.format("%d",novoPerson.getRaca().getAgilidade() + novoPerson.getClasse().getBonusAgilidade());
-	    	agilidade.setText(str[1]);
-	    	person.setAgilidade(Integer.parseInt(agilidade.getText()));
-	    	str[2] = String.format("%d",novoPerson.getRaca().getInteligencia() + novoPerson.getClasse().getBonusInteligencia());
-	    	inteligencia.setText(str[2]);
-	    	person.setInteligencia(Integer.parseInt(inteligencia.getText()));
-	    	str[3] = String.format("%d",novoPerson.getRaca().getVontade() + novoPerson.getClasse().getBonusVontade());
-	    	vontade.setText(str[3]);
-	    	person.setVontade(Integer.parseInt(vontade.getText()));
+	    		str[0] = String.format("%d",novoPerson.getRaca().getForca() + novoPerson.getClasse().getBonusForca());
+	    		forca.setText(str[0]);
+	    		person.setForca(Integer.parseInt(forca.getText()));
+	    		str[1] = String.format("%d",novoPerson.getRaca().getAgilidade() + novoPerson.getClasse().getBonusAgilidade());
+	    		agilidade.setText(str[1]);
+	    		person.setAgilidade(Integer.parseInt(agilidade.getText()));
+	    		str[2] = String.format("%d",novoPerson.getRaca().getInteligencia() + novoPerson.getClasse().getBonusInteligencia());
+	    		inteligencia.setText(str[2]);
+	    		person.setInteligencia(Integer.parseInt(inteligencia.getText()));
+	    		str[3] = String.format("%d",novoPerson.getRaca().getVontade() + novoPerson.getClasse().getBonusVontade());
+	    		vontade.setText(str[3]);
+	    		person.setVontade(Integer.parseInt(vontade.getText()));
 	    	}
-	    	}
+	    	
 	    }
 	    
 	    void carregarNiveis()
@@ -211,6 +188,43 @@ public class ControllerEditarFicha {
 	    	nivel.setItems(obLista);
 	    }
 	    
+	    @FXML
+	    void escolherH(ActionEvent event) throws IOException {
+
+	    	if(!(novoPerson.getClasse() == null && novoPerson.getRaca() == null && nivel.getValue() == null)) {
+	    	lojaPerson.setClasse(novoPerson.getClasse());
+	    	lojaPerson.setRaca(novoPerson.getRaca());
+	    	lojaPerson.setNivel(nivel.getValue());
+	    	
+	    	Stage stage = new Stage();
+	    	FXMLLoader FxmlLoader = new FXMLLoader();
+	    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
+	    	Scene loja_Scene = new Scene(loja_parent);
+	        stage.setScene(loja_Scene);
+	        stage.setTitle("Loja");
+	        stage.setResizable(false);
+	        stage.showAndWait();
+	    	}
+	    	else {
+	    		erro.setText("selecione a classe, a raça e o nivel");
+	    	}
+	    }
+	    
+	    @FXML
+	    void removerH(ActionEvent event) {
+	    	skilList.getItems().remove(skilList.getSelectionModel().getSelectedItem());
+	    	
+	    }
+	    
+	    @FXML
+	    void carregarH(ActionEvent event) {
+	    	ObservableList obLista;
+	    	List<Habilidade> lista = lojaPerson.getHabilidades();
+	    	person.setHabilidades(lojaPerson.getHabilidades());
+	    	lojaPerson.setHabilidades(null);
+	    	obLista = FXCollections.observableArrayList(lista);
+	    	skilList.getItems().addAll(obLista);
+	    }
 	    
 	    void calcularValores()
 	    {
@@ -402,6 +416,14 @@ public class ControllerEditarFicha {
 	    	esquiva.setText(String.format("%d", person.getEsquiva()));
 	    }
 	    
+	    @FXML
+	    void vender(ActionEvent event) {
+	    	skillListC.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+	    	person.setOuro(person.getOuro()+skillListC.getSelectionModel().getSelectedItem().getCusto());
+	    	ouro.setText(String.format("%d", person.getOuro()));
+	    	
+	    }
+	    
 	    
 	    @FXML
 	    void salvar(ActionEvent event) throws IOException {
@@ -412,6 +434,9 @@ public class ControllerEditarFicha {
 	    	ArrayList<Habilidade> hab = new ArrayList<>();
 	    	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
 	    	person.setHabilidades(hab);
+	    	ArrayList<Equipamento> equip = new ArrayList<>();
+	    	equip.addAll(skillListC.getItems());
+	    	person.setEquipamentos(equip);
 	    	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
 	    	lista.AdicionarFicha(person);
 	    	fachada.salvar(person);

@@ -75,7 +75,10 @@ public class ControllerHabilidade {
 
 	    @FXML
 	    void pegarHabilidade(ActionEvent event) {
+	    	if(listaHE.getItems().size() < person.getQuantHabilidades()) {
 	    	listaHE.getItems().add(listaH.getSelectionModel().getSelectedItem());
+	    	person.setNumeroHabilidades(person.getQuantHabilidades()-1);
+	    	}
 	    }
 
 	    @FXML
@@ -97,6 +100,7 @@ public class ControllerHabilidade {
 	    	
 	    	obLista.addAll(fachada.listarHabilidadesPorRaca(person.getRaca()));
 	    	listaH.getItems().addAll(obLista);
+	    	person.setQuantHabilidades();
 	    
 	    }
 

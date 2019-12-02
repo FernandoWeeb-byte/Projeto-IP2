@@ -218,6 +218,10 @@ public class Personagem implements Serializable{
 	public void setQuantHabilidades() {
 		this.quantHabilidades = 2 + this.nivel;
 	}
+	public void setNumeroHabilidades(int quantHabilidades)
+	{
+		this.quantHabilidades = quantHabilidades;
+	}
 	public Protecao getVestimenta() {
 		return vestimenta;
 	}

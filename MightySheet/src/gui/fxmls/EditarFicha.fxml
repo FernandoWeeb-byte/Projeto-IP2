@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerEditarFicha">
@@ -118,6 +119,14 @@
             <Button layoutX="647.0" layoutY="479.0" mnemonicParsing="false" onAction="#entrega" text="Entrega" />
             <TextField fx:id="raca" editable="false" layoutX="31.0" layoutY="96.0" />
             <TextField fx:id="classe" editable="false" layoutX="472.0" layoutY="96.0" />
+            <Button layoutX="647.0" layoutY="515.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
+            <HBox layoutX="147.0" layoutY="641.0" prefHeight="25.0" prefWidth="128.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#escolherH" text="Escolher" />
+                  <Button mnemonicParsing="false" onAction="#removerH" text="Remover" />
+               </children>
+            </HBox>
+            <Button layoutX="249.0" layoutY="440.0" mnemonicParsing="false" onAction="#carregarH" text="Habilidades" />
          </children>
       </AnchorPane>
    </children>
