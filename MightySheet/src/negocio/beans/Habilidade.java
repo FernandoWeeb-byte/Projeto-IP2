@@ -182,4 +182,5 @@ public class Habilidade implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	public static Habilidade habildade = new Habilidade(null, null, null, null, 0, 0, null, null, null);
 }

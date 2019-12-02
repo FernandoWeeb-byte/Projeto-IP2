@@ -1,13 +1,20 @@
 package gui.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
 import negocio.beans.Personagem;
@@ -91,9 +98,42 @@ public class ControllerVisualizarPersonagem {
 	    @FXML
 	    private ListView<Equipamento> listaEquip;
 	    
-	    Personagem person = Personagem.visuPerson;
 	    
+	    
+	    Personagem person = Personagem.visuPerson;
+	    Habilidade hab = new Habilidade(null, null, null, null, 0, 0, null, null, null);
+	    Equipamento equip = new Equipamento(null, 0, 0, 0, null, false);
+	    @FXML
+	    void verEquipamento(ActionEvent event) throws IOException {
+	    	
+	    	equip = listaEquip.getSelectionModel().getSelectedItem();
+	    	Equipamento.equipamento = equip; 
+	    	Habilidade.habildade = null;
+	    	Stage stage = new Stage();
+	    	FXMLLoader FxmlLoader = new FXMLLoader();
+	    	Parent visualizar_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/TelaVisu.fxml").openStream());
+	    	Scene visualizar_Scene = new Scene(visualizar_parent);
+	        stage.setScene(visualizar_Scene);
+	        stage.setTitle("Ficha");
+	        stage.setResizable(false);
+	        stage.showAndWait();
+	    }
 
+	    @FXML
+	    void verHabilidade(ActionEvent event) throws IOException {
+	    	
+	    	hab = listaHab.getSelectionModel().getSelectedItem();
+	    	Habilidade.habildade = hab;
+	    	Equipamento.equipamento = null;
+	    	Stage stage = new Stage();
+	    	FXMLLoader FxmlLoader = new FXMLLoader();
+	    	Parent visualizar_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/TelaVisu.fxml").openStream());
+	    	Scene visualizar_Scene = new Scene(visualizar_parent);
+	        stage.setScene(visualizar_Scene);
+	        stage.setTitle("Ficha");
+	        stage.setResizable(false);
+	        stage.showAndWait();
+	    }
 	    
 	    void carregarValores() {
 	    

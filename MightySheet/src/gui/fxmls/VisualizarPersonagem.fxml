@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -56,6 +57,8 @@
             <TextField fx:id="cargaMaxima" editable="false" layoutX="361.0" layoutY="360.0" prefHeight="25.0" prefWidth="51.0" />
             <ListView fx:id="listaHab" layoutX="14.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
             <ListView fx:id="listaEquip" layoutX="234.0" layoutY="396.0" prefHeight="192.0" prefWidth="158.0" />
+            <Button layoutX="174.0" layoutY="396.0" mnemonicParsing="false" onAction="#verHabilidade" text="VerH" />
+            <Button layoutX="176.0" layoutY="563.0" mnemonicParsing="false" onAction="#verEquipamento" text="VerE" />
          </children>
       </AnchorPane>
    </children>

@@ -579,6 +579,18 @@ public class ControllerCriacaoDeFicha {
     
     @FXML
     void vender(ActionEvent event) {
+    	if(skillListC.getSelectionModel().getSelectedItem().getClass().equals(Protecao.class)) {
+    		Protecao prot = (Protecao) skillListC.getSelectionModel().getSelectedItem();
+    		if(!prot.isEscudo()) {
+    			vestimenta.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+    		}
+    		else {
+    			maoEsquerda.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+    		}
+    	}
+    	else if(skillListC.getSelectionModel().getSelectedItem().getClass().equals(Arma.class)) {
+    		maoDireita.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+    	}
     	skillListC.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
     	person.setOuro(person.getOuro()+skillListC.getSelectionModel().getSelectedItem().getCusto());
     	ouro.setText(String.format("%d", person.getOuro()));
