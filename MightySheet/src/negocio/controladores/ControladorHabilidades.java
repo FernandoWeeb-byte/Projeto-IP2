@@ -2,6 +2,7 @@ package negocio.controladores;
 
 import negocio.beans.Classe;
 import negocio.beans.Habilidade;
+import negocio.beans.Raca;
 import dados.interfaces.IRepoHabilidades;
 import dados.repositorios.RepositorioHabilidades;
 
@@ -137,6 +138,16 @@ public class ControladorHabilidades {
 			return repHab.habilidadesBasicaAvancadaOuFinal(classe, level);
 		} 
 		return null;
+	}
+	
+	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	{
+		return repHab.listarHabilidadePorClasse(classe);
+	}
+	
+	public List<Habilidade> listarHabilidadesPorRaca(Raca raca)
+	{
+		return repHab.listarHabilidadesPorRaca(raca);
 	}
 
 }

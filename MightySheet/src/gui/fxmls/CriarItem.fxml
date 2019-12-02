@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerCriarItem">
+   <children>
+      <Button fx:id="cancelarItem" layoutX="89.0" layoutY="390.0" mnemonicParsing="false" onAction="#cancelarItem" prefHeight="36.0" prefWidth="148.0" text="Cancelar" />
+      <Button fx:id="salvarItem" layoutX="449.0" layoutY="390.0" mnemonicParsing="false" onAction="#salvarItem" prefHeight="36.0" prefWidth="148.0" text="Salvar" />
+      <CheckBox fx:id="checkCarregar" layoutX="144.0" layoutY="169.0" mnemonicParsing="false" text="checkCarregar" />
+      <CheckBox fx:id="checkDuasMaos" layoutX="254.0" layoutY="169.0" mnemonicParsing="false" text="checkDuasMaos" />
+      <CheckBox fx:id="checkPesada" layoutX="478.0" layoutY="169.0" mnemonicParsing="false" text="checkPesada" />
+      <CheckBox fx:id="checkCanalizador" layoutX="14.0" layoutY="169.0" mnemonicParsing="false" text="checkCanalizador" />
+      <CheckBox fx:id="checkEscudo" layoutX="375.0" layoutY="169.0" mnemonicParsing="false" text="checkEscudo" />
+      <CheckBox fx:id="checkRigida" layoutX="576.0" layoutY="169.0" mnemonicParsing="false" text="checkRigida" />
+      <TextField fx:id="textNome" layoutX="54.0" layoutY="14.0" />
+      <TextField fx:id="textCusto" layoutX="280.0" layoutY="14.0" />
+      <TextField fx:id="textDefesa" layoutX="513.0" layoutY="52.0" />
+      <TextField fx:id="textFN" layoutX="54.0" layoutY="52.0" />
+      <TextField fx:id="textPeso" layoutX="513.0" layoutY="14.0" />
+      <TextField fx:id="textDano" layoutX="280.0" layoutY="52.0" />
+      <Label layoutX="13.0" layoutY="203.0" text="Descrição" />
+      <Label layoutX="14.0" layoutY="97.0" text="Tipo de Item" />
+      <Label layoutX="272.0" layoutY="97.0" text="Tipo de Dano" />
+      <Label layoutX="513.0" layoutY="97.0" text="Tipo de Distância" />
+      <Label layoutX="14.0" layoutY="18.0" text="Nome" />
+      <Label layoutX="239.0" layoutY="18.0" text="Custo" />
+      <Label layoutX="480.0" layoutY="18.0" text="Peso" />
+      <Label layoutX="13.0" layoutY="56.0" text="FN" />
+      <Label layoutX="238.0" layoutY="56.0" text="Dano" />
+      <Label layoutX="466.0" layoutY="56.0" text="Defesa" />
+      <TextField fx:id="textDescricao" layoutX="11.0" layoutY="231.0" prefHeight="139.0" prefWidth="651.0" />
+      <ComboBox fx:id="tipoItem" layoutX="14.0" layoutY="124.0" onAction="#selectItem" prefWidth="150.0" />
+      <ComboBox fx:id="tipoDano" layoutX="269.0" layoutY="124.0" onAction="#selectDano" prefWidth="150.0" />
+      <ComboBox fx:id="tipoDistancia" layoutX="513.0" layoutY="124.0" onAction="#selectDistancia" prefWidth="150.0" />
+   </children>
+</AnchorPane>

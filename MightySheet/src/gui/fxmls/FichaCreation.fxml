@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerCriacaoDeFicha">
@@ -97,13 +98,13 @@
             <ListView fx:id="skilList" layoutX="33.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
             <Button fx:id="voltar" layoutX="575.0" layoutY="653.0" mnemonicParsing="false" onAction="#acaoBotao" text="Voltar" />
             <Button fx:id="salvar" layoutX="650.0" layoutY="653.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-            <TextField fx:id="pV" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="27.0" />
-            <TextField fx:id="pM" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="27.0" />
+            <TextField fx:id="pV" editable="false" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="39.0" />
+            <TextField fx:id="pM" editable="false" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="39.0" />
             <ComboBox fx:id="raca" layoutX="31.0" layoutY="96.0" onAction="#selecionarRaca" prefWidth="150.0" />
             <ComboBox fx:id="classe" layoutX="473.0" layoutY="96.0" onAction="#selecionarClasse" prefWidth="150.0" />
-            <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" prefWidth="150.0" />
+            <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" onAction="#escolherVestimenta" prefWidth="150.0" />
             <ComboBox fx:id="maoDireita" layoutX="473.0" layoutY="233.0" prefWidth="150.0" />
-            <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" prefWidth="150.0" />
+            <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" onAction="#escolherEscudo" prefWidth="150.0" />
             <ListView fx:id="skillListC" layoutX="358.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
             <Label fx:id="erro" layoutX="307.0" layoutY="657.0" prefHeight="21.0" prefWidth="250.0" textFill="#e80808">
                <font>
@@ -119,6 +120,14 @@
             <Label layoutX="264.0" layoutY="100.0" prefHeight="17.0" prefWidth="39.0" text="Ouro" />
             <TextField fx:id="ouro" layoutX="303.0" layoutY="96.0" prefHeight="25.0" prefWidth="45.0" text="400" />
             <Button layoutX="647.0" layoutY="479.0" mnemonicParsing="false" onAction="#entrega" text="Entrega" />
+            <Button fx:id="Vender" layoutX="650.0" layoutY="515.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
+            <HBox layoutX="154.0" layoutY="641.0" prefHeight="37.0" prefWidth="143.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#escolherH" text="Escolher" />
+                  <Button mnemonicParsing="false" onAction="#removerH" prefHeight="25.0" prefWidth="69.0" text="Remover" />
+               </children>
+            </HBox>
+            <Button layoutX="225.0" layoutY="440.0" mnemonicParsing="false" onAction="#carregarH" text="Habilidades" />
          </children>
       </AnchorPane>
    </children>

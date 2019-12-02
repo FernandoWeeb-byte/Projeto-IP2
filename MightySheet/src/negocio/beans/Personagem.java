@@ -2,6 +2,9 @@ package negocio.beans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javafx.scene.control.Button;
+
 import java.io.Serializable;
 
 public class Personagem implements Serializable{
@@ -30,6 +33,7 @@ public class Personagem implements Serializable{
 	private HashMap<String, Integer> pericias;
 	private int ptsAtributo;
 	
+	
 	// Defesas
 	private int esquiva;
 	private int bloqueio;
@@ -43,7 +47,7 @@ public class Personagem implements Serializable{
 	// Equipamentos
 	private Protecao vestimenta;
 	private Arma maoDireita;
-	private Equipamento maoEsquerda;
+	private Protecao maoEsquerda;
 	private ArrayList<Equipamento> equipamentos;
 	private int ouro;
 	
@@ -214,6 +218,10 @@ public class Personagem implements Serializable{
 	public void setQuantHabilidades() {
 		this.quantHabilidades = 2 + this.nivel;
 	}
+	public void setNumeroHabilidades(int quantHabilidades)
+	{
+		this.quantHabilidades = quantHabilidades;
+	}
 	public Protecao getVestimenta() {
 		return vestimenta;
 	}
@@ -234,13 +242,11 @@ public class Personagem implements Serializable{
 	public Equipamento getMaoEsquerda() {
 		return maoEsquerda;
 	}
-	public void setMaoEsquerda(Equipamento maoEsquerda) {
-		if(((Arma) this.maoDireita).isDuasMaos() == false) {
+	public void setMaoEsquerda(Protecao maoEsquerda) {
+		
 			this.maoEsquerda = maoEsquerda;
-		}
-		else {
-			this.maoEsquerda = null;
-		}
+		
+		
 	}
 	public ArrayList<Equipamento> getEquipamentos() {
 		return equipamentos;
@@ -265,6 +271,7 @@ public class Personagem implements Serializable{
 		this.ptsAtributo = ptsAtributo;
 	}
 	
+	
 	public void calculoPtsAtributo(int nivel)
 	{
 		int n = (nivel - 1)/3;
@@ -278,11 +285,14 @@ public class Personagem implements Serializable{
 		
 	}
 	
-	public void zerandoPersonagem()
+	public void calcularVida()
 	{
-		
+		this.vida = this.nivel*5 + 55;
 	}
-	
+	public void calcularMana()
+	{
+		this.mana = this.nivel*5 + 55;
+	}
 
 	//Métodos Extras (adicionadores de coisa)
 	public void levelUp(int up) {
@@ -324,27 +334,28 @@ public class Personagem implements Serializable{
 	public void dtrUp(int up) {
 		this.determinacao += up;
 	}	
-	public static Personagem novoPerson = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+	public static Personagem novoPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
+	public static Personagem visuPerson = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
 	
 	//Construtor
-		public Personagem(String nomePersonagem, String nomeJogador, Raca raca, Classe classe, int nivel, int experiencia, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
-				int inteligencia, int vontade, int vida, int mana, HashMap<String, Integer> pericias, Habilidade[] habilidadesAutomaticas, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Equipamento maoEsquerda,
+		public Personagem(String nomePersonagem, Raca raca, Classe classe, int nivel, int corrida, int cargaBasica, int cargaPesada, int cargaMaxima, int forca, int agilidade,
+				int inteligencia, int vontade, int vida, int mana, ArrayList<Habilidade> habilidades, Protecao vestimenta, Arma maoDireita, Protecao maoEsquerda,
 				ArrayList<Equipamento> equipamentos, int ouro) {
 			super();
+			
 			this.nomePersonagem = nomePersonagem;
-			this.nomeJogador = nomeJogador;
 			this.raca = raca;
 			this.classe = classe;
 			this.nivel = nivel;
-			this.experiencia = experiencia;
+			
 			this.forca = forca;
 			this.agilidade = agilidade;
 			this.inteligencia = inteligencia;
 			this.vontade = vontade;
 			this.vida = vida;
 			this.mana = mana;
-			this.pericias = pericias;
-			this.habilidadesAutomaticas = habilidadesAutomaticas;
+			
+			
 			this.habilidades = habilidades;
 			this.vestimenta = vestimenta;
 			this.maoDireita = maoDireita;

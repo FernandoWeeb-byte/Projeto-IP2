@@ -22,17 +22,18 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Button fx:id="criarFicha" layoutX="324.0" layoutY="211.0" mnemonicParsing="false" onAction="#AcaoDoBotao" prefHeight="25.0" prefWidth="107.0" text="Criar Ficha" />
-            <TableView fx:id="tabela" accessibleRole="IMAGE_VIEW" layoutX="14.0" layoutY="31.0" prefHeight="344.0" prefWidth="268.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="302.0" AnchorPane.topAnchor="31.0">
+            <Button fx:id="criarFicha" layoutX="324.0" layoutY="334.0" mnemonicParsing="false" onAction="#AcaoDoBotao" prefHeight="25.0" prefWidth="107.0" text="Criar Ficha" />
+            <TableView fx:id="tabela" accessibleRole="IMAGE_VIEW" layoutX="6.0" layoutY="23.0" prefHeight="344.0" prefWidth="299.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="23.0">
               <columns>
                 <TableColumn fx:id="nomeTabela" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="classeTabela" prefWidth="75.0" text="Classe" />
                   <TableColumn fx:id="racaTabela" prefWidth="75.0" text="Raça" />
+                  <TableColumn fx:id="visualizarTabela" prefWidth="75.0" text="Visualizar" />
               </columns>
             </TableView>
-            <Button fx:id="editarFicha" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Editar Ficha" />
+            <Button fx:id="editarFicha" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" onAction="#editarPersonagem" prefHeight="25.0" prefWidth="107.0" text="Editar Ficha" />
             <Button fx:id="removerFicha" layoutX="324.0" layoutY="294.0" mnemonicParsing="false" onAction="#remover" prefHeight="25.0" prefWidth="107.0" text="Remover Ficha" />
-            <TextField layoutX="381.0" layoutY="162.0" prefHeight="25.0" prefWidth="142.0" promptText="Buscar ficha" />
+            <TextField layoutX="394.0" layoutY="162.0" prefHeight="25.0" prefWidth="142.0" promptText="Buscar ficha" />
             <ImageView fx:id="fundo" fitHeight="125.0" fitWidth="260.0" layoutX="307.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/header.png" />
@@ -40,11 +41,18 @@
             </ImageView>
             <Button layoutX="441.0" layoutY="211.0" mnemonicParsing="false" onAction="#criarClasse" prefHeight="25.0" prefWidth="107.0" text="Nova Classe" />
             <Button layoutX="441.0" layoutY="250.0" mnemonicParsing="false" onAction="#criarRaca" prefHeight="25.0" prefWidth="107.0" text="Nova Raça" />
-            <Button layoutX="324.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Regras" />
-            <Button layoutX="441.0" layoutY="294.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Nova Habilidade" />
-            <ComboBox layoutX="295.0" layoutY="162.0" prefHeight="25.0" prefWidth="86.0" />
-            <Button layoutX="523.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="22.0" text="Button" />
+
+            <Button layoutX="324.0" layoutY="211.0" mnemonicParsing="false" onAction="#visualizar" prefHeight="25.0" prefWidth="107.0" text="Ver Ficha" />
+            
+            <ComboBox layoutX="307.0" layoutY="162.0" prefHeight="25.0" prefWidth="86.0" />
+            <Button layoutX="536.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="22.0" text="Button" />
             <Button layoutX="443.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Novo Item" />
+
+
+            <Button layoutX="441.0" layoutY="294.0" mnemonicParsing="false" onAction="#criarHabilidade" prefHeight="25.0" prefWidth="107.0" text="Nova Habilidade" />
+
+            <Button layoutX="443.0" layoutY="334.0" mnemonicParsing="false" onAction="#criarItem" prefHeight="25.0" prefWidth="107.0" text="Novo Item" />
+
          </children>
       </AnchorPane>
    </children>

@@ -77,9 +77,12 @@ public class ControllerCriarClasse {
     void acaoSalvar(ActionEvent event) throws IOException {
     	ObservableList lista = listHabBasicas.getSelectionModel().getSelectedItems(); 
     	ObservableList  lista2  = listHabAvancadas.getSelectionModel().getSelectedItems();
+    	
     	List<Habilidade> listaH = new ArrayList<>();
     	listaH.addAll(lista);
     	listaH.addAll(lista2);
+    	listaH.add((Habilidade) habAuto.getSelectionModel().getSelectedItem());
+    	listaH.add((Habilidade) habFinal.getSelectionModel().getSelectedItem());
     	for(int i=0;i<listaH.size();i++)
     	{
     		for(int j=0;j<fachada.listarTodasHabilidades().size();j++) {
@@ -118,11 +121,6 @@ public class ControllerCriarClasse {
     	appStage.show();
     }
 
-    @FXML
-    void selecionarHabAuto(ActionEvent event) {
-    	
-    	
-    }
     void carregarHab()
     {
     	//Carregar Hab Auto
@@ -139,7 +137,12 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista1 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista1.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 10));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 10))
+    		{
+    			if(!(lista1.contains(hab))) {
+    				lista1.add(hab);
+    			}
+    		}
     	}
     	obLista1 = FXCollections.observableArrayList(lista1);
     	habFinal.getItems().addAll(obLista1);
@@ -149,7 +152,12 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista2 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista2.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 1));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 1))
+    		{	
+    			if(!lista2.contains(hab)) {
+    				lista2.add(hab);
+    			} 
+    		}
     	}
     	obLista2 = FXCollections.observableArrayList(lista2);
     	listHabBasicas.getItems().addAll(obLista2);
@@ -160,17 +168,20 @@ public class ControllerCriarClasse {
     	List<Habilidade> lista3 = new ArrayList<>();
     	for(Classe classe : fachada.listarTodasClasses())
     	{
-    		lista3.addAll(fachada.habilidadesBasicaAvancadaOuFinal(classe, 5));
+    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 5))
+    		{
+    			if(!(lista3.contains(hab))) {
+    				lista3.add(hab);
+    			}
+    		}
+    		
     	}
     	obLista3 = FXCollections.observableArrayList(lista3);
     	listHabAvancadas.getItems().addAll(obLista3);
     	listHabAvancadas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    @FXML
-    void selecionarHabFinal(ActionEvent event) {
-    	
-    }
+    
 
     @FXML
     void initialize() {

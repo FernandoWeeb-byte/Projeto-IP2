@@ -94,13 +94,9 @@ public class ControllerLoja {
     	
     	nome.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
     	ouro.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d",data.getValue().getCusto())));
-    	//tipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()
-    	compra.setCellValueFactory(new PropertyValueFactory<Equipamento, String>("Button"));
+    	tipo.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d", data.getValue().getfN())));
     	tabela.setItems(obLista);
-    	for(int i=0;i<lista.size();i++)
-    	{
-    		lista.get(i).getButton().setOnAction(this::acao);;
-    	}
+    	
 
     }
     
@@ -113,13 +109,9 @@ public class ControllerLoja {
     	
     	nome.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
     	ouro.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d",data.getValue().getCusto())));
-    	//tipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()
-    	compra.setCellValueFactory(new PropertyValueFactory<Equipamento, String>("Button"));
+    	tipo.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d", data.getValue().getfN())));
     	tabela.setItems(obLista);
-    	for(int i=0;i<lista.size();i++)
-    	{
-    		lista.get(i).getButton().setOnAction(this::acao);;
-    	}
+    	
 
     	
     }
@@ -133,13 +125,10 @@ public class ControllerLoja {
     	
     	nome.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
     	ouro.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d",data.getValue().getCusto())));
-    	//tipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()
-    	compra.setCellValueFactory(new PropertyValueFactory<Equipamento, String>("Button"));
+    	tipo.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d", data.getValue().getfN())));
+    	
     	tabela.setItems(obLista);
-    	for(int i=0;i<lista.size();i++)
-    	{
-    		lista.get(i).getButton().setOnAction(this::acao);;
-    	}
+    	
     }
 
     @FXML
@@ -151,35 +140,91 @@ List<Equipamento> lista = fachada.listarItensComuns();
     	
     	nome.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
     	ouro.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d",data.getValue().getCusto())));
-    	//tipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()
-    	compra.setCellValueFactory(new PropertyValueFactory<Equipamento, String>("Button"));
+    	tipo.setCellValueFactory(data -> new SimpleStringProperty(String.format("%d", data.getValue().getfN())));
     	tabela.setItems(obLista);
-    	for(int i=0;i<lista.size();i++)
-    	{
-    		lista.get(i).getButton().setOnAction(this::acao);;
-    	}
+    	
     }
 
     
     @FXML
     void acao(ActionEvent event) {
     	//List<Equipamento> lista = new ArrayList<>();
-    	for(Equipamento equip : tabela.getItems())
-    	{
-    		if(equip.getButton() == event.getSource())
-    		{
-    			if(novoPerson.getOuro() > 0 && novoPerson.getOuro() >= equip.getCusto()) {
-    			lista.add(equip);
-    			novoPerson.setOuro(novoPerson.getOuro() - equip.getCusto());
-    			}
-    			
+    	
+    	if(novoPerson.getOuro() > 0 && novoPerson.getOuro() >= tabela.getSelectionModel().getSelectedItem().getCusto()) {
+    		lista.add(tabela.getSelectionModel().getSelectedItem());
+    		novoPerson.setOuro(novoPerson.getOuro() - tabela.getSelectionModel().getSelectedItem().getCusto());
     		}
-    	}
+    			
     	ObservableList obLista;
 		obLista = FXCollections.observableArrayList(lista);
 		compras.setItems(obLista);
 		ouros.setText(String.format("%d", novoPerson.getOuro()));
     }
+    
+    @FXML
+    void visualizarEquip(ActionEvent event) {
+    	
+    	
+    	if(tabela.getSelectionModel().getSelectedItem().getClass().equals(Protecao.class))
+    	{
+    		Protecao prot = (Protecao) tabela.getSelectionModel().getSelectedItem();
+    		String str = String.format("%s\n"
+					+ "Custo: %d\n"
+					+ "Defesa: ", prot.getNome(), prot.getCusto());
+
+    		if(prot.isEscudo())
+    		{
+    			str += String.format("+%d\n", prot.getBloqueio());
+    		}
+    		else
+    		{
+    			str += String.format("%d\n", prot.getEsquiva());
+    		}
+
+    		str += String.format("FN: %d\n"
+    				+ "Peso: %.2f\n", prot.getfN(), prot.getPeso());
+    		descricao.setText(str);
+    		
+    	}else if(tabela.getSelectionModel().getSelectedItem().getClass().equals(Arma.class))
+    	{
+    		Arma arma = (Arma) tabela.getSelectionModel().getSelectedItem();
+    		String str = String.format("%s\n"
+					+ "Custo: %d\n"
+					+ "Dano: ", arma.getNome(), arma.getCusto());	
+
+    		if(arma.isCarregar())
+    		{
+    			str += String.format("%d\n", arma.getDano());
+    		}
+    		else
+    		{
+    			str += String.format("For+%d\n", arma.getDano());
+    		}
+
+    		str += String.format("Tipo: %s\n"
+    				+ "FN: %d\n"
+    				+ "Peso: %.2f\n"
+    				+ "Distância: %s\n",
+    				arma.getTipoDano(), arma.getfN(), arma.getPeso(), arma.getDistancia());
+    		descricao.setText(str);
+    	}
+    	else {
+    	String str = String.format("%s\n"
+				+ "Custo: %d\n", tabela.getSelectionModel().getSelectedItem().getNome(), tabela.getSelectionModel().getSelectedItem().getCusto());
+
+    			if(tabela.getSelectionModel().getSelectedItem().getfN() > 0)
+    			{
+    				str += String.format("FN: %d\n", tabela.getSelectionModel().getSelectedItem().getfN());
+    			}
+
+    			str += String.format("Peso: %.2fkg\n"
+    					+ "Descrição: %s\n",
+    					tabela.getSelectionModel().getSelectedItem().getPeso(), tabela.getSelectionModel().getSelectedItem().getDescricao());
+    	
+    			descricao.setText(str);
+    	}
+    	}
+    
     void carregarValor()
     {
     	ouros.setText(String.format("%d", novoPerson.getOuro()));

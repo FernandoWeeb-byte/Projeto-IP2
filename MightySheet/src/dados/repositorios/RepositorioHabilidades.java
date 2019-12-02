@@ -2,6 +2,7 @@ package dados.repositorios;
 
 import negocio.beans.Classe;
 import negocio.beans.Habilidade;
+import negocio.beans.Raca;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -211,6 +212,17 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	}
 	
 	@Override
+	public List<Habilidade> listarHabilidadePorClasse(Classe classe)
+	{
+		List<Habilidade> saida = new ArrayList<Habilidade>();
+		for(Habilidade hab: classe.getHabilidades().values())
+		{
+			saida.add(hab);
+		}
+		return saida;
+	}
+	
+	@Override
 	public List<Habilidade> listarHabilidadesPorRaca(String nome)
 	{
 		List<Habilidade> hRaca = new ArrayList<Habilidade>();
@@ -232,6 +244,17 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 		}
 		
 		return hRaca;
+	}
+	
+	@Override
+	public List<Habilidade> listarHabilidadesPorRaca(Raca raca)
+	{
+		List<Habilidade> saida = new ArrayList<Habilidade>();
+		for(Habilidade hab: raca.getHabilidades().values())
+		{
+			saida.add(hab);
+		}
+		return saida;
 	}
 	
 	@Override
@@ -322,13 +345,14 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 			
 			FileInputStream fis = new FileInputStream(f);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-
+			
 			try
 			{
 				if((ret = (Map<String, Habilidade>)ois.readObject()) == null)
 				{
 					ret = new HashMap<String, Habilidade>();
 				}
+				
 			}
 			catch(ClassNotFoundException e)
 			{
@@ -383,76 +407,28 @@ public class RepositorioHabilidades implements IRepoHabilidades {
 	public List<Habilidade> habilidadesBasicaAvancadaOuFinal(Classe classe, int level)
 	{
 		List<Habilidade> saida = new ArrayList<Habilidade>();
-		String classesDeCada[] = null;
-		for(Map.Entry<String, Habilidade> entry: this.habilidadesPreExistentes.entrySet())
+		Map<String, Habilidade> agoraVai = new HashMap<String, Habilidade>();
+		agoraVai.putAll(classe.getHabilidades());
+		for(Map.Entry<String, Habilidade> entry : agoraVai.entrySet())
 		{
-			classesDeCada = entry.getValue().getClasses();
-			Habilidade valor = entry.getValue();
-			String req = entry.getValue().getRequisito();
 			if(level<5)
 			{
-				for(int i=0; i<classesDeCada.length; i++)
+				if(!entry.getValue().getRequisito().contains("Nível 5") && !entry.getValue().getRequisito().contains("Nível 10"))
 				{
-					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level < 10 && level >= 5)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 5") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level >=10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
+					saida.add(entry.getValue());
 				}
-				
-			}	
-		}
-		for(Map.Entry<String, Habilidade> entry: this.habilidadesCriadas.entrySet())
-		{
-			classesDeCada = entry.getValue().getClasses();
-			Habilidade valor = entry.getValue();
-			String req = entry.getValue().getRequisito();
-			if(level<5)
+			} else if(level < 10)
 			{
-				for(int i=0; i<classesDeCada.length; i++)
+				if( !entry.getValue().getRequisito().contains("Nível 10") && entry.getValue().getRequisito().contains("Nível 5") )
 				{
-					if(classesDeCada[i].equals(classe.getNome()) && !req.contains("Nível 5") && !req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level < 10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
-				}	
-			} else if( level >=10)
-			{
-				for(int i=0; i<classesDeCada.length; i++)
-				{
-					if(classesDeCada[i].equals(classe.getNome()) && req.contains("Nível 10") && !saida.contains(valor))
-					{
-						saida.add(valor);
-					}
+					saida.add(entry.getValue());
 				}
-				
-			}	
+			} else
+			{
+				if(entry.getValue().getRequisito().contains("Nível 10")) {
+				saida.add(entry.getValue());
+				}
+			}
 		}
 		return saida;
 

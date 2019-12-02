@@ -85,6 +85,41 @@ public class Raca implements Serializable{
 		return inteligencia;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public void setForca(int forca) {
+		this.forca = forca;
+	}
+
+
+	public void setAgilidade(int agilidade) {
+		this.agilidade = agilidade;
+	}
+
+
+	public void setInteligencia(int inteligencia) {
+		this.inteligencia = inteligencia;
+	}
+
+
+	public void setVontade(int vontade) {
+		this.vontade = vontade;
+	}
+
+
+	public void setHabilidadeAutomatica(Habilidade habilidadeAutomatica) {
+		this.habilidadeAutomatica = habilidadeAutomatica;
+	}
+
+
+	public void setHabilidades(Map<String, Habilidade> habilidades) {
+		this.habilidades = habilidades;
+	}
+
+
 	public int getVontade() {
 		return vontade;
 	}

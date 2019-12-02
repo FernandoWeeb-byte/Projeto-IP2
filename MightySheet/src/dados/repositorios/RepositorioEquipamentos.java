@@ -468,8 +468,7 @@ public class RepositorioEquipamentos implements IRepoEquipamentos {
 		return ret;
 	}
 	
-	public boolean salvarEquipamentos()
-	{
+	public boolean salvarEquipamentos() {
 		boolean ret = false;
 		
 		File f = new File("Equipamentos.rep");

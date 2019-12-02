@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerCriacaoDeFicha">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ControllerEditarFicha">
    <children>
       <AnchorPane layoutX="14.0" layoutY="-19.0" prefHeight="692.0" prefWidth="719.0">
          <children>
@@ -45,7 +45,7 @@
             <Button fx:id="adcInteligencia" layoutX="154.0" layoutY="264.0" mnemonicParsing="false" onAction="#upAtributo" prefHeight="25.0" prefWidth="29.0" text="+" />
             <Button fx:id="adcVontade" layoutX="154.0" layoutY="295.0" mnemonicParsing="false" onAction="#upAtributo" prefHeight="25.0" prefWidth="29.0" text="+" />
             <Label layoutX="229.0" layoutY="204.0" prefHeight="17.0" prefWidth="27.0" text="PV" />
-            <TextField fx:id="nome" layoutX="80.0" layoutY="37.0" prefHeight="25.0" prefWidth="563.0" />
+            <TextField fx:id="nome" editable="false" layoutX="80.0" layoutY="37.0" prefHeight="25.0" prefWidth="563.0" />
             <Label layoutX="229.0" layoutY="249.0" text="PM" />
             <Label layoutX="43.0" layoutY="370.0" text="Bloqueio">
                <font>
@@ -96,12 +96,9 @@
             <TextField fx:id="deslocamento" editable="false" layoutX="168.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
             <TextField fx:id="corrida" editable="false" layoutX="438.0" layoutY="338.0" prefHeight="25.0" prefWidth="51.0" />
             <ListView fx:id="skilList" layoutX="33.0" layoutY="440.0" prefHeight="200.0" prefWidth="270.0" />
-            <Button fx:id="voltar" layoutX="575.0" layoutY="653.0" mnemonicParsing="false" onAction="#acaoBotao" text="Voltar" />
             <Button fx:id="salvar" layoutX="650.0" layoutY="653.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
             <TextField fx:id="pV" editable="false" layoutX="264.0" layoutY="203.0" prefHeight="25.0" prefWidth="39.0" />
             <TextField fx:id="pM" editable="false" layoutX="264.0" layoutY="245.0" prefHeight="25.0" prefWidth="39.0" />
-            <ComboBox fx:id="raca" layoutX="31.0" layoutY="96.0" onAction="#selecionarRaca" prefWidth="150.0" />
-            <ComboBox fx:id="classe" layoutX="473.0" layoutY="96.0" onAction="#selecionarClasse" prefWidth="150.0" />
             <ComboBox fx:id="vestimenta" layoutX="473.0" layoutY="181.0" onAction="#escolherVestimenta" prefWidth="150.0" />
             <ComboBox fx:id="maoDireita" layoutX="473.0" layoutY="233.0" prefWidth="150.0" />
             <ComboBox fx:id="maoEsquerda" layoutX="473.0" layoutY="284.0" onAction="#escolherEscudo" prefWidth="150.0" />
@@ -120,14 +117,16 @@
             <Label layoutX="264.0" layoutY="100.0" prefHeight="17.0" prefWidth="39.0" text="Ouro" />
             <TextField fx:id="ouro" layoutX="303.0" layoutY="96.0" prefHeight="25.0" prefWidth="45.0" text="400" />
             <Button layoutX="647.0" layoutY="479.0" mnemonicParsing="false" onAction="#entrega" text="Entrega" />
-            <Button fx:id="Vender" layoutX="650.0" layoutY="515.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
-            <HBox layoutX="154.0" layoutY="641.0" prefHeight="37.0" prefWidth="143.0">
+            <TextField fx:id="raca" editable="false" layoutX="31.0" layoutY="96.0" />
+            <TextField fx:id="classe" editable="false" layoutX="472.0" layoutY="96.0" />
+            <Button layoutX="647.0" layoutY="515.0" mnemonicParsing="false" onAction="#vender" text="Vender" />
+            <HBox layoutX="147.0" layoutY="641.0" prefHeight="25.0" prefWidth="128.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#escolherH" text="Escolher" />
-                  <Button mnemonicParsing="false" onAction="#removerH" prefHeight="25.0" prefWidth="69.0" text="Remover" />
+                  <Button mnemonicParsing="false" onAction="#removerH" text="Remover" />
                </children>
             </HBox>
-            <Button layoutX="225.0" layoutY="440.0" mnemonicParsing="false" onAction="#carregarH" text="Habilidades" />
+            <Button layoutX="249.0" layoutY="440.0" mnemonicParsing="false" onAction="#carregarH" text="Habilidades" />
          </children>
       </AnchorPane>
    </children>

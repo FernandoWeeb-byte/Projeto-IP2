@@ -23,7 +23,6 @@ public class Principal extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.sizeToScene();
-		
 	}
 	
 	public static void main(String[] args) {

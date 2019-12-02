@@ -53,20 +53,40 @@ public class Protecao extends Equipamento implements Serializable{
 	public int getBloqueio() {
 		return bloqueio;
 	}
+	
+	public void setBloqueio(int bloqueio) {
+		this.bloqueio = bloqueio;
+	}
 
 	public int getEsquiva() {
 		return esquiva;
 	}
-
+	
+	public void setEsquiva(int esquiva) {
+		this.esquiva = esquiva;
+	}
+	
 	public boolean isEscudo() {
 		return escudo;
+	}
+	
+	public void setEscudo(boolean escudo) {
+		this.escudo = escudo;
 	}
 
 	public boolean isPesada() {
 		return pesada;
 	}
 	
+	public void setPesada(boolean pesada) {
+		this.pesada = pesada;
+	}
+	
 	public boolean isRigida() {
 		return rigida;
+	}
+	
+	public void setRigida(boolean rigida) {
+		this.rigida = rigida;
 	}
 }

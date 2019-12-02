@@ -3,6 +3,7 @@ package gui.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -23,15 +24,18 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import negocio.Fachada;
+import negocio.beans.Arma;
 import negocio.beans.Classe;
 import negocio.beans.Equipamento;
 import negocio.beans.Habilidade;
 import negocio.beans.Personagem;
+import negocio.beans.Protecao;
 import negocio.beans.Raca;
 import negocio.controladores.ControladorPersonagens;
 
@@ -68,10 +72,10 @@ public class ControllerCriacaoDeFicha {
     private ComboBox<?> vestimenta;
 
     @FXML
-    private ComboBox<?> maoDireita;
+    private ComboBox<Arma> maoDireita;
 
     @FXML
-    private ComboBox<?> maoEsquerda;
+    private ComboBox<Protecao> maoEsquerda;
 
     @FXML
     private Button adcForca;
@@ -116,10 +120,10 @@ public class ControllerCriacaoDeFicha {
     private TextField corrida;
     
     @FXML
-    private ListView<?> skilList;
+    private ListView<Habilidade> skilList;
     
     @FXML
-    private ListView<?> skillListC;
+    private ListView<Equipamento> skillListC;
 
     @FXML
     private Button voltar;
@@ -145,7 +149,7 @@ public class ControllerCriacaoDeFicha {
     @FXML
     private TextField ouro;
     
-    Personagem person = new Personagem(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, 0);
+    Personagem person = new Personagem(null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null, null, 0);
     Personagem novoPerson = Personagem.novoPerson;
     
 
@@ -165,12 +169,17 @@ public class ControllerCriacaoDeFicha {
     	person.setPtsAtributo(0);
     	person.setNivel((int)nivel.getValue());
     	person.calculoPtsAtributo(person.getNivel());
+    	person.calcularVida();
+    	person.calcularMana();
+    	person.setDeslocamento();
     	ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
-    	
-    	List<Habilidade> lista = null;
+    	pV.setText(String.format("%d", person.getVida()));
+    	pM.setText(String.format("%d", person.getMana()));
+    	deslocamento.setText(String.format("%d", person.getDeslocamento()));
+    	/*List<Habilidade> lista = null;
 		ObservableList obLista = null;
     	if(!(person.getClasse() == null && person.getClasse() == classe.getValue())) {
-        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+        	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
         	skilList.getItems().removeAll(obLista2);
         	}
     	
@@ -188,7 +197,7 @@ public class ControllerCriacaoDeFicha {
     		
     	}
     	obLista = FXCollections.observableArrayList(lista);
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	person.setQuantHabilidades();
     	qtdHab.setText(String.format("%d", person.getQuantHabilidades()));
@@ -209,6 +218,34 @@ public class ControllerCriacaoDeFicha {
     	}
     }
     
+    @FXML
+    void escolherH(ActionEvent event) throws IOException {
+
+    	if(!(classe.getValue() == null && raca.getValue() == null && nivel.getValue() == null)) {
+    	novoPerson.setClasse(classe.getValue());
+    	novoPerson.setRaca(raca.getValue());
+    	novoPerson.setNivel(nivel.getValue());
+    	
+    	Stage stage = new Stage();
+    	FXMLLoader FxmlLoader = new FXMLLoader();
+    	Parent loja_parent = FxmlLoader.load(getClass().getResource("/gui/fxmls/Habilidades.fxml").openStream());
+    	Scene loja_Scene = new Scene(loja_parent);
+        stage.setScene(loja_Scene);
+        stage.setTitle("Loja");
+        stage.setResizable(false);
+        stage.showAndWait();
+    	}
+    	else {
+    		erro.setText("selecione a classe, a raça e o nivel");
+    	}
+    }
+    
+    @FXML
+    void removerH(ActionEvent event) {
+    	skilList.getItems().remove(skilList.getSelectionModel().getSelectedItem());
+    	
+    }
+    
     void carregarNiveis()
     {
     	ObservableList<Integer> obLista;
@@ -226,6 +263,7 @@ public class ControllerCriacaoDeFicha {
     	
     	obLista = FXCollections.observableArrayList(lista);
     	classe.setItems(obLista);
+    	skilList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
     
     void carregarRaca()
@@ -238,6 +276,16 @@ public class ControllerCriacaoDeFicha {
     	//lista.add(Raca);
     	obLista = FXCollections.observableArrayList(lista);
     	raca.setItems(obLista);
+    }
+    
+    @FXML
+    void carregarH(ActionEvent event) {
+    	ObservableList obLista;
+    	List<Habilidade> lista = novoPerson.getHabilidades();
+    	person.setHabilidades(novoPerson.getHabilidades());
+    	novoPerson.setHabilidades(null);
+    	obLista = FXCollections.observableArrayList(lista);
+    	skilList.getItems().addAll(obLista);
     }
     
     @FXML
@@ -267,15 +315,15 @@ public class ControllerCriacaoDeFicha {
     	
     	
     	//Mostrar as habilidades da raça na lista
-    	ObservableList obLista = null;
+    	/*ObservableList obLista = null;
     	if(!(person.getRaca() == null)) {
-    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca().getNome()));
+    		ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadesPorRaca(person.getRaca()));
     		skilList.getItems().removeAll(obLista2);
     	}
     	List<Habilidade> lista = null;
-    	lista = fachada.listarHabilidadesPorRaca(raca.getValue().getNome());
+    	lista = fachada.listarHabilidadesPorRaca(raca.getValue());
     	obLista = FXCollections.observableArrayList(lista);
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	//seta a raça e atributos
     	
@@ -315,15 +363,16 @@ public class ControllerCriacaoDeFicha {
     	
     	
     	// mostrar as habilidades de classe na lista
-    	ObservableList obLista = null;
+    	/*ObservableList obLista = null;
     	if(!(person.getClasse() == null)) {
-    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse().getNome()));
+    	ObservableList obLista2 = FXCollections.observableArrayList(fachada.listarHabilidadePorClasse(person.getClasse()));
     	skilList.getItems().removeAll(obLista2);
     	}
     	
     	List<Habilidade> lista = null;
     	if(nivel.getValue() == null) {
     	lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 1);
+    		//lista = fachada.listarTodasHabilidades();
     	}
     	else {
     		lista = fachada.habilidadesBasicaAvancadaOuFinal(classe.getValue(), 4);
@@ -339,7 +388,7 @@ public class ControllerCriacaoDeFicha {
     	
     	obLista = FXCollections.observableArrayList(lista);
     	
-    	skilList.getItems().addAll(obLista);
+    	skilList.getItems().addAll(obLista);*/
     	
     	//seta a classe e atributos
     	
@@ -354,7 +403,7 @@ public class ControllerCriacaoDeFicha {
     
     void calcularValores()
     {
-    	String[] str = {null, null, null,null}; 
+    	String[] str = {null, null, null,null, null}; 
     	
     	//Carga basica
     	person.setCargaBasica(Integer.parseInt(forca.getText()));
@@ -372,6 +421,10 @@ public class ControllerCriacaoDeFicha {
     	person.setDeslocamento();
     	str[3] = String.format("%d", person.getDeslocamento());
     	deslocamento.setText(str[3]);
+    	//Determinação
+    	person.setDeterminacao();
+    	str[4] = String.format("%d", person.getDeterminacao());
+    	determinacao.setText(str[4]);
     	
     }
     
@@ -391,6 +444,8 @@ public class ControllerCriacaoDeFicha {
     		person.setPtsAtributo(person.getPtsAtributo()-1);
     		ptsAtributos.setText(String.format("%d", person.getPtsAtributo()));
     		agilidade.setText(String.format("%d",person.getAgilidade()));
+    		person.setDeslocamento();
+    		
     	}
     	if(adcInteligencia.isArmed())
     	{
@@ -431,6 +486,8 @@ public class ControllerCriacaoDeFicha {
     	List<Equipamento> lista = novoPerson.getEquipamentos();
     	person.setEquipamentos(novoPerson.getEquipamentos());
     	novoPerson.setEquipamentos(null);
+    	person.setOuro(novoPerson.getOuro());
+    	ouro.setText(String.format("%d", person.getOuro()));
     	obLista = FXCollections.observableArrayList(lista);
     	skillListC.getItems().addAll(obLista);
     	carregarItens();
@@ -439,10 +496,79 @@ public class ControllerCriacaoDeFicha {
     
     void carregarItens()
     {
-    	List<Equipamento> lista = person.getEquipamentos();
+    	List<Protecao> protecoes = new ArrayList<>();
+    	List<Protecao> armadura = new ArrayList<>();
+    	List<Protecao> escudos = new ArrayList<>();
+    	List<Arma> armas = new ArrayList<>();
+    	for(Equipamento equip : person.getEquipamentos())
+    	{
+    		if(equip.getClass().equals(Protecao.class))
+    		{
+    			protecoes.add((Protecao) equip);
+    			
+    		}
+    	}
+    	
+    	for(Protecao prot : protecoes)
+    	{
+    		if(!prot.isEscudo())
+    		{
+    			armadura.add(prot);
+    		}
+    		else {
+    			escudos.add(prot);
+    		}
+    	}
+    	
+    	for(Equipamento equip : person.getEquipamentos())
+    	{
+    		if(equip.getClass().equals(Arma.class))
+    		{
+    			armas.add((Arma) equip);
+    			
+    		}
+    	}
+    	
+    	
     	ObservableList obLista;
-    	obLista = FXCollections.observableArrayList(lista);
+    	ObservableList obLista2;
+    	ObservableList obLista3;
+    	obLista = FXCollections.observableArrayList(armadura);
+    	obLista2 = FXCollections.observableArrayList(escudos);
+    	obLista3 = FXCollections.observableArrayList(armas);
     	vestimenta.getItems().addAll(obLista);
+    	maoEsquerda.getItems().addAll(obLista2);
+    	maoDireita.getItems().addAll(obLista3);
+    	
+    	
+    	
+    }
+    
+    @FXML
+    void escolherEscudo(ActionEvent event) {
+    	person.setMaoEsquerda(maoEsquerda.getValue());
+    	person.setBloqueio();
+    	bloqueio.setText(String.format("%d", person.getBloqueio()));
+    	
+    	
+    	
+    }
+    
+    @FXML
+    void escolherVestimenta(ActionEvent event) {
+    	
+    	person.setVestimenta((Protecao) vestimenta.getValue());
+    	person.setCorrida();
+    	corrida.setText(String.format("%d", person.getCorrida()));
+    	person.setEsquiva();
+    	esquiva.setText(String.format("%d", person.getEsquiva()));
+    }
+    
+    @FXML
+    void vender(ActionEvent event) {
+    	skillListC.getItems().remove(skillListC.getSelectionModel().getSelectedItem());
+    	person.setOuro(person.getOuro()+skillListC.getSelectionModel().getSelectedItem().getCusto());
+    	ouro.setText(String.format("%d", person.getOuro()));
     	
     }
     
@@ -452,10 +578,15 @@ public class ControllerCriacaoDeFicha {
     	person.setNomePersonagem(nome.getText());
     	person.setVida(Integer.parseInt(pV.getText()));
     	person.setMana(Integer.parseInt(pM.getText()));
-    	
+    	person.setMaoDireita(maoDireita.getValue());
+    	ArrayList<Habilidade> hab = new ArrayList<>();
+    	ArrayList<Equipamento> equip = new ArrayList<>();
+    	hab.addAll((Collection<? extends Habilidade>) skilList.getItems());
+    	equip.addAll(skillListC.getItems());
+    	person.setHabilidades(hab);
     	IRepoPersonagens lista = RepositorioPersonagens.getInstance();
     	lista.AdicionarFicha(person);
-    	//fachada.salvar(person);
+    	fachada.salvar(person);
     	Parent parent_voltar = FXMLLoader.load(getClass().getResource("/gui/fxmls/TelaInicial.fxml"));
     	Scene Tela_Inicial_Scene = new Scene(parent_voltar);
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
