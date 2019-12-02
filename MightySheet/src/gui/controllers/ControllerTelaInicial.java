@@ -1,6 +1,7 @@
 package gui.controllers;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dados.interfaces.IRepoPersonagens;
@@ -16,9 +17,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -68,7 +71,12 @@ public class ControllerTelaInicial {
 
 	    @FXML
 	    private Button removerFicha;
-
+	    
+	    @FXML
+	    private ComboBox<String> buscaCombo;
+	    
+	    @FXML
+	    private TextField buscaFicha;
 	    
 	    @FXML
 	    void AcaoDoBotao(ActionEvent event) throws IOException {
@@ -84,21 +92,60 @@ public class ControllerTelaInicial {
 	    
 	    void tabela()
 	    {
-	    	
-	    	
-	    	
+	    
 	    	ObservableList obLista;
 	    	obLista = FXCollections.observableArrayList(fachada.todas());
-	    	
 	    	
 	    	nomeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomePersonagem()));
 	    	classeTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getClasse().getNome()));
 	    	racaTabela.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRaca().getNome()));
-	    	
 	    	tabela.setItems(obLista);
-	    	
-	    	
-	    	
+	    }
+	    
+	    @FXML
+	    void busca(ActionEvent event) {
+	    	if(buscaCombo.getValue().contains("Todos"))
+	    	{
+	    		ObservableList<Personagem> obLista = FXCollections.observableArrayList(fachada.todas());
+	    		tabela.getItems().clear();
+	    		tabela.getItems().addAll(obLista);
+	    	}
+	    }
+	    
+	    @FXML
+	    void okFicha(ActionEvent event) {
+	    	if(buscaCombo.getValue().contains("Nome")) {
+	    		if(buscaFicha.getText() != null) {
+	    			ObservableList<Personagem> obLista = FXCollections.observableArrayList(fachada.buscaPorPers(buscaFicha.getText()));
+	    			tabela.getItems().clear();
+	    			tabela.getItems().addAll(obLista);
+	    		}
+	    	}
+	    	else if(buscaCombo.getValue().contains("Classe")) {
+	    		if(buscaFicha.getText() != null) {
+	    			ObservableList<Personagem> obLista = FXCollections.observableArrayList(fachada.listaDaClasse(fachada.buscarClasse(buscaFicha.getText())));
+	    			tabela.getItems().clear();
+	    			tabela.getItems().addAll(obLista);
+	    		}
+	    	}
+	    	else if(buscaCombo.getValue().contains("Raça")) {
+	    		if(buscaFicha.getText() != null) {
+	    			ObservableList<Personagem> obLista = FXCollections.observableArrayList(fachada.listaDaRaca(fachada.buscarRaca(buscaFicha.getText())));
+	    			tabela.getItems().clear();
+	    			tabela.getItems().addAll(obLista);
+	    		}
+	    	}
+	    }
+	    
+	    void carregarBusca()
+	    {
+	    	ArrayList<String> lista = new ArrayList<>();
+	    	lista.add("Todos");
+	    	lista.add("Nome");
+	    	lista.add("Classe");
+	    	lista.add("Raça");
+	    	ObservableList<String> obLista = FXCollections.observableArrayList(lista);
+	    	buscaCombo.getItems().addAll(obLista);
 	    }
 	    
 	    @FXML
@@ -184,6 +231,7 @@ public class ControllerTelaInicial {
 	    void initialize() {
 	    	
 	    	tabela();
+	    	carregarBusca();
 	    	
 	    }
 

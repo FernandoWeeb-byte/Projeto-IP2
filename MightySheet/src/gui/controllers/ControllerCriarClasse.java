@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,17 +85,6 @@ public class ControllerCriarClasse {
     	listaH.addAll(lista2);
     	listaH.add((Habilidade) habAuto.getSelectionModel().getSelectedItem());
     	listaH.add((Habilidade) habFinal.getSelectionModel().getSelectedItem());
-    	for(int i=0;i<listaH.size();i++)
-    	{
-    		for(int j=0;j<fachada.listarTodasHabilidades().size();j++) {
-    			if(listaH.get(i).equals(fachada.listarTodasHabilidades().get(j)))
-    			{
-    				fachada.listarTodasHabilidades().get(j).setClasses(nome.getText());
-    				
-    			}
-    			
-    		}
-    	}
     	
     	Classe classe = new Classe(null, 0, 0, 0, 0, null,listaH);
     	classe.setNome(nome.getText());
@@ -109,6 +100,7 @@ public class ControllerCriarClasse {
     	Stage appStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
     	appStage.setScene(Criacao_Ficha_Scene);
     	appStage.show();
+    	fachada.salvarTodosRepositórios();
     	
     }
 
@@ -135,13 +127,10 @@ public class ControllerCriarClasse {
     	//Carregar Hab final
     	ObservableList obLista1;
     	List<Habilidade> lista1 = new ArrayList<>();
-    	for(Classe classe : fachada.listarTodasClasses())
+    	for(Habilidade hab : fachada.listarTodasHabilidades())
     	{
-    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 10))
-    		{
-    			if(!(lista1.contains(hab))) {
-    				lista1.add(hab);
-    			}
+    		if(hab.getRequisito().contains("Nível 10")) {
+    			lista1.add(hab);
     		}
     	}
     	obLista1 = FXCollections.observableArrayList(lista1);
@@ -150,14 +139,13 @@ public class ControllerCriarClasse {
     	//Carregar Hab Basicas
     	ObservableList obLista2;
     	List<Habilidade> lista2 = new ArrayList<>();
-    	for(Classe classe : fachada.listarTodasClasses())
+    	for(Habilidade hab : fachada.listarTodasHabilidades())
     	{
-    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 1))
-    		{	
-    			if(!lista2.contains(hab)) {
-    				lista2.add(hab);
-    			} 
+    		
+    		if(!hab.getRequisito().contains("Nível 10") && !hab.getRequisito().contains("Nível 5")) {
+    			lista2.add(hab);
     		}
+    		
     	}
     	obLista2 = FXCollections.observableArrayList(lista2);
     	listHabBasicas.getItems().addAll(obLista2);
@@ -166,14 +154,13 @@ public class ControllerCriarClasse {
     	//Carregar Hab Avançadas
     	ObservableList obLista3;
     	List<Habilidade> lista3 = new ArrayList<>();
-    	for(Classe classe : fachada.listarTodasClasses())
+    	for(Habilidade hab : fachada.listarTodasHabilidades())
     	{
-    		for(Habilidade hab : fachada.habilidadesBasicaAvancadaOuFinal(classe, 5))
+    		if(hab.getRequisito().contains("Nível 5"))
     		{
-    			if(!(lista3.contains(hab))) {
-    				lista3.add(hab);
-    			}
+    			lista3.add(hab);
     		}
+    		
     		
     	}
     	obLista3 = FXCollections.observableArrayList(lista3);
@@ -181,11 +168,53 @@ public class ControllerCriarClasse {
     	listHabAvancadas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
+    void soNumeros() {
+    	forca.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            forca.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	inteligencia.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            inteligencia.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	agilidade.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            agilidade.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    	
+    	vontade.textProperty().addListener(new ChangeListener<String>() {
+    	    @Override
+    	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    	        String newValue) {
+    	        if (!newValue.matches("\\d*")) {
+    	            vontade.setText(newValue.replaceAll("[^\\d]", ""));
+    	        }
+    	    }
+    	});
+    }
     
 
     @FXML
     void initialize() {
     	carregarHab();
+    	soNumeros();
     }
 
 }

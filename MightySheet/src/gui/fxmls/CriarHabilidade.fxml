@@ -28,5 +28,6 @@
       <Label layoutX="17.0" layoutY="66.0" text="Requisitos" />
       <ComboBox fx:id="racas" layoutX="75.0" layoutY="188.0" prefWidth="150.0" />
       <ComboBox fx:id="classes" layoutX="405.0" layoutY="188.0" prefWidth="150.0" />
+      <Label fx:id="erro" layoutX="225.0" layoutY="404.0" prefHeight="17.0" prefWidth="238.0" textFill="#f50202" />
    </children>
 </AnchorPane>
