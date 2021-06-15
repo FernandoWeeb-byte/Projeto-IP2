@@ -1,3 +1,2 @@
-qual o nome do grupo mesmo?
-might blade
+Criador/Gerenciador de fichas de RPG feito em java
 
